@@ -15,7 +15,7 @@ select * from cart c join product p on c.p_no=p.p_no where cart_no=1 ;
 --guard1 카트에 있는 1번제품의 수량증가
 update cart set cart_qty=cart_qty+1 where userid='guard1' and p_no=1;
 --guard1 카트에 있는 cart_no 1번의 수량3개 수정
-update cart set cart_qty=3 where cart_no=1
+update cart set cart_qty=3 where cart_no=1;
 
 --guard1님 카트아이템1개삭제
 delete from cart where cart_no=1;
@@ -47,6 +47,12 @@ delete from orders where o_no=1;
 --select j_no from orders where userid='guard1';
 delete from order_item where o_no in(select o_no from orders where userid='guard1');
 delete from orders where userid='guard1';
+
+
+/*****************board select******************/
+select * from board where p_no=6;
+
+
 
 rollback;
 
