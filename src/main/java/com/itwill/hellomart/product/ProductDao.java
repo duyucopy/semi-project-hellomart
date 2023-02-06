@@ -68,7 +68,7 @@ public class ProductDao {
 	/*
 	 * selectByPK : 상품번호로 검색
 	 */
-	public Product findByPrimartKey(int p_no) throws Exception{
+	public Product findByPrimaryKey(int p_no) throws Exception{
 		Product product = null;
 		Connection con= dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NO);
