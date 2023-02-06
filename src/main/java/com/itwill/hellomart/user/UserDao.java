@@ -26,7 +26,9 @@ public class UserDao {
 		basicDataSource.setPassword(properties.getProperty("password"));
 		dataSource = basicDataSource;
 	}
-	
+	/*
+	 * 회원가입
+	 */
 	public int create(User user) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -51,6 +53,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	 * 정보수정
+	 */
 	public int update(User user) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -58,23 +63,26 @@ public class UserDao {
 		
 		try {
 			con = dataSource.getConnection();
-			pstmt.getConnection().prepareStatement(UserSQL.USER_UPDATE);
-			pstmt.setString(1, user.getUserId());
-			pstmt.setString(2, user.getPassword());
-			pstmt.setString(3, user.getName());
-			pstmt.setString(4, user.getEmail());
+			pstmt = con.prepareStatement(UserSQL.USER_UPDATE);
+			pstmt.setString(1, user.getPassword());
+			pstmt.setString(2, user.getName());
+			pstmt.setString(3, user.getEmail());
+			pstmt.setString(4, user.getUserId());
 			updateRowCount = pstmt.executeUpdate();
-			return updateRowCount;
 		} finally {
-			if(con != null) {
-				con.close();
-			}
 			if(pstmt != null) {
 				pstmt.close();
 			}
+			if(con != null) {
+				con.close();
+			}
 		}
+		return updateRowCount;
 	}
 	
+	/*
+	 * 회원 삭제
+	 */
 	public int remove(String userId) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -87,15 +95,18 @@ public class UserDao {
 			removeRowCount = pstmt.executeUpdate();
 			return removeRowCount;
 		} finally {
-			if(con != null) {
-				con.close();
-			}
 			if(pstmt != null) {
 				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
 			}
 		}
 	}
 	
+	/*
+	 * 아이디로 회원 조회
+	 */
 	public User findUser(String userId) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -118,16 +129,19 @@ public class UserDao {
 			if(rs != null) {
 				rs.close();
 			}
-			if(con != null) {
-				rs.close();
-			}
 			if(pstmt != null) {
 				pstmt.close();
+			}
+			if(con != null) {
+				rs.close();
 			}
 		}
 		return findUser;
 	}
 	
+	/*
+	 * 회원 목록 조회
+	 */
 	public ArrayList<User> findUserList() throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -138,26 +152,29 @@ public class UserDao {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(UserSQL.USER_SELECT_ALL);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				while(findUserList.add(new User(rs.getString("userid"), 
-												rs.getString("password"),
-												rs.getString("name"),
-												rs.getString("email"))));
+			while(rs.next()) {
+				findUserList.add(new User(rs.getString("userid"), 
+										rs.getString("password"),
+										rs.getString("name"),
+										rs.getString("email")));
 			}
 		} finally {
 			if(rs != null) {
 				rs.close();
 			}
-			if(con != null) {
-				con.close();
-			}
 			if(pstmt != null) {
 				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
 			}
 		}
 		return findUserList;
 	}
 	
+	/*
+	 * 아이디 존재 여부 체크
+	 */
 	public boolean existedUser(String userId) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
