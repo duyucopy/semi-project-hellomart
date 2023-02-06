@@ -27,6 +27,7 @@ insert into product values(product_p_no_SEQ.nextval,'리바트 행거',95000,'de
 insert into product values(product_p_no_SEQ.nextval,'일룸 로이모노 책상서랍',149000,'defalut.png','예쁜색상서랍',10);
 insert into product values(product_p_no_SEQ.nextval,'필립스 스탠드 조명',119000,'defalut.png','책상 스텐드 조명',10);
 insert into product values(product_p_no_SEQ.nextval,'누하스 안마의자',2069000,'defalut.png','안마 해주는 의자',10);
+
 /**********************cart insert***************************/
 
 /**********************orders insert*************************/
