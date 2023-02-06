@@ -27,7 +27,6 @@ DROP SEQUENCE product_p_no_SEQ;
 CREATE SEQUENCE product_p_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
-
 CREATE TABLE userinfo(
 		userId                        		VARCHAR2(100)		 NULL ,
 		password                      		VARCHAR2(100)		 NULL ,
@@ -85,7 +84,7 @@ CREATE TABLE board(
 		title                         		VARCHAR2(50)		 NOT NULL,
 		content                       		VARCHAR2(2000)		 NOT NULL,
 		regdate                       		DATE		 DEFAULT sysdate		 NULL ,
-		readcount                     		NUMBER(10)		 NULL ,
+		readcount                     		NUMBER(10)		 DEFAULT 0		 NULL ,
 		groupno                       		NUMBER(10)		 NOT NULL,
 		step                          		NUMBER(10)		 NOT NULL,
 		depth                         		NUMBER(10)		 DEFAULT 0		 NULL ,
