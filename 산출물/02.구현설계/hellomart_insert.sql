@@ -31,9 +31,14 @@ insert into product values(product_p_no_SEQ.nextval,'필립스 스탠드 조명'
 insert into product values(product_p_no_SEQ.nextval,'누하스 안마의자',2069000,'defalut.png','안마 해주는 의자',3);
 
 /**********************cart insert***************************/
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard1',2,1);
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard2',1,2);
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard3',3,1);
 
 /**********************orders insert*************************/
-
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid) values (orders_o_no_SEQ.nextval, sysdate, '배송 중', '문 앞에 놔주세요', 990000, 'guard1');
+insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 1);
+insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 2);
 /**********************board insert**************************/
 
 -- board.test  -> BoardDataInsertMain 실행
@@ -62,29 +67,6 @@ values(board_boardno_SEQ.nextval,
         2
         );
 */
---답글쓰기
-
-/*현재글의 데이타를 기반으로 작업한다.
-    1. boardno : 시퀀스증가
-    2. groupno : 현재글의 groupno
-    3. step    : 현재글의 step  + 1
-    4. depth   : 현재글의 depth + 1
- */
--- update 현재글과 같은그룹번호들중에서현재글의 step보다큰 step을가진 게시물들의 step을 1씩 증가시킨다.
-/*
-update board set step=step+1 where step > 1 and groupno=30 and p_no=2;
--- insert
-insert into board(boardno,title,content,groupno,step,depth, p_no) 
-        values(board_boardno_SEQ.nextval,
-            '후기답글'||board_boardno_SEQ.currval,
-            '내용용'||board_boardno_SEQ.currval,
-            30,
-            2,
-            1,
-            2
-            );
-*/
-
 
 commit;
 desc order_item;
