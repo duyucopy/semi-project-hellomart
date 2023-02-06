@@ -12,14 +12,13 @@ import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 public class ProductDao {
-	/*
-	 * 데이타소스, 생성자 , 프로퍼티 로드,어파치 데이타,굿
-	 */
+	
+	 
 	private DataSource dataSource;
 	public ProductDao() throws Exception{
 	Properties properties = new Properties();
 	properties.load(this.getClass().getResourceAsStream("/jdbc.properties"));
-	//어파치 데이타소스
+	
 	BasicDataSource basicDataSource=new BasicDataSource();
 	basicDataSource.setDriverClassName(properties.getProperty("drivaerClassName"));
 	basicDataSource.setUrl(properties.getProperty("url"));
@@ -27,13 +26,49 @@ public class ProductDao {
 	basicDataSource.setPassword(properties.getProperty("password"));
 	dataSource=basicDataSource;
 	}
+	public int insert(Product product) throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_INSERT);
+		pstmt.setString(1,product.getP_name());
+		pstmt.setInt(2,product.getP_price());
+		pstmt.setString(3,product.getP_image());
+		pstmt.setString(4,product.getP_desc());
+		pstmt.setInt(5,product.getCt_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
+		return rowCount;
+	}
+	public int update(Product product) throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_UPDATE);
+		pstmt.setString(1,product.getP_name());
+		pstmt.setInt(2,product.getP_price());
+		pstmt.setString(3,product.getP_image());
+		pstmt.setString(4,product.getP_desc());
+		pstmt.setInt(5,product.getCt_no());
+		pstmt.setInt(6,product.getCt_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
+		return rowCount;
+	}
+	public int delete(String p_name)throws Exception{
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_DELETE);
+		pstmt.setString(1, p_name);
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
+		return rowCount;
+	}
+	
+	
+	
 	/*
 	 * selectByPK : 상품번호로 검색
 	 */
-	/*
-	 * 프로덕트,커넥션,프리페어스테이트먼트 , 리절트셋
-	 */
-	public Product findByPrimartKey(int p_no) throws Exception{
+	public Product findByPrimaryKey(int p_no) throws Exception{
 		Product product = null;
 		Connection con= dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NO);
@@ -43,10 +78,14 @@ public class ProductDao {
 			product=new Product(
 						rs.getInt("p_no"),
 						rs.getString("p_name"),
-						rs.getInt("p_number"),
+						rs.getInt("p_price"),
 						rs.getString("p_image"),
-						rs.getString("p_desc"));
+						rs.getString("p_desc"),
+						rs.getInt("ct_no"));
 		}
+		rs.close();
+		pstmt.close();
+		con.close();
 		return product;
 	}
 	/*
@@ -58,8 +97,41 @@ public class ProductDao {
 		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL);
 		ResultSet rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Product product = new Product()
+			Product product=new Product(
+					rs.getInt("p_no"),
+					rs.getString("p_name"),
+					rs.getInt("p_price"),
+					rs.getString("p_image"),
+					rs.getString("p_desc"),
+					rs.getInt("ct_no"));
+			productList.add(product);
 		}
+		rs.close();
+		pstmt.close();
+		con.close();
 		return productList;
+	}
+	/*
+	 * 이름으로 찾기
+	 */
+	public Product findByName(String p_name)throws Exception{
+		Product product =null;
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NAME);
+		pstmt.setString(1, p_name);
+		ResultSet rs= pstmt.executeQuery();
+		if(rs.next()) {
+			product=new Product(
+						rs.getInt("p_no"),
+						rs.getString("p_name"),
+						rs.getInt("p_price"),
+						rs.getString("p_image"),
+						rs.getString("p_desc"),
+						rs.getInt("ct_no"));
+		}
+		rs.close();
+		pstmt.close();
+		con.close();
+		return product;
 	}
 }
