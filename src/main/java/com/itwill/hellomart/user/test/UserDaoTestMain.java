@@ -22,6 +22,9 @@ public class UserDaoTestMain {
 		
 		//회원목록조회
 		System.out.println("5. findUserList : " + userDao.findUserList());
+		
+		//아이디 존재 여부
+		System.out.println("6. existedUser : " + userDao.existedUser("guard1"));
 
 	}
 
