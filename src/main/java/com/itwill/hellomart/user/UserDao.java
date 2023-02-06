@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -142,11 +143,11 @@ public class UserDao {
 	/*
 	 * 회원 목록 조회
 	 */
-	public ArrayList<User> findUserList() throws Exception {
+	public List<User> findUserList() throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<User> findUserList = new ArrayList<User>();
+		List<User> findUserList = new ArrayList<User>();
 		
 		try {
 			con = dataSource.getConnection();
