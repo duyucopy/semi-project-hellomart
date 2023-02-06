@@ -13,7 +13,7 @@ public class ProductServiceTestMain {
 		//productService.delete("노트북");
 		//System.out.println(productService.findByPrimartKey(1));
 		//System.out.println(productService.findAll());
-		
+		//System.out.println(productService.findByName("냥냥"));
 
 	}
 

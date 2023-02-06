@@ -23,4 +23,7 @@ public class ProductService {
 	public List<Product> findAll() throws Exception{
 		return productDao.findAll();
 	}
+	public Product findByName(String p_name)throws Exception{
+		return productDao.findByName(p_name);
+	}
 }

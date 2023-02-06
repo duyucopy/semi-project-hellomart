@@ -111,4 +111,27 @@ public class ProductDao {
 		con.close();
 		return productList;
 	}
+	/*
+	 * 이름으로 찾기
+	 */
+	public Product findByName(String p_name)throws Exception{
+		Product product =null;
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NAME);
+		pstmt.setString(1, p_name);
+		ResultSet rs= pstmt.executeQuery();
+		if(rs.next()) {
+			product=new Product(
+						rs.getInt("p_no"),
+						rs.getString("p_name"),
+						rs.getInt("p_price"),
+						rs.getString("p_image"),
+						rs.getString("p_desc"),
+						rs.getInt("ct_no"));
+		}
+		rs.close();
+		pstmt.close();
+		con.close();
+		return product;
+	}
 }
