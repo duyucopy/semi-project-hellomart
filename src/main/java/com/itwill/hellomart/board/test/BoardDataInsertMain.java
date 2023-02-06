@@ -37,8 +37,8 @@ public class BoardDataInsertMain {
 						+ "board_boardno_SEQ.currval,"
 						+ "1,"
 						+ "'guard1',"
-						+ "2)");
-						//+ ((int)(Math.random()*10)+1)+")");
+						//+ "2)");
+						+ ((int)(Math.random()*17)+1)+")");
 
 			}
 			int[] updateCounts = stmt.executeBatch();

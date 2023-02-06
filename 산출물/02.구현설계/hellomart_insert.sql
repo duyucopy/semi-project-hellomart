@@ -1,3 +1,4 @@
+
 /**********************member insert************************/
 insert into userinfo(userid,password,name,email) values('guard1','1111','김경호1','guard1@korea.com');
 insert into userinfo(userid,password,name,email) values('guard2','2222','김경호2','guard2@korea.com');
@@ -13,6 +14,7 @@ insert into address(userid, loc) values('guard3', '서울시 용산구 이촌로
 insert into categories values(1,'TV/냉장고/세탁기');
 insert into categories values(2,'스마트폰/컴퓨터/노트북');
 insert into categories values(3,'가구');
+
 /**********************product insert************************/
 --제품번호 이름 가격 사진 제품상세
 insert into product values(product_p_no_SEQ.nextval,'LG전자 스텐드TV',990000,'defalut.png','자유롭게 이동하며 필요할때 내 곁에 두는 스크린',1);
@@ -35,10 +37,18 @@ insert into product values(product_p_no_SEQ.nextval,'필립스 스탠드 조명'
 insert into product values(product_p_no_SEQ.nextval,'누하스 안마의자',2069000,'defalut.png','안마 해주는 의자',3);
 
 /**********************cart insert***************************/
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard1',2,1);
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard2',1,2);
+insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard3',3,1);
 
 /**********************orders insert*************************/
-
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid) values (orders_o_no_SEQ.nextval, sysdate, '배송 중', '문 앞에 놔주세요', 990000, 'guard1');
+insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 1);
+insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 2);
 /**********************board insert**************************/
+
+-- board.test  -> BoardDataInsertMain 실행
+
 /*
  * groupno : 최상위글과 그글의 답글모두들을 하나의 구룹으로 묶기위한컬럼
  * step    : 같은그룹내에서의 순서를 가지고있는 컬럼
@@ -53,7 +63,7 @@ insert into product values(product_p_no_SEQ.nextval,'누하스 안마의자',206
  * depth   : 0
  */
 --새글쓰기
-insert into board(boardno, title, content, groupno, step, userId, p_no)
+/*insert into board(boardno, title, content, groupno, step, userId, p_no)
 values(board_boardno_SEQ.nextval,
         '게시판타이틀'||board_boardno_SEQ.currval,
         '내용'||board_boardno_SEQ.currval,
@@ -62,31 +72,7 @@ values(board_boardno_SEQ.nextval,
         'guard1',
         2
         );
-
---답글쓰기
-
-/*현재글의 데이타를 기반으로 작업한다.
-    1. boardno : 시퀀스증가
-    2. groupno : 현재글의 groupno
-    3. step    : 현재글의 step  + 1
-    4. depth   : 현재글의 depth + 1
- */
--- update 현재글과 같은그룹번호들중에서현재글의 step보다큰 step을가진 게시물들의 step을 1씩 증가시킨다.
-update board set step=step+1 where step > 1 and groupno=30 and p_no=2;
--- insert
-insert into board(boardno,title,content,groupno,step,depth, p_no) 
-        values(board_boardno_SEQ.nextval,
-            '후기답글'||board_boardno_SEQ.currval,
-            '내용용'||board_boardno_SEQ.currval,
-            30,
-            2,
-            1,
-            2
-            );
-insert into board(boardno, title, content, groupno, step, userId, p_no)
-values (board_boardno_SEQ.nextval);
-
-
+*/
 
 commit;
 desc order_item;
