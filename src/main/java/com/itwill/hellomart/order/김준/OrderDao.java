@@ -187,7 +187,7 @@ public class OrderDao {
 						orderWithOrderItem.getOrderItemList()
 								.add(new OrderItem(rs2.getInt("oi_no"), rs2.getInt("oi_qty"), rs2.getInt("o_no"),
 										new Product(rs2.getInt("p_no"), rs2.getString("p_name"), rs2.getInt("p_price"),
-												rs2.getString("p_image"), rs2.getString("p_desc"))));
+												rs2.getString("p_image"), rs2.getString("p_desc"), rs2.getInt("ct_no"))));
 					} while (rs2.next());
 				}
 				orderList.set(i, orderWithOrderItem);
