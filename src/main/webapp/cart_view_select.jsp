@@ -1,4 +1,5 @@
 
+<%@page import="com.itwill.hellomart.cart.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      
@@ -37,7 +38,7 @@
 			}
 		}
 		if(!isChecked){
-			alert('제품을선택해주세요');
+			alert('제품을 선택해주세요.');
 			
 			return;
 		}
@@ -72,72 +73,18 @@
 		<!-- header start -->
 		<div id="header">
 			<!-- include_common_top.jsp start-->
-			
-
-
-
-
-		
-<div id="menu">
-	<ul>
-		<li id="logo"><a href="shop_main.jsp"></a></li>
-		
-			<li id="mypage" title="나의페이지" ><a href="user_view.jsp"></a></li>
-			<li id="cart" title="장바구니"><span class="w3-badge w3-green w3-margin-right">3</span><a href="cart_view_select_update_qyt_all_check_delete_image.jsp"></a></li>
-			
-		
-	</ul>
-</div>
-<h1>
-	<a href=""></a>
-</h1>
-
+			<jsp:include page="include_common_top.jsp"/>
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
 		<!-- navigation start-->
 		<div id="navigation">
 			<!-- include_common_left.jsp start-->
-			
-
-
-
-
-	
-<script type="text/javascript">
-	function login_message() {
-		alert('로그인하세요');
-		location.href = 'user_login_form.jsp';
-	}
-</script>
-<p>
-	<strong>메 뉴</strong>
-</p>
-<ul>
-		
-		<li><a href="user_view.jsp">김경호1님</a></li>
-		<li><a href="user_logout_action.jsp">로그아웃</a></li>
-		<li></li>
-		<li><a href="cart_view.jsp">장바구니[전체주문]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select.jsp">장바구니[선택주문]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select_update_qty.jsp">장바구니[수량변경]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href="cart_view_select_update_qyt_all_check_delete_image.jsp">장바구니[최종완성]<span class="w3-badge w3-badge-menu w3-green cart_item_count">3</span></a></li>
-		<li><a href=""></a></li>
-		<li><a href="order_list.jsp">주문목록</a></li>
-		<li><a href="order_list_orderitem1.jsp">주문+아이템 목록1</a></li>
-		<li><a href="order_list_orderitem2.jsp">주문+아이템 목록2</a></li>
-		
-	
-		<li><a href="product_list.jsp">상품리스트</a></li>
-		<li><a href=""></a></li>
-		<li><a href="board_list.jsp">게시판리스트</a></li>
-		<li><a href="board_write.jsp">게시판쓰기</a></li>
-		
-</ul>
-
+			<jsp:include page="include_common_left.jsp"/>
 			<!-- include_common_left.jsp end-->
 		</div>
 		<!-- navigation end-->
+		
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
@@ -178,7 +125,11 @@
 									</tr>
 									
 									<!-- cart item start -->
-									
+									<%
+									int tot_price = 0;
+									for(Cart cart:cartList) {
+										tot_price += cart.getProduct().getP_price() * cart.getCart_qty();
+									%>
 									<tr>
 										<td width=60 height=26 align=center bgcolor="ffffff" class=t1><input type="checkbox" name="cart_item_no_check" onchange="cart_item_select_count();" value="42" checked="checked"></td>
 										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/samoyed.jpg' width="34" height="28"/></td>
@@ -192,34 +143,7 @@
 											</form>
 										</td>
 									</tr>
-									
-									<tr>
-										<td width=60 height=26 align=center bgcolor="ffffff" class=t1><input type="checkbox" name="cart_item_no_check" onchange="cart_item_select_count();" value="43" checked="checked"></td>
-										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/shaipei.jpg' width="34" height="28"/></td>
-										<td width=210 height=26 align=center bgcolor="ffffff" class=t1><a href='product_detail.jsp?p_no=6'>샤페이</a></td>
-										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>1</td>
-										<td width=146 height=26 align=center bgcolor="ffffff" class=t1>700,000</td>
-										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
-											<form action="cart_delete_item_action.jsp" method="post">
-												<input type="hidden" name="cart_no" value="43">
-												<input type="submit" value="삭제">
-											</form>
-										</td>
-									</tr>
-									
-									<tr>
-										<td width=60 height=26 align=center bgcolor="ffffff" class=t1><input type="checkbox" name="cart_item_no_check" onchange="cart_item_select_count();" value="44" checked="checked"></td>
-										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/pomeranian.jpg' width="34" height="28"/></td>
-										<td width=210 height=26 align=center bgcolor="ffffff" class=t1><a href='product_detail.jsp?p_no=5'>포메라니안</a></td>
-										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>1</td>
-										<td width=146 height=26 align=center bgcolor="ffffff" class=t1>800,000</td>
-										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
-											<form action="cart_delete_item_action.jsp" method="post">
-												<input type="hidden" name="cart_no" value="44">
-												<input type="submit" value="삭제">
-											</form>
-										</td>
-									</tr>
+									<%} %>
 									
 									<!-- cart item end -->
 									
@@ -265,10 +189,7 @@
 		<!--wrapper end-->
 		<div id="footer">
 			<!-- include_common_bottom.jsp start-->
-			
-	<p align="center">Copyright (&copy;) By Java Class 5. All
-		rights reserved.</p>
-
+			<jsp:include page="include_common_bottom.jsp"/>
 			<!-- include_common_bottom.jsp end-->
 		</div>
 	</div>
