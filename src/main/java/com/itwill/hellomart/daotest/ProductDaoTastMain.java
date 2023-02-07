@@ -1,9 +1,9 @@
-package com.itwill.hellomart.product.test;
+package com.itwill.hellomart.daotest;
 
 import com.itwill.hellomart.product.Product;
 import com.itwill.hellomart.product.ProductDao;
 
-public class ProductTastMain {
+public class ProductDaoTastMain {
 
 	public static void main(String[] args)throws Exception {
 			ProductDao productDao = new ProductDao();

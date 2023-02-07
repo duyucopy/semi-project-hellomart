@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.itwill.hellomart.order.김준.Order;
+import com.itwill.hellomart.order.김준.OrderItem;
+import com.itwill.hellomart.order.김준.OrderSQL;
 import com.itwill.hellomart.product.Product;
 
 public class OrderDao {
@@ -54,7 +56,6 @@ public class OrderDao {
 				con.close();
 			}
 		}
-		
 		
 		return rowCount;
 	}
@@ -148,7 +149,7 @@ public class OrderDao {
 		}
 		return orderList;
 	}
-
+	
 	//주문+주문아이템 보기
 
 	public List<Order> findOrderWithOrderItemByUserId(String userId) throws Exception {
@@ -187,7 +188,7 @@ public class OrderDao {
 						orderWithOrderItem.getOrderItemList()
 								.add(new OrderItem(rs2.getInt("oi_no"), rs2.getInt("oi_qty"), rs2.getInt("o_no"),
 										new Product(rs2.getInt("p_no"), rs2.getString("p_name"), rs2.getInt("p_price"),
-												rs2.getString("p_image"), rs2.getString("p_desc"))));
+												rs2.getString("p_image"), rs2.getString("p_desc"), rs2.getInt("ct_no"))));
 					} while (rs2.next());
 				}
 				orderList.set(i, orderWithOrderItem);
@@ -199,5 +200,67 @@ public class OrderDao {
 		}
 		return orderList;
 	}
+	
+	//주문 상태 T만 삭제
+	public Order deleteT(int o_no) throws Exception {
+		Order order = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_BY_O_NO);
+			pstmt.setInt(1, o_no);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				order = new Order(rs.getInt("o_no"), rs.getDate("o_date"), 
+										rs.getString("o_status"), rs.getString("o_option"),
+										rs.getInt("o_price"), rs.getString("userid"));
+				
+				if(order.getO_status().equalsIgnoreCase("T         ")) {
+					deleteByOrderNo(o_no);
+				}
+			}
+			
+		}	finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		return order;
+	}
+	
+	//T만 삭제
+	public int deleteByOrderStatus(String o_status) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		//삭제확인
+		int rowCount = 0;
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(OrderSQL.ORDER_DELETE_BY_0_STATUS);
+			pstmt.setString(1, o_status);
+			pstmt.executeUpdate();
+			con.commit();
+		} catch (Exception e) {
+			con.rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}
+		return rowCount;
+	}
+	
+	
 	
 }	

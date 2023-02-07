@@ -57,8 +57,36 @@ public class BoardDao {
 			// 댓글을 작성할 대상글(원글)의 정보를 조회
 			Board temp = this.findBoard(board.getBoadrno(), sUserId, p_no);
 			
-		} finally {
+			// 영향을 받는 기존 글들의 논리적인 순서 번호 변경
+			con= dataSource.getConnection();
+			pstmt = con.prepareStatement(BoardSQL.BOARD_UPDATE_REPLY);
+			pstmt.setInt(1, temp.getStep());// step 번호
+			pstmt.setInt(2, temp.getGroupno());// group 번호
+			pstmt.setInt(3, temp.getP_no());
+			pstmt.executeUpdate();
+			pstmt.close();
 			
+			//답글 삽입
+			pstmt = con.prepareStatement(BoardSQL.BOARD_INSERT_REPLY);
+			pstmt.setString(1, board.getTitle());// 제목
+			pstmt.setString(2, board.getContent());// 내용
+			pstmt.setInt(3, temp.getGroupno());// group no
+			pstmt.setInt(4, temp.getStep() + 1);// step
+			pstmt.setInt(5, temp.getDepth() + 1);// depth
+			pstmt.setString(6, board.getUserId());// 작성자
+			pstmt.setInt(7, board.getP_no());// 상품 no
+			count = pstmt.executeUpdate();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception ex) {
+			}
+			try {
+				if (con != null)
+					con.close();
+			} catch (Exception ex) {
+			}
 		}
 		return count;
 	}
@@ -72,7 +100,12 @@ public class BoardDao {
 		ResultSet rs = null;// 조회 결과에 접근하는 참조 변수
 		// 데이터베이스의 데이터를 읽어서 저장할 객체 컬렉션
 		ArrayList<Board> boards = new ArrayList<Board>();
-		
+		try {
+			con = dataSource.getConnection();
+			
+		} finally {
+			
+		}
 		return boards;
 	}
 	/**

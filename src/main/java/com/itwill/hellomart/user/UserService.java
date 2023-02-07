@@ -76,6 +76,18 @@ public class UserService {
 		return findAllUser;
 	}
 	
+	/*
+	 * 아이디 중복체크
+	 */
+	public boolean isDuplicateId(String userId) throws Exception {
+		boolean isExist = userDao.existedUser(userId);
+		if(isExist) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	
 	
