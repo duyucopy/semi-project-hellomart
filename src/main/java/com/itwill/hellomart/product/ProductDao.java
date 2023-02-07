@@ -134,24 +134,25 @@ public class ProductDao {
 		con.close();
 		return product;
 	}
-	public Product serchByName(String p_name)throws Exception{
-		Product product =null;
+	public List<Product> searchByName(String p_name) throws Exception{
+		List<Product> productList=new ArrayList<Product>();
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SEARCH_BY_NAME);
 		pstmt.setString(1, p_name);
-		ResultSet rs= pstmt.executeQuery();
-		if(rs.next()) {
-			product=new Product(
-						rs.getInt("p_no"),
-						rs.getString("p_name"),
-						rs.getInt("p_price"),
-						rs.getString("p_image"),
-						rs.getString("p_desc"),
-						rs.getInt("ct_no"));
+		ResultSet rs=pstmt.executeQuery();
+		while(rs.next()) {
+			Product product=new Product(
+					rs.getInt("p_no"),
+					rs.getString("p_name"),
+					rs.getInt("p_price"),
+					rs.getString("p_image"),
+					rs.getString("p_desc"),
+					rs.getInt("ct_no"));
+			productList.add(product);
 		}
 		rs.close();
 		pstmt.close();
 		con.close();
-		return product;
+		return productList;
 	}
 }

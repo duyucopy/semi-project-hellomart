@@ -26,7 +26,7 @@ public class ProductService {
 	public Product findByName(String p_name)throws Exception{
 		return productDao.findByName(p_name);
 	}
-	public Product searchByName(String p_name)throws Exception{
-		return productDao.serchByName(p_name);
+	public List<Product> searchByName(String p_name)throws Exception{
+		return productDao.searchByName(p_name);
 	}
 }
