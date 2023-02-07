@@ -100,7 +100,12 @@ public class BoardDao {
 		ResultSet rs = null;// 조회 결과에 접근하는 참조 변수
 		// 데이터베이스의 데이터를 읽어서 저장할 객체 컬렉션
 		ArrayList<Board> boards = new ArrayList<Board>();
-		
+		try {
+			con = dataSource.getConnection();
+			
+		} finally {
+			
+		}
 		return boards;
 	}
 	/**
