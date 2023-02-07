@@ -36,6 +36,12 @@ public class OrderService {
 		public List<Order> findOrderWithOrderItemByUserId (String sUserId) throws Exception {
 			return orderDao.findOrderWithOrderItemByUserId(sUserId);
 		}
+		/*
+		 * 주문+주문아이템 [상세보기]
+		 */
+		public Order orderWithOrderItem(int o_no)throws Exception{
+			return orderDao.findByOrderNo(o_no);
+		}
 		
 		//상품에서 직접 주문
 		public int createDirectOrder(String sUserId, int p_no, int oi_qty) throws Exception {
