@@ -13,4 +13,6 @@ public class ProductSQL {
 			"delete from product where p_name = ?";
 	public final static String PRODUCT_SELECT_BY_NAME=
 			"select * from product where p_name=?";
+	public final static String PRODUCT_SEARCH_BY_NAME=
+			"select * from product where p_name like '%'||?||'%'";
 }

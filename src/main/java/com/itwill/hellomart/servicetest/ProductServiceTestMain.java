@@ -14,6 +14,8 @@ public class ProductServiceTestMain {
 		//System.out.println(productService.findByPrimartKey(1));
 		//System.out.println(productService.findAll());
 		//System.out.println(productService.findByName("냥냥"));
+		System.out.println(productService.searchByName("삼"));
+		
 
 	}
 
