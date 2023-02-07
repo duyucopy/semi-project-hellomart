@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-  
+	
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,7 +40,7 @@
 			return;
 		}
 		if (document.f.password.value != f.password2.value) {
-			alert("비밀번호와 비밀번호확인은 일치하여야합니다.");
+			alert("비밀번호와 비밀번호 확인은 일치하여야 합니다.");
 			f.password.focus();
 			f.password.select();
 			return;
@@ -53,6 +53,7 @@
 	function userMain() {
 		window.location.href='user_main.jsp';
 	}
+	
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
