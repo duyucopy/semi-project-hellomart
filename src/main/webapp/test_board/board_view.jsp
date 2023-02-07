@@ -40,8 +40,9 @@
  
 <script language="JavaScript">
 	function boardCreate() {
-		f.action = "board_write.jsp";
-		f.submit();
+		fw.action = "board_write.jsp";
+		fw.method = "POST";
+		fw.submit();
 	}
 	function boardReplyCreate() {
 		document.f.action = "board_reply_write.jsp";
@@ -129,8 +130,12 @@
 							</form> <br>
 							<table width=590 border=0 cellpadding=0 cellspacing=0>
 								<tr>
-									<td align=center><input type="button" value="글쓰기"
-										onClick="boardCreate()"> &nbsp; 
+									<td align=center>
+										<form name="fw" method="post">
+											<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
+											<input type="hidden" name="userId" value="<%=board.getUserId()%>">
+											<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
+										</form> <br> 
 										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
 										<input type="button" value="수정" onClick="boardUpdate()"> &nbsp; 
 										<input type="button" value="삭제" onClick="boardRemove()"> &nbsp; 
