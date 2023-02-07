@@ -208,7 +208,8 @@ public class CartDao {
 							    		       rs.getString("p_name"),
 							    		       rs.getInt("p_price"),
 							    		       rs.getString("p_image"),
-							    		       rs.getString("p_desc"))		
+							    		       rs.getString("p_desc"),
+							    		       rs.getInt("ct_no"))		
 							       )
 					);
 		}
@@ -270,7 +271,7 @@ public class CartDao {
 		if (rs.next()) {
 			cart = new Cart(rs.getInt("cart_no"), rs.getInt("cart_qty"), rs.getString("userId"),
 					new Product(rs.getInt("p_no"), rs.getString("p_name"), rs.getInt("p_price"),
-							rs.getString("p_image"), rs.getString("p_desc"))
+							rs.getString("p_image"), rs.getString("p_desc"),rs.getInt("ct_no"))
 
 			);
 		}
