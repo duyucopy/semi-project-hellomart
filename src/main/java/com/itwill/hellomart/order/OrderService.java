@@ -24,6 +24,10 @@ public class OrderService {
 		public int deleteByOrderNo(int o_no) throws Exception {
 			return orderDao.deleteByOrderNo(o_no);
 		}
+		//T만 삭제
+		public int deleteByOrderStatus(int o_no) throws Exception {
+			return orderDao.deleteByOrderStatus(o_no);
+		}
 		//로그인 회원의 전체 주문 삭제
 		public int deleteBysUserId(String sUserId) throws Exception {
 			return orderDao.deleteByUserId(sUserId);
@@ -42,6 +46,7 @@ public class OrderService {
 		public Order orderWithOrderItem(int o_no)throws Exception{
 			return orderDao.findByOrderNo(o_no);
 		}
+		
 		
 		//상품에서 직접 주문
 		public int createDirectOrder(String sUserId, int p_no, int oi_qty) throws Exception {

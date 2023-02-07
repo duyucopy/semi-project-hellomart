@@ -15,6 +15,6 @@ if (request.getMethod().equalsIgnoreCase("GET")) {
 }
 String o_noStr = request.getParameter("o_no");
 OrderService orderService = new OrderService();
-orderService.deleteByOrderNo(Integer.parseInt(o_noStr));
+orderService.deleteByOrderStatus(Integer.parseInt(o_noStr));
 response.sendRedirect("order_list.jsp");
 %>
