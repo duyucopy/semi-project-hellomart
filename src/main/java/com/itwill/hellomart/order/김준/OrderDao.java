@@ -233,4 +233,34 @@ public class OrderDao {
 		return order;
 	}
 	
+	//T만 삭제
+	public int deleteByOrderStatus(String o_status) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		//삭제확인
+		int rowCount = 0;
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(OrderSQL.ORDER_DELETE_BY_0_STATUS);
+			pstmt.setString(1, o_status);
+			pstmt.executeUpdate();
+			con.commit();
+		} catch (Exception e) {
+			con.rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}
+		return rowCount;
+	}
+	
+	
+	
 }	
