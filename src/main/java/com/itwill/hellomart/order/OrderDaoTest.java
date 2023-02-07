@@ -13,7 +13,7 @@ public class OrderDaoTest {
 	public static void main(String[] args) throws Exception {
 		
 		OrderDao orderDao = new OrderDao();
-		System.out.println(orderDao.deleteByOrderStatus(6));
+//		System.out.println(orderDao.deleteByOrderStatus(6));
 		
 		/*//System.out.println(orderDao.deleteByUserId("guard1"));
 		
@@ -56,8 +56,8 @@ public class OrderDaoTest {
 		//주문 번호로 삭제
 		//System.out.println(orderDao.deleteByOrderNo(1));
 		//주문 전체 삭제
-		//System.out.println(orderDao.deleteByUserId(sUserId));
 		*/
-		//System.out.println(orderDao.findOrderByUserId("guard1"));
+//		System.out.println(orderDao.deleteByUserId("guard1"));
+//		System.out.println(orderDao.findOrderByUserId("guard1"));
 	}	
 }
