@@ -17,5 +17,5 @@
 </h1>
 -->	
 <h1>
-	<a href="">BOARD MODEL1</a>
+	<a href="">게시판 테스트</a>
 </h1>

@@ -27,6 +27,7 @@
 	}%>
 
 <%
+	String p_noStr=request.getParameter("p_no");
 	//1.요청페이지번호	
 	String pageno=request.getParameter("pageno");
 	if(pageno==null||pageno.equals("")){
@@ -36,7 +37,7 @@
 	//게시물조회
 	
 	BoardListPageMakerDto boardListPage 
-		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),15);
+		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),Integer.parseInt(p_noStr));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -108,11 +109,11 @@
 									%>
 									<tr>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
-										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>'>
+										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>'>
 										<%=this.getTitleString(board)%>
 										</a>
 										</td>
-										<td width=120 align=center bgcolor="ffffff"><%="csd"%>
+										<td width=120 align=center bgcolor="ffffff"><%=board.getUserId()%>
 										</td>
 										<td width=120 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<%=board.getRegdate().toString().substring(0, 10)%>
@@ -140,11 +141,11 @@
 								<tr>
 									<td align="center">
 							     		 <%if(boardListPage.pageMaker.getCurBlock() > 1) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>">◀◀</a>&nbsp;
+											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">◀◀</a>&nbsp;
 										 <%}%>
 										
 										 <%if(boardListPage.pageMaker.getPrevPage()>0) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>">◀</a>&nbsp;&nbsp;
+											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">◀</a>&nbsp;&nbsp;
 										 <%}%>
 										
 										<%
@@ -153,17 +154,17 @@
 										%>
 										 <font color='red'><strong><%=i%></strong></font>&nbsp;
 										<%} else {%>
-										<a href="./board_list.jsp?pageno=<%=i%>"><strong><%=i%></strong></a>&nbsp;
+										<a href="./board_list.jsp?pageno=<%=i%>&p_no=<%=Integer.parseInt(p_noStr)%>"><strong><%=i%></strong></a>&nbsp;
 										<%
 										   }
 										  }%>
 										  
 										  
 										 <%if(boardListPage.pageMaker.getNextPage()<=boardListPage.pageMaker.getTotPage()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>">▶</a>
+										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">▶</a>
 										 <%}%>
 										 <%if(boardListPage.pageMaker.getTotBlock() > boardListPage.pageMaker.getCurBlock()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>">▶▶&nbsp;</a>
+										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">▶▶&nbsp;</a>
 										 <%}%>
 										
 									</td>

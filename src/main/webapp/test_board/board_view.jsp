@@ -3,25 +3,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	if(request.getMethod().equals("GET")){
-		response.sendRedirect("board_list.jsp");
-	}
+	/* if(request.getMethod().equals("GET")){
+		response.sendRedirect("board_list.jsp?p_no=1");
+	} */
 	Integer boardno=null;
 	int pageno=1;
+	int p_no=1;
 	try{
 		boardno=Integer.parseInt(request.getParameter("boardno"));
 		pageno=Integer.parseInt(request.getParameter("pageno"));
+		p_no=Integer.parseInt(request.getParameter("p_no"));
 	}catch(Exception e){
 		
 	}
 	if(boardno==null){
 		//목록으로이동
-		response.sendRedirect("board_list.jsp?pageno="+pageno);
+		response.sendRedirect("board_list.jsp?pageno="+pageno+"&p_no="+p_no);
 		return;
 	}
 	Board board=BoardService.getInstance().findBoard(boardno);
 	if(board==null){
-		response.sendRedirect("board_list.jsp?pageno="+pageno);
+		response.sendRedirect("board_list.jsp?pageno="+pageno+"&p_no="+p_no);
 		return;
 	}
 	//읽은회수증가
@@ -57,7 +59,7 @@
 		}
 	}
 	function boardList() {
-		f.action = "board_list.jsp?pageno="+<%=pageno%>;
+		f.action = "board_list.jsp?pageno="+<%=pageno%>+"&p_no="+<%=p_no%>;
 		f.submit();
 	}
 </script>
@@ -96,30 +98,7 @@
 									</td>
 								</tr>
 							</table> <br> <!-- view Form  -->
-							<!-- 
-							<form name="f" method="post">
-					<input type="hidden" name="boardno" value="<%=board.getBoardNo()%>">
-					<input type="hidden" name="pageno" value="<%=pageno%>">
-					<table border="0" cellpadding="0" cellspacing="1" width="590"
-						bgcolor="BBBBBB">
-						<tr>
-							<td width=100 align=center bgcolor="E6ECDE" height="22">글쓴이</td>
-							<td width=490 bgcolor="ffffff" style="padding-left: 10"><%="csd"%></td>
-						</tr>
 
-						<tr>
-							<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
-							<td width=490 bgcolor="ffffff" style="padding-left: 10"><%=board.getTitle()%></td>
-						</tr>
-						<tr>
-							<td width=100 align=center bgcolor="E6ECDE" height="22">내용</td>
-							<td width=490 bgcolor="ffffff" style="padding-left: 10"><%=board.getContent()%></td>
-						</tr>
-						
-					</table>
-					
-				</form>
-							 -->
 							<form name="f" method="post">
 								<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
 								<input type="hidden" name="boardno" value="<%=board.getBoardno()%>">
