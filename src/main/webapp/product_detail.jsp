@@ -161,16 +161,9 @@
 															<option value="10">10
 														
 														</select> <br><br> 
-															<input width=40px height=40px type=image
-															 src='image/cart.png' value="장바구니담기[장바구니보여주기]"
-															title="장바구니담기[장바구니보여주기]" style="font-size: 6pt;" />
-															<a
-															
-															href="javascript:add_cart_popup_window(this.parentElement);"
-															 title="장바구니담기[계속쇼핑팝업]"><img src='image/cart25.png'
-															style="margin-bottom: 5px "></a>
-															<input type="hidden" name=p_no
-															value="<%=product.getP_no()%>">
+		 
+															<a href="javascript:add_cart_popup_window(this.parentElement);" title="장바구니담기[계속쇼핑팝업]"><img src='image/cart25.png'style="margin-bottom: 5px "></a>
+															<input type="hidden" name=p_no value="<%=product.getP_no()%>">
 													</form>
 												</td>
 												<td width=40% height=200 align=center><img border=0
