@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.itwill.hellomart.order.김준.Order;
+import com.itwill.hellomart.order.김준.OrderItem;
+import com.itwill.hellomart.order.김준.OrderSQL;
 import com.itwill.hellomart.product.Product;
 
 public class OrderDao {
@@ -54,7 +56,6 @@ public class OrderDao {
 				con.close();
 			}
 		}
-		
 		
 		return rowCount;
 	}
@@ -148,7 +149,7 @@ public class OrderDao {
 		}
 		return orderList;
 	}
-
+	
 	//주문+주문아이템 보기
 
 	public List<Order> findOrderWithOrderItemByUserId(String userId) throws Exception {
@@ -198,6 +199,38 @@ public class OrderDao {
 			}
 		}
 		return orderList;
+	}
+	
+	//주문 상태 T만 삭제
+	public Order deleteT(int o_no) throws Exception {
+		Order order = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_BY_O_NO);
+			pstmt.setInt(1, o_no);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				order = new Order(rs.getInt("o_no"), rs.getDate("o_date"), 
+										rs.getString("o_status"), rs.getString("o_option"),
+										rs.getInt("o_price"), rs.getString("userid"));
+				
+				if(order.getO_status().equalsIgnoreCase("T         ")) {
+					deleteByOrderNo(o_no);
+				}
+			}
+			
+		}	finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		return order;
 	}
 	
 }	

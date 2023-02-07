@@ -1,4 +1,4 @@
-package com.itwill.hellomart.product.test;
+package com.itwill.hellomart.servicetest;
 
 import com.itwill.hellomart.product.Product;
 import com.itwill.hellomart.product.ProductService;
