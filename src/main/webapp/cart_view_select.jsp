@@ -1,10 +1,15 @@
-
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.itwill.hellomart.cart.CartService"%>
 <%@page import="com.itwill.hellomart.cart.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="login_check.jspf"%>   
      
 <%
-  
+	CartService cartService=new CartService();
+	List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -131,14 +136,14 @@
 										tot_price += cart.getProduct().getP_price() * cart.getCart_qty();
 									%>
 									<tr>
-										<td width=60 height=26 align=center bgcolor="ffffff" class=t1><input type="checkbox" name="cart_item_no_check" onchange="cart_item_select_count();" value="42" checked="checked"></td>
-										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/samoyed.jpg' width="34" height="28"/></td>
-										<td width=210 height=26 align=center bgcolor="ffffff" class=t1><a href='product_detail.jsp?p_no=8'>사모예드</a></td>
-										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>1</td>
-										<td width=146 height=26 align=center bgcolor="ffffff" class=t1>800,000</td>
+										<td width=60 height=26 align=center bgcolor="ffffff" class=t1><input type="checkbox" name="cart_item_no_check" onchange="cart_item_select_count();" value="<%=cart.getCart_no() %>" checked="checked"></td>
+										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/<%=cart.getProduct().getP_image()%>' width="34" height="28"/></td>
+										<td width=210 height=26 align=center bgcolor="ffffff" class=t1><a href='product_detail.jsp?p_no=<%=cart.getProduct().getP_no()%>'><%=cart.getProduct().getP_name() %></a></td>
+										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=cart.getCart_qty() %></td>
+										<td width=146 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(cart.getProduct().getP_price()*cart.getCart_qty()) %></td>
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
 											<form action="cart_delete_item_action.jsp" method="post">
-												<input type="hidden" name="cart_no" value="42">
+												<input type="hidden" name="cart_no" value="<%=cart.getCart_no() %>">
 												<input type="submit" value="삭제">
 											</form>
 										</td>
@@ -153,7 +158,7 @@
 										<td width=640 colspan=6 height=26 class=t1 bgcolor="ffffff">
 											<p align=right>
 												<br/>
-												<span id="tot_order_price" style="color: red">총주문금액 : 2,300,000원</span>
+												<span id="tot_order_price" style="color: red">총주문금액 : <%=new DecimalFormat("#,###").format(tot_price)%>원</span>
 											</p>
 										</td>
 									</tr>
