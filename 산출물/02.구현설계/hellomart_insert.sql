@@ -42,7 +42,7 @@ insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'
 insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard3',3,1);
 
 /**********************orders insert*************************/
-insert into orders(o_no, o_date, o_status, o_option, o_price, userid) values (orders_o_no_SEQ.nextval, sysdate, '배송 중', '문 앞에 놔주세요', 990000, 'guard1');
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid) values (orders_o_no_SEQ.nextval, sysdate, 'T', '문 앞에 놔주세요', 990000, 'guard1');
 insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 1);
 insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 2);
 /**********************board insert**************************/
