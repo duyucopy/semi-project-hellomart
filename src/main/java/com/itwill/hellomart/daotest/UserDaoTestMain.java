@@ -1,4 +1,4 @@
-package com.itwill.hellomart.user.test;
+package com.itwill.hellomart.daotest;
 
 import com.itwill.hellomart.user.User;
 import com.itwill.hellomart.user.UserDao;
