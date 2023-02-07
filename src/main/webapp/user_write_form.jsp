@@ -19,6 +19,33 @@
 			document.f.userId.focus();
 			return;
 		}
+		/*
+		1.아이디는 3~10자여야한다
+		2.영문알파벳대문자,소문자,숫자만 가능
+		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
+		*/
+		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
+			alert("아이디는 5~10자여야한다");
+			f.userId.value.select();
+			return;
+		}
+	
+		for(let i=0;i<document.f.userId.value.length;i++){
+			if(!((document.f.userId.value.charAt(i)>='0' && document.f.userId.value.charAt(i)<='9')||
+				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
+				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
+			)){
+				alert("영문알파벳대문자,소문자,숫자만 가능");
+				document.f.userId.value.select();
+				return;
+			}							
+		}
+		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
+			alert("아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)");
+			document.f.userId.value.select();
+			return;
+		}					
+		/*******************************************************/
 		if (document.f.password.value == "") {
 			alert("비밀번호를 입력하십시요.");
 			document.f.password.focus();

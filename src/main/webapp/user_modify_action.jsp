@@ -8,7 +8,6 @@ if(request.getMethod().equals("GET")){
 	return;
 }
 try{
-	request.setCharacterEncoding("UTF-8");
 	String password=request.getParameter("password");
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
