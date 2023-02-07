@@ -52,7 +52,76 @@ delete from orders where userid='guard1';
 /*****************board select******************/
 select * from board where p_no=6;
 
+-- 상품넘버(PK)로 게시글 조회
+SELECT * FROM ( 
+            SELECT rownum idx, s.* FROM( 
+                            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
+                            FROM board 
+                            ORDER BY groupno DESC, step ASC ) s 
+                            where s.p_no = 2) 
+WHERE idx >= 1 AND idx <= 100;
 
+-- 유저(userid)전체 게시글 조회
+SELECT * FROM ( 
+            SELECT rownum idx, s.* FROM( 
+                            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
+                            FROM board 
+                            ORDER BY groupno DESC, step ASC ) s 
+                            where s.userid = 'guard1') 
+WHERE idx >= 1 AND idx <= 100;
+
+--답글쓰기
+/*현재글의 데이타를 기반으로 작업한다.
+    1. boardno : 시퀀스증가
+    2. groupno : 현재글의 groupno
+    3. step    : 현재글의 step  + 1
+    4. depth   : 현재글의 depth + 1
+ */
+-- update 현재글과 같은그룹번호들중에서현재글의 step보다큰 step을가진 게시물들의 step을 1씩 증가시킨다.
+update board set step=step+1 where step > 1 and groupno=385;
+-- insert
+insert into board(boardno,title,content,groupno,step,depth,userid,p_no) 
+        values(board_boardno_SEQ.nextval,
+            '답변게시글'||board_boardno_SEQ.currval,
+            '이네요'||board_boardno_SEQ.currval,
+            385,
+            2,
+            1,
+            'guard1',
+            10
+            );
+--상품게시판 답변게시물 존재여부확인
+SELECT count(*) cnt FROM board 
+WHERE groupno = 385 AND depth >= 1 AND step >= 2 
+ORDER BY step,depth ASC;
+
+--게시글 삭제
+DELETE board WHERE boardno = 380;
+
+--게시글 업데이트
+UPDATE board SET title = 'ㄳㄱ수정', content = '내용수정'  WHERE userid = 'csd' and boardno = 384;
+
+--게시글 1개 조회(board넘버)
+SELECT 
+boardno, title, content, 
+regdate, readcount,
+groupno, step, depth, userid, p_no 
+FROM board 
+WHERE boardno = 384;
+
+--게시글 여러개 조회(userid)
+SELECT 
+boardno, title, content, 
+regdate, readcount,
+groupno, step, depth, userid, p_no 
+FROM board 
+WHERE userid = 'guard1';
+
+--상품게시글 총 건수 조회
+SELECT COUNT(*) FROM board where p_no=6;
+
+--유저게시글 총 건수 조회
+SELECT COUNT(*) FROM board where userid='guard1';
 
 rollback;
 

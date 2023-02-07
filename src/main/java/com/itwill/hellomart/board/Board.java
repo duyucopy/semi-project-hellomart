@@ -3,7 +3,7 @@ package com.itwill.hellomart.board;
 import java.util.Date;
 
 public class Board {
-	private int boadrno;
+	private int boardno;
 	private String title;
 	private String content;
 	private Date regdate;
@@ -16,11 +16,11 @@ public class Board {
 	private String userId;
 	private int p_no;
 	
-	public int getBoadrno() {
-		return boadrno;
+	public int getBoardno() {
+		return boardno;
 	}
-	public void setBoadrno(int boadrno) {
-		this.boadrno = boadrno;
+	public void setBoardno(int boardno) {
+		this.boardno = boardno;
 	}
 	public String getTitle() {
 		return title;
