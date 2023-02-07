@@ -99,13 +99,12 @@ function add_cart_popup_window(f){
 									<%} %>
 										<td align="center" width="25%"  bgcolor="ffffff"><a
 											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="88px" height="65px"
-												src="image/<%=product.getP_image()%>" border="0"></a><br />
-												
+												src="image/<%=product.getP_image()%>" border="0"></a><br />	
 											<br /> <b><%=product.getP_name()%></b>
 											<form style="display: inline;">
 												<input type="hidden" name="p_no" value="<%=product.getP_no()%>">
 												<input type="hidden" name="cart_qty" value="1">
-												
+												<%--<img src='image/cart20.png' style="cursor:pointer;" onclick="add_cart_popup_window(this.parentElement);" align="top"/>--%>
 											</form><br> <font
 											color="#FF0000"><%=new DecimalFormat("#,##0").format(product.getP_price())%>원
 										</font></td>
