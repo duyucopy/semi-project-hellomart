@@ -1,6 +1,9 @@
-package com.itwill.hellomart.cart;
+package com.itwill.hellomart.daotest;
 
 import java.util.List;
+
+import com.itwill.hellomart.cart.Cart;
+import com.itwill.hellomart.cart.CartDao;
 
 public class CartDaoTestMain {
 	public static void main(String[] args) throws Exception {
@@ -22,10 +25,10 @@ public class CartDaoTestMain {
 		System.out.println(cartDao.deleteByUserId("guard2")); 
 		
 
-		Cart cart2 = cartDao.findByCartNo(5);
-		List<Cart> cart = cartDao.findByUserId("guard1");
-		for(Cart cartList :cart) {
-			System.out.println(cartList);
+		Cart cartList2 = cartDao.findByCartNo(5);
+		List<Cart> cartList = cartDao.findByUserId("guard1");
+		for(Cart cart :cartList) {
+			System.out.println(cart);
 		}
 
 	}
