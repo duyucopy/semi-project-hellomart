@@ -29,7 +29,7 @@ public class OrderService {
 			return orderDao.deleteByUserId(sUserId);
 		}
 		//로그인 회원 주문 목록 
-		public List<Order> orderWithOrderItemList(String sUserId) throws Exception {
+		public List<Order> findOrderByUserId(String sUserId) throws Exception {
 			return orderDao.findOrderByUserId(sUserId);
 		}
 		//주문 + 주문 아이템 목록
@@ -45,7 +45,7 @@ public class OrderService {
 			orderItemList.add(orderItem);
 			//o_no , date, o_status , o_option o_price, sUSerId
 			Order newOrder = 
-							new Order(0, null, "배송 전", null, 
+							new Order(0, null, null, null, 
 										orderItemList.get(0).getOi_qty()*orderItemList.get(0).getProduct().getP_price(),
 										sUserId);
 			newOrder.setOrderItemList(orderItemList);
