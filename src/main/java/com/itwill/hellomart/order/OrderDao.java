@@ -131,6 +131,7 @@ public class OrderDao {
 		return rowCount;
 	}
 	
+	//T만 삭제
 	public int deleteByOrderStatus(int o_no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
