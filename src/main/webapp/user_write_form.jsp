@@ -50,8 +50,8 @@
 		document.f.submit();
 	}
 
-	function userMain() {
-		window.location.href='user_main.jsp';
+	function main() {
+		window.location.href='hellomart_main.jsp';
 	}
 	
 </script>
@@ -139,7 +139,7 @@
 								<tr>
 									<td align=center>
 									<input type="button" value="회원 가입" onclick="userCreate();"> &nbsp; 
-									<input type="button" value="메인" onclick="userMain();">
+									<input type="button" value="메인" onclick="main();">
 									</td>
 								</tr>
 							</table>
