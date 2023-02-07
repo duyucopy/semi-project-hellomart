@@ -4,6 +4,12 @@ insert into userinfo(userid,password,name,email) values('guard1','1111','김경�
 insert into userinfo(userid,password,name,email) values('guard2','2222','김경호2','guard2@korea.com');
 insert into userinfo(userid,password,name,email) values('guard3','3333','김경호3','guard3@korea.com');
 
+/**********************address insert************************/
+insert into address(userid, loc) values('guard1', '서울시 성동구 왕십리로 16(트리마제), 101-1001');
+insert into address(userid, loc) values('guard1', '서울시 강남구 압구정로29길 71(압구정 현대아파트), 201-503');
+insert into address(userid, loc) values('guard2', '서울특별시 용산구 한남대로 91(나인원 한남), 105-401');
+insert into address(userid, loc) values('guard3', '서울시 용산구 이촌로 310 (래미안 첼리투스), 101-1202');
+
 /**********************categories insert*********************/
 insert into categories values(1,'TV/냉장고/세탁기');
 insert into categories values(2,'스마트폰/컴퓨터/노트북');
