@@ -5,7 +5,7 @@
 <%@ include file="login_check.jspf" %>  
 <%
 	if(request.getMethod().equalsIgnoreCase("GET")){
-		response.sendRedirect("shop_main.jsp");
+		response.sendRedirect("hellomart_main.jsp");
 		return;
 	}
 	UserService userService=new UserService();
