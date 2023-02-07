@@ -1,14 +1,15 @@
-package com.itwill.hellomart.order;
+package com.itwill.hellomart.daotest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.hellomart.cart.Cart;
 import com.itwill.hellomart.cart.CartDao;
+import com.itwill.hellomart.order.OrderDao;
 import com.itwill.hellomart.product.Product;
 import com.itwill.hellomart.product.ProductDao;
 
-public class OrderDaoTest {
+public class OrderDaoTestMain {
 
 	public static void main(String[] args) throws Exception {
 		

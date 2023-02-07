@@ -2,9 +2,7 @@ package com.itwill.hellomart.order;
 
 public class OrderSQL {
 	
-	public final static String ORDER_INSERT = "insert into orders(o_no,o_date,o_status,o_option,o_price,userid) values(orders_o_no_seq.nextval, sysdate,?,?,?,?)";
-	
-	public final static String ORDER_INSERT1 = "insert into orders(o_no,o_date,o_status,o_option,o_price,userid) values(orders_o_no_seq.nextval, sysdate,default,?,?,?)";
+	public final static String ORDER_INSERT = "insert into orders(o_no,o_date,o_status,o_option,o_price,userid) values(orders_o_no_seq.nextval, sysdate,default,?,?,?)";
 	
 	public final static String ORDERITEM_INSERT = "insert into order_item (oi_no,oi_qty,o_no,p_no) values (order_item_oi_no_SEQ.nextval, ?, orders_o_no_SEQ.currval,?)";
 	

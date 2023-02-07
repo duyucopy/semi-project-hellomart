@@ -47,10 +47,9 @@ public class OrderDao {
 																+ "values(orders_o_no_seq.nextval, sysdate, ?, ?, ?, ?)"; */
 			//status --> 
 			pstmt1 = con.prepareStatement(OrderSQL.ORDER_INSERT);
-			pstmt1.setString(1, order.getO_status());
-			pstmt1.setString(2, order.getO_option());
-			pstmt1.setInt(3, order.getO_price());
-			pstmt1.setString(4, order.getUserId());
+			pstmt1.setString(1, order.getO_option());
+			pstmt1.setInt(2, order.getO_price());
+			pstmt1.setString(3, order.getUserId());
 			rowCount1 = pstmt1.executeUpdate();
 			//"insert into order_item (oi_no,oi_qty,o_no,p_no) "values (order_item_oi_no_SEQ.nextval, ?, orders_o_no_SEQ.currva,?)";
 			pstmt2 = con.prepareStatement(OrderSQL.ORDERITEM_INSERT);

@@ -46,8 +46,6 @@ public class OrderService {
 		public Order orderWithOrderItem(int o_no)throws Exception{
 			return orderDao.findByOrderNo(o_no);
 		}
-		
-		
 		//상품에서 직접 주문
 		public int createDirectOrder(String sUserId, int p_no, int oi_qty) throws Exception {
 			Product product = productDao.findByPrimaryKey(p_no);
@@ -78,14 +76,14 @@ public class OrderService {
 			//o_no , date, o_status , o_option o_price, sUSerId
 			Order newOrder = new Order(0,null,null,null,o_tot_price,sUserId);
 			newOrder.setOrderItemList(orderItemList);
-			orderDao.insert(newOrder);
-			cartDao.deleteByUserId(sUserId);
+			int rowCount1 = orderDao.insert(newOrder); 
+			int rowCount2 = cartDao.deleteByUserId(sUserId); 
 			
-			return 0;
+			return rowCount1*rowCount2;
 			
 		}
 		
-		//장바구니에서 선택주문
+		//장바구니에서 선택주문 --- 테스트 전
 		public int createCartChoiceOrder(String sUserId, String[] cart_item_noStr_array) throws Exception {
 			ArrayList <OrderItem> orderItemList = new ArrayList<OrderItem>();
 			int o_tot_price = 0; // 전체금액
@@ -95,7 +93,7 @@ public class OrderService {
 				orderItemList.add(orderItem);
 				o_tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
 			}
-			Order newOrder = new Order(0,null,"배송 전",null,o_tot_price,sUserId);
+			Order newOrder = new Order(0,null,null,null,o_tot_price,sUserId);
 			newOrder.setOrderItemList(orderItemList);
 			orderDao.insert(newOrder);
 			

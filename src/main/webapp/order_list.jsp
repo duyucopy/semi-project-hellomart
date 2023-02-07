@@ -83,7 +83,13 @@ List<Order> orderList = orderService.findOrderByUserId(sUserId);
 									<tr>
 										<td width=130 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
 										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getDate())%></td>
-										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_status()%></td>
+										<td width=145 height=26 align=center bgcolor="ffffff" class=t1>
+										<% if(order.getO_status() != null && order.getO_status().trim().equalsIgnoreCase("T")) { %>
+											배송전
+										<% } else { %>
+										배송완료
+										<% } %>	
+										</td>
 										<td width=160 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_option()%></td>
 										<td width=126 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(order.getO_price())%></td>
 										<td width=90 height=26 align=center bgcolor="ffffff" class=t1><a
