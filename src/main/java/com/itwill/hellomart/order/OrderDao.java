@@ -131,7 +131,7 @@ public class OrderDao {
 		return rowCount;
 	}
 	
-	public int deleteByOrderStatus(int o_no, String o_status) throws Exception {
+	public int deleteByOrderStatus(int o_no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int rowCount = 0;
@@ -139,14 +139,10 @@ public class OrderDao {
 		try {
 			con = dataSource.getConnection();
 			con.setAutoCommit(false);
-			/*delete from orders where o_no = 12 and o_status = 'T';*/
 			pstmt = con.prepareStatement(OrderSQL.ORDER_DELETE_BY_O_STATUS);
 			pstmt.setInt(1, o_no);
-			pstmt.setString(2, o_status);
-			//배송 전 상태 : T (삭제가능)
-			if(o_status.equalsIgnoreCase("T         ")) {
-				rowCount = pstmt.executeUpdate();
-			} 
+			
+			rowCount = pstmt.executeUpdate();
 			con.commit();
 		} catch (Exception e) {
 			con.rollback();

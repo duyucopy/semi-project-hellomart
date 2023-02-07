@@ -16,6 +16,5 @@ public class OrderSQL {
 	
 	public final static String ORDER_SELECT_WITH_ORDERITEM_BY_O_NO = "select * from orders o join order_item oi on o.o_no = oi.o_no join product p on oi.p_no = p.p_no where o.o_no = ?";
 
-	public final static String ORDER_DELETE_BY_O_STATUS = "delete from orders where o_no = ? and o_status = ?";
-	
+	public final static String ORDER_DELETE_BY_O_STATUS = "delete from orders where o_no = ? and o_status = 'T'";	
 }

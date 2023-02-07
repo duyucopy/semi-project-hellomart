@@ -207,7 +207,8 @@ public class OrderDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		int rowCount = 0;
+		
 		try {
 			con = dataSource.getConnection();
 			con.setAutoCommit(false);
@@ -221,7 +222,7 @@ public class OrderDao {
 										rs.getInt("o_price"), rs.getString("userid"));
 				
 				if(order.getO_status().equalsIgnoreCase("T         ")) {
-					deleteByOrderNo(o_no);
+				rowCount = deleteByOrderNo(o_no);
 				}
 			}
 			
