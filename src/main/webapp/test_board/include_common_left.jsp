@@ -15,6 +15,7 @@
 		<li><a href="board_list.jsp?p_no=7">게시판리스트상품7</a></li>
 		<li><a href="board_list.jsp?p_no=8">게시판리스트상품8</a></li>
 		<li><a href="board_list.jsp?p_no=9">게시판리스트상품9</a></li>
+		<li><a href="board_list.jsp?p_no=10">게시판리스트상품10</a></li>
 		<li><a href="board_list.jsp?p_no=15">게시판리스트상품15</a></li>
 		<li><a href="board_list.jsp?p_no=16">게시판리스트상품16</a></li>
 </ul>
