@@ -78,24 +78,35 @@ public class ProductDao {
 	public int delete(int p_no)throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_DELETE);
+		int deleteRowCount = 0;
+		
+		try {
 		pstmt.setInt(1, p_no);
-		int rowCount = pstmt.executeUpdate();
-		pstmt.close();
-		con.close();
-		return rowCount;
+		deleteRowCount = pstmt.executeUpdate();
+		return deleteRowCount;
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
 	}
-	
-	
-	
 	/*
 	 * selectByPK : 상품번호로 검색
 	 */
 	public Product findByPrimaryKey(int p_no) throws Exception{
 		Product product = null;
-		Connection con= dataSource.getConnection();
-		PreparedStatement pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NO);
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+	try {
+		con=dataSource.getConnection();
+		pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NO);
 		pstmt.setInt(1, p_no);
-		ResultSet rs=pstmt.executeQuery();
+		rs=pstmt.executeQuery();
 		if(rs.next()) {
 			product=new Product(
 						rs.getInt("p_no"),
@@ -105,43 +116,67 @@ public class ProductDao {
 						rs.getString("p_desc"),
 						rs.getInt("ct_no"));
 		}
-		rs.close();
-		pstmt.close();
-		con.close();
+	} finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			rs.close();
+		}
+	}
 		return product;
 	}
 	/*
 	 * selectAll : 상품전체검색
 	 */
 	public List<Product> findAll() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		List<Product> productList=new ArrayList<Product>();
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL);
-		ResultSet rs=pstmt.executeQuery();
+		
+	try {
+		con = dataSource.getConnection();
+		pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL);
+		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Product product=new Product(
+			productList.add(new Product(
 					rs.getInt("p_no"),
 					rs.getString("p_name"),
 					rs.getInt("p_price"),
 					rs.getString("p_image"),
 					rs.getString("p_desc"),
-					rs.getInt("ct_no"));
-			productList.add(product);
+					rs.getInt("ct_no")));
 		}
-		rs.close();
-		pstmt.close();
-		con.close();
+	} finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			con.close();
+		}
+	}
 		return productList;
 	}
 	/*
 	 * 이름으로 찾기
 	 */
 	public Product findByName(String p_name)throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		Product product =null;
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NAME);
+	try {
+		con = dataSource.getConnection();
+		pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_NAME);
 		pstmt.setString(1, p_name);
-		ResultSet rs= pstmt.executeQuery();
+		rs= pstmt.executeQuery();
 		if(rs.next()) {
 			product=new Product(
 						rs.getInt("p_no"),
@@ -151,30 +186,49 @@ public class ProductDao {
 						rs.getString("p_desc"),
 						rs.getInt("ct_no"));
 		}
-		rs.close();
-		pstmt.close();
-		con.close();
+	} finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			rs.close();
+		}
+	}
 		return product;
 	}
 	public List<Product> searchByName(String p_name) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		List<Product> productList=new ArrayList<Product>();
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_SEARCH_BY_NAME);
+	try{	
+		con = dataSource.getConnection();
+		pstmt = con.prepareStatement(ProductSQL.PRODUCT_SEARCH_BY_NAME);
 		pstmt.setString(1, p_name);
-		ResultSet rs=pstmt.executeQuery();
+		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Product product=new Product(
+			productList.add(new Product(
 					rs.getInt("p_no"),
 					rs.getString("p_name"),
 					rs.getInt("p_price"),
 					rs.getString("p_image"),
 					rs.getString("p_desc"),
-					rs.getInt("ct_no"));
-			productList.add(product);
+					rs.getInt("ct_no")));
 		}
-		rs.close();
-		pstmt.close();
-		con.close();
+	} finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			rs.close();
+		}
+	}
 		return productList;
 	}
 }
