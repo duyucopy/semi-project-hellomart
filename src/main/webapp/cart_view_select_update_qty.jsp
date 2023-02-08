@@ -72,6 +72,7 @@
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
 		var cart_item_check_selected_count = 0;
 		var tot_order_price=0;
+		
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
 				var updateFormId='cart_update_form_'+ cart_item_no_check_list.item(i).value;
@@ -81,6 +82,8 @@
 				cart_item_check_selected_count++;
 			}
 		}
+		
+		
 		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
@@ -106,6 +109,21 @@
 		form.submit();
 	}
 	
+	/*
+	cart 상품 전체선택, 전체해제
+	*/
+	function cart_item_all_select(e){
+		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
+		if(e.target.checked){
+			for (var i = 0; i < cart_item_no_check_list.length; i++) {
+				cart_item_no_check_list.item(i).checked=true;
+			}
+		}else{
+			for (var i = 0; i < cart_item_no_check_list.length; i++) {
+				cart_item_no_check_list.item(i).checked=false;
+			}
+		}
+	}
 </script>
 </head>
 <body onload="cart_item_select_count();" bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -157,8 +175,8 @@
 									
 									>
 									<tr>
-										<td width=60 height=25  align="center" bgcolor="E6ECDE" class=t1><font
-											 >선택</font></td>
+										<td width=60 height=25  align="center" bgcolor="E6ECDE" class=t1>
+										<input type="checkbox" id="all_select_checkbox" checked="checked" onchange="cart_item_all_select(event);cart_item_select_count();"></td>
 										<td width=40 height=25 align="center" bgcolor="E6ECDE" class=t1><font
 											 >이미지</font></td>
 										<td width=210 height=25 align="center" bgcolor="E6ECDE" class=t1><font
@@ -227,7 +245,7 @@
 										<td width=640 colspan=6 height=26 class=t1 bgcolor="ffffff">
 											<p align=right>
 												<br/>
-												<font style="color: red">총주문금액 : <span id="tot_order_price" ><%=new DecimalFormat("#,###").format(tot_price)%>원</span></font>
+												<font style="color: red">총주문금액 : <span id="tot_order_price" ><%=new DecimalFormat("#,###").format(tot_price)%></span>원</font>
 											</p>
 										</td>
 									</tr>
