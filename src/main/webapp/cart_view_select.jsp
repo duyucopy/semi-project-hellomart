@@ -27,12 +27,20 @@
 		document.cart_view_form.action='cart_delete_action.jsp';
 		document.cart_view_form.submit();
 	}
+	
+	/*
+	 카트에 담긴 전체 상품 주문
+	*/
 	function cart_view_form_order_submit(){
 		document.cart_view_form.method='POST';
 		document.cart_view_form.buyType.value='cart';
 		document.cart_view_form.action='order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
+	
+	/*
+	 선택된 카트 상품 주문
+	*/
 	function cart_view_form_select_order_submit(){
 		var cart_item_no_check_list=document.getElementsByName("cart_item_no_check");
 		var isChecked=false;
@@ -52,6 +60,10 @@
 		document.cart_view_form.action='order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
+	
+	/*
+	체크박스 선택 시 실행(카트 수량)
+	*/
 	function cart_item_select_count(){
 		
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
@@ -178,7 +190,7 @@
 									<a href="product_list.jsp" class=m1>계속 구경하기</a>&nbsp;&nbsp;
 									
 									<a href="javascript:cart_view_form_select_order_submit();" class=m1>
-									총 <span style="font-weight: bold;" id="cart_item_select_count"></span>개 주문하기[주문폼]
+									총 <span style="font-weight: bold;" id="cart_item_select_count"></span>개 주문하기
 									</a>&nbsp;&nbsp;
 									<a href="javascript:cart_delete();" class=m1>장바구니 비우기</a>&nbsp;&nbsp;
 									
