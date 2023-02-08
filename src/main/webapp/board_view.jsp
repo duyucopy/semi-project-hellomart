@@ -16,14 +16,16 @@
 	}catch(Exception e){
 		
 	}
-	
-	Board board=BoardService.getInstance().findBoard(boardno);
 	if(boardno==null){
 		//목록으로이동
 		response.sendRedirect("board_list.jsp?pageno="+pageno+"&p_no="+p_no);
 		return;
 	}
-	
+	Board board=BoardService.getInstance().findBoard(boardno);
+	if(board==null){
+		response.sendRedirect("board_list.jsp?pageno="+pageno+"&p_no="+p_no);
+		return;
+	}
 	//읽은회수증가
 	BoardService.getInstance().updateHitCount(boardno);
 	
@@ -33,12 +35,12 @@
 <head>
 <title>게시판</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="../css/styles.css" type="text/css">
-<link rel=stylesheet href="../css/board.css" type="text/css">
+<link rel=stylesheet href="css/styles.css" type="text/css">
+<link rel=stylesheet href="css/board.css" type="text/css">
  
 <script language="JavaScript">
 	function boardCreate() {
-		fw.action = "board_write.jsp?p_no="+<%=board.getP_no()%>;
+		fw.action = "board_write.jsp";
 		fw.method = "POST";
 		fw.submit();
 	}
@@ -58,7 +60,7 @@
 		}
 	}
 	function boardList() {
-		f.action = "board_list.jsp?pageno="+<%=pageno%>+"&p_no="+<%=board.getP_no()%>;
+		f.action = "board_list.jsp?pageno="+<%=pageno%>+"&p_no="+<%=p_no%>;
 		f.submit();
 	}
 </script>
@@ -133,7 +135,7 @@
 											<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
 											<input type="hidden" name="userId" value="<%=board.getUserId()%>">
 											<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
-										</form> <br> 
+										</form>
 										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
 										<input type="button" value="수정" onClick="boardUpdate()"> &nbsp; 
 										<input type="button" value="삭제" onClick="boardRemove()"> &nbsp; 
