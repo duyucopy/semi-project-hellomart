@@ -29,16 +29,16 @@ public class BoardDataInsertMain {
 			con = dataSource.getConnection();
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			con.setAutoCommit(false);
-			for (int i = 1; i <= 200; i++) {
+			for (int i = 1; i <= 100; i++) {
 				stmt.addBatch("INSERT INTO board (boardno, title, content, groupno, step, userId, p_no)" + " VALUES ("
 						+ "board_boardno_SEQ.nextval,"
-						+ "'게시판타이틀'||board_boardno_SEQ.currval ,"
-						+ "'후기작성'||board_boardno_SEQ.currval,"
+						+ "'후기제목'||board_boardno_SEQ.currval ,"
+						+ "'후기내용'||board_boardno_SEQ.currval,"
 						+ "board_boardno_SEQ.currval,"
 						+ "1,"
 						+ "'csd',"
 						//+ "2)");
-						+ ((int)(Math.random()*17)+1)+")");
+						+ ((int)(Math.random()*18)+1)+")");
 
 			}
 			int[] updateCounts = stmt.executeBatch();

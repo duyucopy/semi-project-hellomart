@@ -5,8 +5,8 @@
 <head>
 <title>게시판</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="css/styles.css" type="text/css">
-<link rel=stylesheet href="css/board.css" type="text/css">
+<link rel=stylesheet href="../css/styles.css" type="text/css">
+<link rel=stylesheet href="../css/board.css" type="text/css">
  
 <style type="text/css" media="screen">
 </style>

@@ -47,16 +47,16 @@ public class ProductDao {
 		pstmt.setString(3,product.getP_image());
 		pstmt.setString(4,product.getP_desc());
 		pstmt.setInt(5,product.getCt_no());
-		pstmt.setInt(6,product.getCt_no());
+		pstmt.setInt(6,product.getP_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
-	public int delete(String p_name)throws Exception{
+	public int delete(int p_no)throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_DELETE);
-		pstmt.setString(1, p_name);
+		pstmt.setInt(1, p_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
