@@ -15,14 +15,17 @@
                     	String p_noStr=request.getParameter("p_no");
                     	String p_qtyStr=request.getParameter("p_qty");
                     	String[] cart_item_no_strArray=request.getParameterValues("cart_item_no");
+                    	String o_option = request.getParameter("o_option");
                     	OrderService orderService=new OrderService();
                     	CartService cartService=new CartService();
                     	if(buyType.equals("cart")){
-                    		orderService.create(sUserId);
+                    		orderService.create(sUserId,o_option);
                     	}else if(buyType.equals("cart_select")){
-                    		orderService.create(sUserId,cart_item_no_strArray);	
+                    		orderService.create(sUserId,cart_item_no_strArray,o_option);	
                         }else if(buyType.equals("direct")){
-                        	orderService.create(sUserId, Integer.parseInt(p_noStr), Integer.parseInt(p_qtyStr));
+                        	orderService.create(sUserId, 
+                        						Integer.parseInt(p_noStr), Integer.parseInt(p_qtyStr),
+                        						o_option);
                     	}
                     	response.sendRedirect("order_list.jsp");
     %>

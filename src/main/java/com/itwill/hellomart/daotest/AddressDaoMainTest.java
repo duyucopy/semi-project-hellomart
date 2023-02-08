@@ -13,8 +13,9 @@ public class AddressDaoMainTest {
 		//주소 삭제
 		//addressDao.addressDelete("guard1");
 		//주소 전제보기
-		System.out.println(addressDao.addressfindAll());
-		
+		//System.out.println(addressDao.addressfindAll());
+		//멤버 한 사람의 주문 건당 주문 주소 확인
+		System.out.println(addressDao.findAddressOrder("guard1"));
 
 	}
 

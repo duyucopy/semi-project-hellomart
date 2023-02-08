@@ -13,5 +13,9 @@ public class AddressSQL {
 	//주소전체보기
 	public final static String ADDRESS_SELECT_ALL=
 			"select * from address";
-
+	//주소 + 주문
+	public final static String ADDRESS_SELECT_ORDER = 
+			"select*from orders o join address a on o.o_no=a.o_no where o.userid=?";
+	
+	
 }

@@ -64,7 +64,8 @@ public class AddressDao {
 		while(rs.next()) {
 			Address address = new Address(
 				rs.getString("userid"),
-				rs.getString("loc"));
+				rs.getString("loc"),
+				rs.getInt("o_no"));
 			addressList.add(address);
 		}
 		rs.close();
@@ -74,4 +75,35 @@ public class AddressDao {
 		
 	}
 	
+	public Address findAddressOrder(String sUserId) throws Exception {
+		//"select*from orders o join address a on o.o_no=a.o_no where o.userid=?";
+		Address address = null;
+		Connection con = null;
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(AddressSQL.ADDRESS_SELECT_ORDER);
+			pstmt.setString(1, sUserId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				address = new Address(rs.getString("userid"),
+									  rs.getString("loc"),
+									  rs.getInt("o_no"));
+			}
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
+		}
+		return address;
+		
+	}
 }

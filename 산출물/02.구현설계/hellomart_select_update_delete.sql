@@ -48,6 +48,8 @@ delete from orders where o_no=1;
 delete from order_item where o_no in(select o_no from orders where userid='guard1');
 delete from orders where userid='guard1';
 
+--7. 멤버 한 사람의 주문 건당 주문 주소 확인
+select*from orders o join address a on o.o_no=a.o_no where o.userid='guard1';
 
 /*****************board select******************/
 select * from board where p_no=6;

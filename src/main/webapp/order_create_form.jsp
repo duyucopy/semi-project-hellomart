@@ -71,18 +71,6 @@ form > table tr td{
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-	<form name="order_create_form" method="post">
-		<input type="hidden" name="buyType" value="<%=buyType%>"> <input
-			type="hidden" name="p_no" value="<%=p_noStr%>"> <input
-			type="hidden" name="p_qty" value="<%=p_qtyStr%>">
-		<%
-		for (String cart_item_noStr : cart_item_noStr_array) {
-		%>
-		<input type="hidden" name="cart_item_no" value="<%=cart_item_noStr%>">
-		<%
-		}
-		%>
-	</form>
 	<!-- container start-->
 	<div id="container">
 		<!-- header start -->
@@ -115,7 +103,17 @@ form > table tr td{
 											주문/결제폼</b></td>
 								</tr>
 							</table> <!--form-->
-							<form>
+							<form name="order_create_form" method="post">
+								<input type="hidden" name="buyType" value="<%=buyType%>">
+								<input type="hidden" name="p_no" value="<%=p_noStr%>">
+								<input type="hidden" name="p_qty" value="<%=p_qtyStr%>">
+								<%
+								for (String cart_item_noStr : cart_item_noStr_array) {
+								%>
+								<input type="hidden" name="cart_item_no" value="<%=cart_item_noStr%>">
+								<%
+								}
+								%>
 								<table align=center width=80% border="0" cellpadding="0"
 									cellspacing="1" bgcolor="BBBBBB">
 									<caption style="text-align: left;">구매자정보</caption>
@@ -182,10 +180,10 @@ form > table tr td{
 								<!-- 배송 요청 사항 TEST  ---------------------->
 									<tr>
 										<td> <select name ="o_option" id="o_option">
-										  <option selected> 배송 요청사항 </option>
-										  <option> 배송 전 연락주세요. </option>
-										  <option> 부재 시 현관 앞에 놔주세요. </option>
-										  <option> 사용자입력  </option>
+										  <option selected>배송 요청사항</option>
+										  <option>배송 전 연락주세요.</option>
+										  <option>부재 시 현관 앞에 놔주세요.</option>
+										  <option>사용자입력</option>
 										 </select> </td>
  									<!-- 배송 요청사항 TEST -->
  									</tr>
