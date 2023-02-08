@@ -107,8 +107,8 @@ form > table tr td{
 									<!-- orer item start -->
 									<%
 									int tot_price=0;
-																for(OrderItem orderItem:order.getOrderItemList()) {
-																tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
+										for(OrderItem orderItem:order.getOrderItemList()) {
+										tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
 									%>
 									<tr>
 										<td width=290 height=26 align=center  bgcolor="ffffff" class=t1>

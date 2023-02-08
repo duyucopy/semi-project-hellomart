@@ -28,14 +28,12 @@
 
 <%
 	String p_noStr=request.getParameter("p_no");
-	//1.요청페이지번호	
 	String pageno=request.getParameter("pageno");
 	if(pageno==null||pageno.equals("")){
 		pageno="1";
 	}	
 	
 	//게시물조회
-	
 	BoardListPageMakerDto boardListPage 
 		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),Integer.parseInt(p_noStr));
 %>
@@ -44,8 +42,8 @@
 <head>
 <title>게시판</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="css/styles.css" type="text/css">
-<link rel=stylesheet href="css/board.css" type="text/css">
+<link rel=stylesheet href="../css/styles.css" type="text/css">
+<link rel=stylesheet href="../css/board.css" type="text/css">
 <script type="text/javascript">
 	function boardCreate() {
 		location.href = "board_write.jsp";

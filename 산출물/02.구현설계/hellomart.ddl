@@ -99,7 +99,7 @@ CREATE SEQUENCE board_boardno_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 ALTER TABLE categories ADD CONSTRAINT IDX_categories_PK PRIMARY KEY (ct_no);
 
 ALTER TABLE product ADD CONSTRAINT IDX_product_PK PRIMARY KEY (p_no);
-ALTER TABLE product ADD CONSTRAINT IDX_product_FK0 FOREIGN KEY (ct_no) REFERENCES categories (ct_no);
+ALTER TABLE product ADD CONSTRAINT IDX_product_FK0 FOREIGN KEY (ct_no) REFERENCES categories (ct_no) on delete cascade;
 
 ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_PK PRIMARY KEY (userId);
 
@@ -111,12 +111,12 @@ ALTER TABLE orders ADD CONSTRAINT IDX_orders_PK PRIMARY KEY (o_no);
 ALTER TABLE orders ADD CONSTRAINT IDX_orders_FK0 FOREIGN KEY (userId) REFERENCES userinfo (userId);
 
 ALTER TABLE order_item ADD CONSTRAINT IDX_order_item_PK PRIMARY KEY (oi_no);
-ALTER TABLE order_item ADD CONSTRAINT IDX_order_item_FK0 FOREIGN KEY (o_no) REFERENCES orders (o_no);
+ALTER TABLE order_item ADD CONSTRAINT IDX_order_item_FK0 FOREIGN KEY (o_no) REFERENCES orders (o_no) on delete cascade;
 ALTER TABLE order_item ADD CONSTRAINT IDX_order_item_FK1 FOREIGN KEY (p_no) REFERENCES product (p_no);
 
-ALTER TABLE address ADD CONSTRAINT IDX_address_FK0 FOREIGN KEY (userId) REFERENCES userinfo (userId);
+ALTER TABLE address ADD CONSTRAINT IDX_address_FK0 FOREIGN KEY (userId) REFERENCES userinfo (userId) on delete cascade;
 
 ALTER TABLE board ADD CONSTRAINT IDX_board_PK PRIMARY KEY (boardno);
-ALTER TABLE board ADD CONSTRAINT IDX_board_FK0 FOREIGN KEY (p_no) REFERENCES product (p_no);
+ALTER TABLE board ADD CONSTRAINT IDX_board_FK0 FOREIGN KEY (p_no) REFERENCES product (p_no) on delete cascade;
 ALTER TABLE board ADD CONSTRAINT IDX_board_FK1 FOREIGN KEY (userId) REFERENCES userinfo (userId);
 

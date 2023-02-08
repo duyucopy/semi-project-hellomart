@@ -14,8 +14,8 @@ public class ProductService {
 	public int update(Product product) throws Exception{
 		return productDao.update(product);
 	}
-	public int delete(String p_name) throws Exception{
-		return productDao.delete(p_name);
+	public int delete(int p_no) throws Exception{
+		return productDao.delete(p_no);
 	}
 	public Product findByPrimartKey(int p_no) throws Exception{
 		return productDao.findByPrimaryKey(p_no);

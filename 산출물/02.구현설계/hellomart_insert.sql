@@ -3,6 +3,7 @@
 insert into userinfo(userid,password,name,email) values('guard1','1111','김경호1','guard1@korea.com');
 insert into userinfo(userid,password,name,email) values('guard2','2222','김경호2','guard2@korea.com');
 insert into userinfo(userid,password,name,email) values('guard3','3333','김경호3','guard3@korea.com');
+insert into userinfo(userid,password,name,email) values('csd','csd','조성동','csd@korea.com');
 
 /**********************address insert************************/
 insert into address(userid, loc) values('guard1', '서울시 성동구 왕십리로 16(트리마제), 101-1001');
@@ -24,7 +25,7 @@ insert into product values(product_p_no_SEQ.nextval,'LG전자 오브제컬렉션
 insert into product values(product_p_no_SEQ.nextval,'LG전자 일반 세탁기',395000,'defalut.png','일반 통돌이 세탁기',1);
 insert into product values(product_p_no_SEQ.nextval,'삼성전자 드럼 세탁기',889000,'defalut.png','더 편히하고 위생적인 관리',1);
 insert into product values(product_p_no_SEQ.nextval,'아이폰 14',1598000,'defalut.png','갬성있고 간지나는 디자인',2);
-insert into product values(product_p_no_SEQ.nextval,'갤럭시 S22',889900,'defalut.png','편하고 삼성페이가능',2);
+insert into product values(product_p_no_SEQ.nextval,'갤럭시 S23',889900,'defalut.png','편하고 삼성페이가능',2);
 insert into product values(product_p_no_SEQ.nextval,'프리플로우 컴퓨터 본체',1109000,'defalut.png','그래픽 높은 게임 다돌아감',2);
 insert into product values(product_p_no_SEQ.nextval,'삼보컴퓨터',50000,'defalut.png','지뢰찾기 돌아감',2);
 insert into product values(product_p_no_SEQ.nextval,'삼성전자 갤럭시 북3',3600000,'defalut.png','초슬림 초경량 노트북',2);

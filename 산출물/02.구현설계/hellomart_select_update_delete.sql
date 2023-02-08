@@ -123,6 +123,7 @@ SELECT COUNT(*) FROM board where p_no=6;
 --유저게시글 총 건수 조회
 SELECT COUNT(*) FROM board where userid='guard1';
 
+
 rollback;
 
 
