@@ -169,6 +169,7 @@ form > table tr td{
 									<!-- cart item end -->
 									<%}%>
 									<tr>
+									
 										<td width=640 colspan=4 height=26 bgcolor="ffffff" class=t1>
 											<p align=right style="padding-top: 10px">
 												<font color=#FF0000>총 주문 금액 : <%=new DecimalFormat("#,###").format(tot_price)%>
@@ -178,6 +179,16 @@ form > table tr td{
 										</td>
 									</tr>
 								</table>
+								<!-- 배송 요청 사항 TEST  ---------------------->
+									<tr>
+										<td> <select name ="o_option" id="o_option">
+										  <option selected> 배송 요청사항 </option>
+										  <option> 배송 전 연락주세요. </option>
+										  <option> 부재 시 현관 앞에 놔주세요. </option>
+										  <option> 사용자입력  </option>
+										 </select> </td>
+ 									<!-- 배송 요청사항 TEST -->
+ 									</tr>
 							</form>
 							<br />
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
