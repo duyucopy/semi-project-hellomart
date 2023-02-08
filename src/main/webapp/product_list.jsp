@@ -7,10 +7,14 @@
 	pageEncoding="UTF-8"%>
 	
 <%
+	
 String keyword=null;
 keyword= request.getParameter("keyword");
+
+
 ProductService productService = new ProductService();
 List<Product> productList = new ArrayList<Product>();
+
 if(keyword!=null){
 	productList = productService.searchByName(keyword);
 }else{
@@ -88,6 +92,16 @@ function searchByKeyword() {
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
 											상품리스트</b></td>
+									<!--검색 -->
+								   <form name="ff" style="display: inline;">
+										<select data-trigger="" name="searchType" style="width:60px;height:30px">
+											<option value="all">통합</option>
+											<option value="name">제목</option>
+										</select>
+											<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;height:25px"> 
+											<input type="button" value="검색" onclick="searchByKeyword();">
+									</form>
+									<!--검색 끝 -->
 								</tr>
 							</table>
 
@@ -122,20 +136,9 @@ function searchByKeyword() {
 										</font></td>
 									<%if(i%product_column_size==3){%>
 									</tr>
-									<%} %>	
-									
+									<%} %>
 								   <!--상품 끝 -->
-								   <%}%>
-								   <!--검색 -->
-								   <form name="ff" method="POST">
-										<select data-trigger="" name="searchType" style="width:60px;height:30px">
-											<option value="all">통합</option>
-											<option value="name">제목</option>
-										</select>
-											<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" style="width:130px;height:25px"> 
-											<input type="button" value="검색" onclick="searchByKeyword();">
-									</form>
-									<!--검색 끝 -->
+ 								<%}%>	
 							</table>
 							</div> <br /></td>
 					</tr>
