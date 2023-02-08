@@ -206,7 +206,7 @@
 											
 											<form action="cart_delete_item_action.jsp" method="post">
 												<input type="hidden" name="cart_no" value="<%=cart.getCart_no() %>">
-												<input type="submit" value="삭제">
+												<input type="image" src='image/cancle_10px.png'>
 											</form>
 										</td>
 									</tr>
