@@ -120,9 +120,10 @@ WHERE userid = 'guard1';
 --상품게시글 총 건수 조회
 SELECT COUNT(*) FROM board where p_no=6;
 
+/**********테스트****************/
 --유저게시글 총 건수 조회
 SELECT COUNT(*) FROM board where userid='guard1';
-
+select count(*)  as p_count from cart c join userinfo u on c.userid=u.userid where u.userid='guard1' and c.p_no=1;
 
 rollback;
 
