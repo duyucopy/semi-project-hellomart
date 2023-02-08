@@ -118,8 +118,11 @@ function searchByKeyword() {
 											Product product=productList.get(i);
 									%>
 									<!--상품시작 -->
+									<%
+									 if(i%product_column_size==0){
+									%>
 									<tr>
-
+									<%} %>
 										<td align="center" width="25%"  bgcolor="ffffff"><a
 											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="88px" height="65px"
 												src="image/<%=product.getP_image()%>" border="0"></a><br />	
@@ -131,11 +134,11 @@ function searchByKeyword() {
 											</form><br> <font
 											color="#FF0000"><%=new DecimalFormat("#,##0").format(product.getP_price())%>원
 										</font></td>
-
+									<%if(i%product_column_size==3){%>
 									</tr>
 									<%} %>
 								   <!--상품 끝 -->
-
+ 								<%}%>	
 							</table>
 							</div> <br /></td>
 					</tr>
