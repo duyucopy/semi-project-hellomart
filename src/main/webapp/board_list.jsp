@@ -1,3 +1,5 @@
+<%@page import="com.itwill.hellomart.product.Product"%>
+<%@page import="com.itwill.hellomart.product.ProductService"%>
 <%@page import="com.itwill.hellomart.board.BoardService"%>
 <%@page import="com.itwill.hellomart.board.BoardListPageMakerDto"%>
 <%@page import="com.itwill.hellomart.board.Board"%>
@@ -36,6 +38,9 @@
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
 		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),Integer.parseInt(p_noStr));
+	//프로덕트
+	ProductService productService=new ProductService();
+	Product product=productService.findByPrimartKey(Integer.parseInt(p_noStr));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -46,7 +51,7 @@
 <link rel=stylesheet href="css/board.css" type="text/css">
 <script type="text/javascript">
 	function boardCreate() {
-		location.href = "board_write.jsp";
+		location.href = "board_write.jsp?p_no="+<%=p_noStr%>;
 	}
 </script>
 </head>
@@ -80,7 +85,7 @@
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>게시판-리스트</b>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기게시판</b>
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">

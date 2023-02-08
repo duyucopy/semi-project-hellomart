@@ -48,8 +48,14 @@ public class CartDao {
 			}
 
 		} finally {
+			if (rs != null) {
+				rs.close();
+			}
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return count;
@@ -70,8 +76,12 @@ public class CartDao {
 			pstmt.setInt(3, cart.getCart_qty());
 			insertRowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return insertRowCount;
@@ -90,8 +100,12 @@ public class CartDao {
 			pstmt.setInt(3, cart_qty);
 			insertRowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return insertRowCount;
@@ -113,8 +127,12 @@ public class CartDao {
 			pstmt.setInt(3, p_no);
 			rowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return rowCount;
@@ -132,8 +150,12 @@ public class CartDao {
 			pstmt.setInt(3, cart.getProduct().getP_no());
 			rowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return rowCount;
@@ -153,8 +175,12 @@ public class CartDao {
 			pstmt.setInt(2, cart_no);
 			rowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return rowCount;
@@ -171,8 +197,12 @@ public class CartDao {
 			pstmt.setInt(2, cart.getCart_no());
 			rowCount = pstmt.executeUpdate();
 		} finally {
+
 			if (con != null) {
 				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return rowCount;
@@ -181,31 +211,35 @@ public class CartDao {
 	/*
 	 * cart list
 	 */
-	public List<Cart> findByUserId(String userId) throws Exception{
-		List<Cart> cartList=new ArrayList<Cart>();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		con=dataSource.getConnection();
-		
-		  
-		pstmt=con.prepareStatement(CartSQL.CART_SELECT_BY_USERID);
-		pstmt.setString(1, userId);
-		rs=pstmt.executeQuery();
-		while(rs.next()) {
-			cartList.add(new Cart( rs.getInt("cart_no"),
-							       rs.getInt("cart_qty"),
-							       rs.getString("userid"),
-							       new Product(rs.getInt("p_no"),
-							    		       rs.getString("p_name"),
-							    		       rs.getInt("p_price"),
-							    		       rs.getString("p_image"),
-							    		       rs.getString("p_desc"),
-							    		       rs.getInt("ct_no"))		
-							       )
-					);
+	public List<Cart> findByUserId(String userId) throws Exception {
+		List<Cart> cartList = new ArrayList<Cart>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(CartSQL.CART_SELECT_BY_USERID);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cartList.add(new Cart(rs.getInt("cart_no"), rs.getInt("cart_qty"), rs.getString("userid"),
+						new Product(rs.getInt("p_no"), rs.getString("p_name"), rs.getInt("p_price"),
+								rs.getString("p_image"), rs.getString("p_desc"), rs.getInt("ct_no"))));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+
 		}
+
 		return cartList;
 	}
 
@@ -222,8 +256,12 @@ public class CartDao {
 			pstmt.setInt(1, cart_no);
 			deleteRowCount = pstmt.executeUpdate();
 		} finally {
-			if (con != null) {
+			
+			if(con != null) {
 				con.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return deleteRowCount;
@@ -242,8 +280,12 @@ public class CartDao {
 			pstmt.setString(1, sUserId);
 			deleteRowCount = pstmt.executeUpdate();
 		} finally {
-			if (con != null) {
+			
+			if(con != null) {
 				con.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
 			}
 		}
 		return deleteRowCount;
@@ -254,7 +296,7 @@ public class CartDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		try {
 		con = dataSource.getConnection();
 		pstmt = con.prepareStatement(CartSQL.CART_SELECT_BY_CART_NO);
 		pstmt.setInt(1, cart_no);
@@ -262,9 +304,21 @@ public class CartDao {
 		if (rs.next()) {
 			cart = new Cart(rs.getInt("cart_no"), rs.getInt("cart_qty"), rs.getString("userId"),
 					new Product(rs.getInt("p_no"), rs.getString("p_name"), rs.getInt("p_price"),
-							rs.getString("p_image"), rs.getString("p_desc"),rs.getInt("ct_no"))
+							rs.getString("p_image"), rs.getString("p_desc"), rs.getInt("ct_no"))
 
 			);
+		}
+		}
+		finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
 		}
 		return cart;
 	}

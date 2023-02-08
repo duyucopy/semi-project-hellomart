@@ -74,9 +74,14 @@
 			document.product_detail_form.submit();
 		}
 	}
+	function boardList() {
+		product_detail_form.action = "board_list.jsp?pageno="+<%=1%>+"&p_no="+<%=Integer.parseInt(p_noStr)%>;
+		product_detail_form.submit();
+	}
 	function productList() {
 		location.href = 'product_list.jsp';
 	}
+	
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -182,8 +187,8 @@
 								<tr>
 									<td align=center>
 									<input type="button" value="주문하기[주문폼]" onClick="order_create_form();"> &nbsp;
-									<input type="button" value="상품후기<%=boardListPage.pageMaker.getTotCount()%>" 
-											onClick="board_list.jsp?p_no=<%=Integer.parseInt(p_noStr)%>"> &nbsp; 
+									<input type="button" value="상품후기(<%=boardListPage.pageMaker.getTotCount()%>건)" 
+										onClick="boardList();"> &nbsp; 
 									<input type="button" value="상품리스트" onClick="productList();"></td>
 								</tr>
 							</table></td>
