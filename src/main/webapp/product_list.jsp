@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="java.util.List"%>
@@ -8,12 +9,12 @@
 <%
 String keyword=null;
 keyword= request.getParameter("keyword");
-if(keyword==null){
-	ProductService productService = new ProductService();
-	List<Product> productList = productService.findAll();
+ProductService productService = new ProductService();
+List<Product> productList = new ArrayList<Product>();
+if(keyword!=null){
+	productList = productService.searchByName(keyword);
 }else{
-	ProductService productService = new ProductService();
-	List<Product> productList = productService.searchByName(keyword);
+	productList = productService.findAll();
 }
 %>
 <%
