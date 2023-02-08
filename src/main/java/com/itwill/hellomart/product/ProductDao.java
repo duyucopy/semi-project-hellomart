@@ -27,31 +27,53 @@ public class ProductDao {
 	dataSource=basicDataSource;
 	}
 	public int insert(Product product) throws Exception{
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_INSERT);
-		pstmt.setString(1,product.getP_name());
-		pstmt.setInt(2,product.getP_price());
-		pstmt.setString(3,product.getP_image());
-		pstmt.setString(4,product.getP_desc());
-		pstmt.setInt(5,product.getCt_no());
-		int rowCount = pstmt.executeUpdate();
-		pstmt.close();
-		con.close();
-		return rowCount;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int rowCount =0;
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.PRODUCT_INSERT);
+			pstmt.setString(1,product.getP_name());
+			pstmt.setInt(2,product.getP_price());
+			pstmt.setString(3,product.getP_image());
+			pstmt.setString(4,product.getP_desc());
+			pstmt.setInt(5,product.getCt_no());
+			rowCount = pstmt.executeUpdate();
+			return rowCount;
+		}finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		
 	}
 	public int update(Product product) throws Exception{
-		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(ProductSQL.PRODUCT_UPDATE);
-		pstmt.setString(1,product.getP_name());
-		pstmt.setInt(2,product.getP_price());
-		pstmt.setString(3,product.getP_image());
-		pstmt.setString(4,product.getP_desc());
-		pstmt.setInt(5,product.getCt_no());
-		pstmt.setInt(6,product.getP_no());
-		int rowCount = pstmt.executeUpdate();
-		pstmt.close();
-		con.close();
-		return rowCount;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int rowCount =0;
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.PRODUCT_UPDATE);
+			pstmt.setString(1,product.getP_name());
+			pstmt.setInt(2,product.getP_price());
+			pstmt.setString(3,product.getP_image());
+			pstmt.setString(4,product.getP_desc());
+			pstmt.setInt(5,product.getCt_no());
+			pstmt.setInt(6,product.getP_no());
+			rowCount = pstmt.executeUpdate();
+			return rowCount;
+		}finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
 	}
 	public int delete(int p_no)throws Exception{
 		Connection con = dataSource.getConnection();

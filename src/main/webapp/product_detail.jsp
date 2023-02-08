@@ -1,3 +1,5 @@
+<%@page import="com.itwill.hellomart.board.BoardService"%>
+<%@page import="com.itwill.hellomart.board.BoardListPageMakerDto"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="com.itwill.hellomart.product.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,6 +24,9 @@
 		out.println("</script>");
 		return;
 	}
+	
+	BoardListPageMakerDto boardListPage 
+		=BoardService.getInstance().findBoardList(Integer.parseInt("1"),Integer.parseInt(p_noStr));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -175,9 +180,11 @@
 
 							<table border="0" cellpadding="0" cellspacing="1">
 								<tr>
-									<td align=center><input type="button" value="주문하기[주문폼]"
-										onClick="order_create_form();"> &nbsp; <input
-										type="button" value="상품리스트" onClick="productList();"></td>
+									<td align=center>
+									<input type="button" value="주문하기[주문폼]" onClick="order_create_form();"> &nbsp;
+									<input type="button" value="상품후기<%=boardListPage.pageMaker.getTotCount()%>" 
+											onClick="board_list.jsp?p_no=<%=Integer.parseInt(p_noStr)%>"> &nbsp; 
+									<input type="button" value="상품리스트" onClick="productList();"></td>
 								</tr>
 							</table></td>
 					</tr>
