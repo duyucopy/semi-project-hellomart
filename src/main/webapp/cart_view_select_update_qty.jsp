@@ -83,8 +83,6 @@
 			}
 		}
 		
-		
-		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 	}
