@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="java.util.List"%>
@@ -7,15 +6,8 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-String keyword=null;
-keyword= request.getParameter("keyword");
 ProductService productService = new ProductService();
-List<Product> productList = new ArrayList<Product>();
-if(keyword!=null){
-	productList = productService.searchByName(keyword);
-}else{
-	productList = productService.findAll();
-}
+List<Product> productList = productService.findAll();
 %>
 <%
 boolean isLogin = false;
