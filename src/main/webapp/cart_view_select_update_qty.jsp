@@ -71,13 +71,19 @@
 		
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
 		var cart_item_check_selected_count = 0;
+		var tot_order_price=0;
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
+				var updateFormId='cart_update_form_'+ cart_item_no_check_list.item(i).value;
+				var cart_qty=document.getElementById(updateFormId).cart_qty.value;
+				var cart_product_unit_price=document.getElementById(updateFormId).cart_product_unit_price.value;
+				tot_order_price+=cart_qty*cart_product_unit_price;
 				cart_item_check_selected_count++;
 			}
 		}
 		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
+		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 	}
 	
 	/*
@@ -193,9 +199,10 @@
 													style="text-align: center; width: 15%" name="cart_qty"
 													value="<%=cart.getCart_qty()%>"> 
 													
-													<input
+												<input
 													type="button" value="+"
 													onclick="changeNumber('+','cart_update_form_<%=cart.getCart_no()%>');">
+												<input type="hidden" name="cart_product_unit_price" value="<%=cart.getProduct().getP_price()%>"/>
 											</form>
 										</td>
 										<td width=146 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(cart.getProduct().getP_price()*cart.getCart_qty()) %></td>
@@ -220,7 +227,7 @@
 										<td width=640 colspan=6 height=26 class=t1 bgcolor="ffffff">
 											<p align=right>
 												<br/>
-												<span id="tot_order_price" style="color: red">총주문금액 : <%=new DecimalFormat("#,###").format(tot_price)%>원</span>
+												<font style="color: red">총주문금액 : <span id="tot_order_price" ><%=new DecimalFormat("#,###").format(tot_price)%>원</span></font>
 											</p>
 										</td>
 									</tr>
