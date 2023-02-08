@@ -22,6 +22,9 @@
 <style type="text/css" media="screen">
 </style>
 <script type="text/javascript">
+	/*
+	카트 비우기
+	*/
 	function cart_delete(){
 		document.cart_view_form.method='POST';
 		document.cart_view_form.action='cart_delete_action.jsp';
@@ -76,6 +79,10 @@
 		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 	}
+	
+	/*
+	상품 수량 변경
+	*/
 	function changeNumber(desc, formId) {
 		console.log(formId);
 		var form = document.getElementById(formId);
