@@ -113,8 +113,19 @@ function add_cart_popup_window(f){
 									<%} %>	
 									
 								   <!--상품 끝 -->
-								   <%}%>	
-								</table>
+								   <%}%>
+								   <!--검색 -->
+								   <form action="product_detail.jsp" method="get">
+
+						<div class="row">
+							<select data-trigger="" name="searchType" style="width:60px;height:30px">
+										<option value="all">통합</option>
+										<option value="name">제목</option>
+							</select>
+										<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" style="width:130px;height:25px"> 
+										<input type="submit" value="검색" action="book_search_result.jsp" style="width:40px;height:30px">
+									<!--검색 끝 -->
+							</table>
 							</div> <br /></td>
 					</tr>
 				</table>

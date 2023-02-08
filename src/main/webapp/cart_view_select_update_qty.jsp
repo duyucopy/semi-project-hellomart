@@ -76,6 +76,23 @@
 		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 	}
+	function changeNumber(desc, formId) {
+		console.log(formId);
+		var form = document.getElementById(formId);
+		if (desc == '+') {
+			form.cart_qty.value = parseInt(form.cart_qty.value) + 1;
+
+		} else if (desc == '-') {
+			if (form.cart_qty.value - 1 >= 0) {
+				form.cart_qty.value = parseInt(form.cart_qty.value) - 1;
+			}
+		}
+
+		form.method = 'POST';
+		form.action = 'cart_update_item_action.jsp';
+		form.submit();
+	}
+	
 </script>
 </head>
 <body onload="cart_item_select_count();" bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -156,9 +173,30 @@
 										
 										<td width=40 height=26 align=center bgcolor="ffffff" class=t1><img src='image/<%=cart.getProduct().getP_image()%>' width="34" height="28"/></td>
 										<td width=210 height=26 align=center bgcolor="ffffff" class=t1><a href='product_detail.jsp?p_no=<%=cart.getProduct().getP_no()%>'><%=cart.getProduct().getP_name() %></a></td>
-										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=cart.getCart_qty() %></td>
+										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>
+										<form action="cart_update_action.jsp" method="post"
+												id="cart_update_form_<%=cart.getCart_no()%>">
+												
+												<input type="hidden" name="cart_no"
+													value="<%=cart.getCart_no()%>"> <input
+													type="button" value="-"
+													onclick="changeNumber('-','cart_update_form_<%=cart.getCart_no()%>');">
+													
+												<input type="text" readonly="readonly" size="2"
+													style="text-align: center; width: 15%" name="cart_qty"
+													value="<%=cart.getCart_qty()%>"> 
+													
+													<input
+													type="button" value="+"
+													onclick="changeNumber('+','cart_update_form_<%=cart.getCart_no()%>');">
+											</form>
+										</td>
 										<td width=146 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(cart.getProduct().getP_price()*cart.getCart_qty()) %></td>
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
+											
+											
+											
+											
 											<form action="cart_delete_item_action.jsp" method="post">
 												<input type="hidden" name="cart_no" value="<%=cart.getCart_no() %>">
 												<input type="submit" value="삭제">
