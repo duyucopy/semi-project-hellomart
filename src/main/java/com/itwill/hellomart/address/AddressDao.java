@@ -41,69 +41,38 @@ public class AddressDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_UPDATE);
 		pstmt.setString(1, address.getLoc());
-		pstmt.setString(2, address.getUserid());
+		pstmt.setInt(2, address.getAddr_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
-	public int addressDelete(String userid)throws Exception{
+	public int addressDelete(int addr_no)throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_DELETE);
-		pstmt.setString(1, userid);
+		pstmt.setInt(1, addr_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
-	public List<Address> addressfindAll() throws Exception{
+	public List<Address> addressfindAll(String userId) throws Exception{
 		List<Address> addressList= new ArrayList<Address>();
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_SELECT_ALL);
+		pstmt.setString(1, userId);
 		ResultSet rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Address address = new Address(
-				rs.getString("userid"),
-				rs.getString("loc"),
-				rs.getInt("o_no"));
-			addressList.add(address);
+					Address address = new Address(
+						rs.getInt("addr_no"),
+						rs.getString("userid"),
+						rs.getString("loc"));
+					addressList.add(address);
 		}
 		rs.close();
 		pstmt.close();
 		con.close();
 		return addressList;
-		
-	}
-	
-	public Address findAddressOrder(String sUserId) throws Exception {
-		//"select*from orders o join address a on o.o_no=a.o_no where o.userid=?";
-		Address address = null;
-		Connection con = null;
-		PreparedStatement pstmt= null;
-		ResultSet rs = null;
-		
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(AddressSQL.ADDRESS_SELECT_ORDER);
-			pstmt.setString(1, sUserId);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				address = new Address(rs.getString("userid"),
-									  rs.getString("loc"),
-									  rs.getInt("o_no"));
-			}
-		} finally {
-			if(rs!=null) {
-				rs.close();
-			}
-			if(pstmt!=null) {
-				pstmt.close();
-			}
-			if(con!=null) {
-				con.close();
-			}
-		}
-		return address;
 		
 	}
 }

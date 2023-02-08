@@ -3,19 +3,15 @@ package com.itwill.hellomart.address;
 public class AddressSQL {
 	//주소 입력
 	public final static String ADDRESS_INSERT=
-			"insert into address(userid, loc) values(?, ?)";
+			"insert into address(addr_no,userid, loc) values(address_addr_no_SEQ.nextval, ? , ?)";
 	//주소 변경
 	public final static String ADDRESS_UPDATE=
-			"update address set loc=? where userid = ?";
+			"update address set loc=? where addr_no = ?";
 	//주소 삭제(일케 하는거 맞나?)
 	public final static String ADDRESS_DELETE =
-			"delete from address where userid= ?";
-	//주소전체보기
+			"delete from address where addr_no= ?";
+	//내 주소 전체보기
 	public final static String ADDRESS_SELECT_ALL=
-			"select * from address";
-	//주소 + 주문
-	public final static String ADDRESS_SELECT_ORDER = 
-			"select*from orders o join address a on o.o_no=a.o_no where o.userid=?";
-	
+			"select * from address where userid = ?";
 	
 }

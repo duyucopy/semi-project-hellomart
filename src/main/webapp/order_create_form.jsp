@@ -177,16 +177,32 @@ form > table tr td{
 										</td>
 									</tr>
 								</table>
-								<!-- 배송 요청 사항 TEST  ---------------------->
+								
+								<br>
+								<!-- 배송지/요청사항 입력 -->
+								<table align=center width=80% border="0" cellpadding="0"
+									cellspacing="1" bgcolor="BBBBBB">
+									<caption style="text-align: left;">배송지</caption>
 									<tr>
-										<td> <select name ="o_option" id="o_option">
-										  <option selected>배송 요청사항</option>
-										  <option>배송 전 연락주세요.</option>
-										  <option>부재 시 현관 앞에 놔주세요.</option>
-										  <option>사용자입력</option>
-										 </select> </td>
- 									<!-- 배송 요청사항 TEST -->
- 									</tr>
+										<td height=25 align=center bgcolor="E6ECDE" class=t1>주소</td>
+										<td height=25 align=center bgcolor="E6ECDE" class=t1>요청사항</td>
+									</tr>
+									<tr>
+										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
+											<input type="text" name="loc" maxlength="30" style="width: 80%; height: 50%; box-sizing : border-box;">
+										</td>
+										<td width=60% height=40 align=center bgcolor="ffffff" class=t1>
+											<select name ="o_option" id="o_option" style="height: 50%;">
+												<option selected>배송 요청사항</option>
+												<option>배송 전 연락주세요.</option>
+												<option>부재 시 현관 앞에 놔주세요.</option>
+												<option>경비실에 맡겨주세요.</option>
+												<option>파손 위험이 있으니 조심해주세요.</option>
+											</select>
+										</td>
+									</tr>
+									
+								</table>
 							</form>
 							<br />
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
@@ -200,6 +216,7 @@ form > table tr td{
 							</table></td>
 					</tr>
 				</table>
+				<br>
 			</div>
 			<!-- include_content.jsp end-->
 			<!-- content end -->
