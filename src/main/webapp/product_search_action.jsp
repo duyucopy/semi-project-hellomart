@@ -6,9 +6,8 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("product_list.jsp");
 	return;
 }
+request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
-ProductService productService = new ProductService();
-productService.searchByName("p_name");
 
-//response.sendRedirect("product_list.jsp");
+response.sendRedirect("product_list.jsp?keyword="+keyword);
 %>

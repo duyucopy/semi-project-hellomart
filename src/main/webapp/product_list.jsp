@@ -6,8 +6,15 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-ProductService productService = new ProductService();
-List<Product> productList = productService.findAll();
+String keyword=null;
+keyword= request.getParameter("keyword");
+if(keyword==null){
+	ProductService productService = new ProductService();
+	List<Product> productList = productService.findAll();
+}else{
+	ProductService productService = new ProductService();
+	List<Product> productList = productService.searchByName(keyword);
+}
 %>
 <%
 boolean isLogin = false;
