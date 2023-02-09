@@ -18,7 +18,15 @@ public class AddressDao {
 	
 	public AddressDao() throws Exception {
 		
-		dataSource = DataSourceFactory.getDataSource();
+		//dataSource = DataSourceFactory.getDataSource();
+		Properties properties = new Properties();
+		properties.load(DataSourceFactory.class.getResourceAsStream("/jdbc.properties"));
+		BasicDataSource basicDataSource = new BasicDataSource();
+		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
+		basicDataSource.setUrl(properties.getProperty("url"));
+		basicDataSource.setUsername(properties.getProperty("username"));
+		basicDataSource.setPassword(properties.getProperty("password"));
+		dataSource = basicDataSource;
 	}
 	public int addressInsert(Address address) throws Exception{
 		Connection con = dataSource.getConnection();

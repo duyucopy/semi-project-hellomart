@@ -3,6 +3,7 @@ package com.itwill.hellomart.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.hellomart.address.Address;
 import com.itwill.hellomart.address.AddressDao;
 import com.itwill.hellomart.cart.Cart;
 import com.itwill.hellomart.cart.CartDao;
@@ -15,13 +16,11 @@ public class OrderService {
 	private OrderDao orderDao;
 	private ProductDao productDao;
 	private CartDao cartDao;
-	private AddressDao addressDao;
 	
 	public OrderService() throws Exception {
 		orderDao = new OrderDao();
 		productDao = new ProductDao();
 		cartDao = new CartDao();
-		addressDao = new AddressDao();
 	}
 		//로그인 회원의 주문 1건 삭제
 		public int deleteByOrderNo(int o_no) throws Exception {
@@ -62,7 +61,7 @@ public class OrderService {
 				o_tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
 			}
 			//o_no , date, o_status , o_option o_price, sUSerId
-			Order newOrder = new Order(0,null,null,o_option,o_tot_price,sUserId);
+			Order newOrder = new Order(0,null,null,o_option,o_tot_price,sUserId,new Address(1,null,null));
 			newOrder.setOrderItemList(orderItemList);
 			int rowCount1 = orderDao.insert(newOrder); 
 			int rowCount2 = cartDao.deleteByUserId(sUserId);
@@ -82,7 +81,7 @@ public class OrderService {
 				o_tot_price+=orderItem.getOi_qty()*orderItem.getProduct().getP_price();
 			}
 			
-			Order newOrder=new Order(0,null, null, o_option, o_tot_price, sUserId);
+			Order newOrder = new Order(0,null,null,o_option,o_tot_price,sUserId,new Address(1,null,null));
 			newOrder.setOrderItemList(orderItemList);
 			orderDao.insert(newOrder);
 			
@@ -93,7 +92,7 @@ public class OrderService {
 		}
 		
 		//상품에서 직접주문
-		public int create(String sUserId,int p_no,int oi_qty, String o_option,String loc) throws Exception{
+		public int create(String sUserId,int p_no,int oi_qty, String o_option, String loc) throws Exception{
 			Product product=productDao.findByPrimaryKey(p_no);
 			OrderItem orderItem=new OrderItem(0, oi_qty, p_no, product);
 			ArrayList<OrderItem> orderItemList=new ArrayList<OrderItem>();
@@ -102,7 +101,7 @@ public class OrderService {
 			Order newOrder=
 				new Order(0, null, null, o_option, 
 						orderItemList.get(0).getOi_qty()*orderItemList.get(0).getProduct().getP_price(),
-						sUserId);
+						sUserId,new Address(1,null,null));
 			
 			newOrder.setOrderItemList(orderItemList);
 			

@@ -20,7 +20,15 @@ public class UserDao {
 	
 	public UserDao() throws Exception {
 		
-		dataSource = DataSourceFactory.getDataSource();
+		//dataSource = DataSourceFactory.getDataSource();
+		Properties properties = new Properties();
+		properties.load(DataSourceFactory.class.getResourceAsStream("/jdbc.properties"));
+		BasicDataSource basicDataSource = new BasicDataSource();
+		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
+		basicDataSource.setUrl(properties.getProperty("url"));
+		basicDataSource.setUsername(properties.getProperty("username"));
+		basicDataSource.setPassword(properties.getProperty("password"));
+		dataSource = basicDataSource;
 	}
 	/*
 	 * 회원가입
