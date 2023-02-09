@@ -54,13 +54,11 @@ select*from orders o join address a on o.o_no=a.o_no where o.userid='guard1';
 /*****************board select******************/
 select * from board where p_no=6;
 -- 상품넘버(PK)로 전체 게시글 조회
-SELECT * FROM ( 
-            SELECT rownum idx, s.* FROM( 
-                            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
-                            FROM board 
-                            ORDER BY groupno DESC, step ASC ) s 
-                            where s.p_no = 2) 
-WHERE idx >= 1 AND idx <= 100;
+SELECT s.* FROM( 
+            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
+            FROM board 
+            ORDER BY groupno DESC, step ASC ) s 
+where s.p_no = 1;
 
 -- 상품넘버(PK)로 페이징 게시글 조회
 SELECT * FROM ( 
@@ -134,6 +132,22 @@ SELECT COUNT(*) FROM board where p_no=6;
 --유저게시글 총 건수 조회
 SELECT COUNT(*) FROM board where userid='guard1';
 select count(*)  as p_count from cart c join userinfo u on c.userid=u.userid where u.userid='guard1' and c.p_no=1;
+
+SELECT COUNT(*) FROM product;
+select * from product where p_no>=3 and p_no<=6;
+
+SELECT COUNT(*) FROM product where p_name like '%'||'삼성'||'%';
+--상품 검색후 페이징용 리스트
+SELECT * FROM ( 
+            SELECT rownum idx, p.* FROM( 
+                            SELECT p_no,p_name,p_price,p_image,p_desc,ct_no
+                            FROM product
+                            where p_name like '%'||'삼성'||'%' )p
+                            )
+WHERE idx >= 2 AND idx <= 5;
+
+SELECT * FROM ( SELECT rownum idx, p.* FROM( SELECT p_no,p_name,p_price,p_image,p_desc,ct_no FROM product where p_name like '%'||'삼성'||'%' )p) WHERE idx >= 2 AND idx <= 5;
+
 
 rollback;
 
