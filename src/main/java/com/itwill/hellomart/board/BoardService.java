@@ -56,7 +56,7 @@ public class BoardService {
 		boardDao.increaseReadCount(boardNo);
 	}
 	/*
-	 * 상품게시물리스트
+	 * 상품게시물리스트 페이징
 	 */
 	public BoardListPageMakerDto findBoardList(int currentPage, int p_no) throws Exception{
 		//1.전체글의 갯수
@@ -74,6 +74,12 @@ public class BoardService {
 		pageMakerBoardList.itemList=boardList;
 		pageMakerBoardList.pageMaker=pageMaker;
 		return pageMakerBoardList;
+	}
+	/*
+	 * 상품게시물전체리스트
+	 */
+	public List<Board> findBoardList(int p_no) throws Exception{
+		return boardDao.findBoardList(p_no);
 	}
 	/*
 	 * 유저게시물리스트

@@ -98,6 +98,58 @@ public class BoardDao {
 	/**
 	 * 상품게시판에 게시물 리스트를 반환(게시물시작번호,게시물끝번호)
 	 */
+	public ArrayList<Board> findBoardList(int p_no) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;// 조회 결과에 접근하는 참조 변수
+		// 데이터베이스의 데이터를 읽어서 저장할 객체 컬렉션
+		ArrayList<Board> boards = new ArrayList<Board>();
+		try {
+			con = dataSource.getConnection();
+			/*
+			SELECT s.* FROM( 
+	            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
+	            FROM board 
+	            ORDER BY groupno DESC, step ASC ) s 
+			where s.p_no = 1;
+			 */
+
+			pstmt = con.prepareStatement(BoardSQL.BOARD_SELECT_ALL_BY_P_NO);
+			pstmt.setInt(1, p_no);
+			rs=pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardno(rs.getInt(1));
+				board.setTitle(rs.getString(2));
+				board.setRegdate(rs.getDate(3));
+				board.setReadcount(rs.getInt(4));
+				board.setGroupno(rs.getInt(5));
+				board.setStep(rs.getInt(6));
+				board.setDepth(rs.getInt(7));
+				board.setUserId(rs.getString(8));
+				board.setP_no(rs.getInt(9));
+
+				boards.add(board);
+			}
+		} finally {
+			// 6. 연결닫기
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (Exception ex) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+		}
+		return boards;
+	}
+	/**
+	 * 상품게시판에 게시물 리스트를 반환(게시물시작번호,게시물끝번호)
+	 */
 	public ArrayList<Board> findBoardList(int start, int last, int p_no) throws Exception{
 		System.out.println("" + start + " ~ " + last);
 		Connection con = null;

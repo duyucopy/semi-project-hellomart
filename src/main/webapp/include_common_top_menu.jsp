@@ -19,7 +19,7 @@ function searchByKeyword() {
 <div id="menu">
 	<ul>
 		<li id="logo"><a href="hellomart_main.jsp"></a></li>
-			<form name="ff" text-aling="center" style="display: inline;">
+			<form name="ff" text-align="center" style="display: inline;">
 				<select data-trigger="" name="searchType" style="width:60px;height:30px">
 					<option value="all">통합</option>
 					<option value="name">제목</option>

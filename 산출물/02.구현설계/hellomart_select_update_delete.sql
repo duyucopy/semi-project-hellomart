@@ -53,8 +53,16 @@ select*from orders o join address a on o.o_no=a.o_no where o.userid='guard1';
 
 /*****************board select******************/
 select * from board where p_no=6;
+-- 상품넘버(PK)로 전체 게시글 조회
+SELECT * FROM ( 
+            SELECT rownum idx, s.* FROM( 
+                            SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
+                            FROM board 
+                            ORDER BY groupno DESC, step ASC ) s 
+                            where s.p_no = 2) 
+WHERE idx >= 1 AND idx <= 100;
 
--- 상품넘버(PK)로 게시글 조회
+-- 상품넘버(PK)로 페이징 게시글 조회
 SELECT * FROM ( 
             SELECT rownum idx, s.* FROM( 
                             SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no

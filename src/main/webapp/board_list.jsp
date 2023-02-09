@@ -56,12 +56,11 @@
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-
+	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
-			<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 			<!-- include_content.jsp start-->
 
 			<div id="content">
