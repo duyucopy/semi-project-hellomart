@@ -15,4 +15,10 @@ public class ProductSQL {
 			"select * from product where p_name=?";
 	public final static String PRODUCT_SEARCH_BY_NAME=
 			"select * from product where p_name like '%'||?||'%'";
+	public final static String PRODUCT_SELECT_BY_CNO=
+			"select * from categories c join product p on c.ct_no=p.ct_no where c.ct_no=?";
+	public final static String PRODUCT_PRICE_DESC =
+			"select * from product order by p_price desc";
+	public final static String PRODUCT_PRICE_ASC =
+			"select * from product order by p_price asc";
 }

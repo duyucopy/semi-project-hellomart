@@ -55,6 +55,7 @@ public class Order {
 		this.o_option = o_option;
 		this.o_price = o_price;
 		this.userId = userId;
+		this.orderItemList = new ArrayList<OrderItem>();
 	}
 
 	public Address getAddress() {

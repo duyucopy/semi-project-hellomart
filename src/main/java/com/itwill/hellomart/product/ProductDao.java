@@ -226,4 +226,109 @@ public class ProductDao {
 	}
 		return productList;
 	}
+	public List<Product> findByCategoryNumber(int ct_no) throws Exception{
+		
+		List<Product> categoryList=new ArrayList<Product>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+		con=dataSource.getConnection();
+		pstmt=con.prepareStatement(ProductSQL.PRODUCT_SELECT_BY_CNO);
+		pstmt.setInt(1, ct_no);
+		rs=pstmt.executeQuery();
+		while(rs.next()) {
+				Product product = new Product(
+											  rs.getInt("p_no"),
+											  rs.getString("p_name"),
+											  rs.getInt("p_price"),
+											  rs.getString("p_image"),
+											  rs.getString("p_desc"),
+											  rs.getInt("ct_no")); 
+							categoryList.add(product);
+		}
+		}finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			con.close();
+		}
+	}
+	
+	return categoryList;
+}
+	public List<Product> priceAsc() throws Exception{
+			List<Product> priceList = new ArrayList<Product>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+			con=dataSource.getConnection();
+			pstmt=con.prepareStatement(ProductSQL.PRODUCT_PRICE_ASC);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Product product = new Product(
+												 rs.getInt("p_no"),
+												  rs.getString("p_name"),
+												  rs.getInt("p_price"),
+												  rs.getString("p_image"),
+												  rs.getString("p_desc"),
+												  rs.getInt("ct_no"));
+					priceList.add(product);
+			}
+			}finally {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(con != null) {
+					con.close();
+				}
+			}
+			return priceList;
+	}
+	public List<Product> priceDesc() throws Exception{
+		List<Product> priceList = new ArrayList<Product>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+		con=dataSource.getConnection();
+		pstmt=con.prepareStatement(ProductSQL.PRODUCT_PRICE_DESC);
+		rs=pstmt.executeQuery();
+		while(rs.next()) {
+			Product product = new Product(
+											 rs.getInt("p_no"),
+											  rs.getString("p_name"),
+											  rs.getInt("p_price"),
+											  rs.getString("p_image"),
+											  rs.getString("p_desc"),
+											  rs.getInt("ct_no"));
+				priceList.add(product);
+		}
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return priceList;
+}
+	
+	
+	
+	
+	
+	
 }

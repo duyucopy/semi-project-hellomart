@@ -29,4 +29,13 @@ public class ProductService {
 	public List<Product> searchByName(String p_name)throws Exception{
 		return productDao.searchByName(p_name);
 	}
+	public List<Product> findByCategoryNumber(int ct_no) throws Exception{
+		return productDao.findByCategoryNumber(ct_no);
+	}
+	public List<Product> priceAsc() throws Exception{
+		return productDao.priceAsc();
+	}
+	public List<Product> priceDesc() throws Exception{
+		return productDao.priceDesc();
+	}
 }

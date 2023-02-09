@@ -7,6 +7,7 @@ public class Product {
 	private String p_image;
 	private String p_desc;
 	
+	
 	//FK
 	private int ct_no;
 	

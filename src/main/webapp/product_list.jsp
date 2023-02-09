@@ -1,3 +1,4 @@
+<%@page import="com.itwill.hellomart.product.Categories"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
@@ -7,19 +8,27 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-	
-String keyword=null;
-keyword= request.getParameter("keyword");
-
 
 ProductService productService = new ProductService();
-List<Product> productList = new ArrayList<Product>();
-
-if(keyword!=null){
-	productList = productService.searchByName(keyword);
-}else{
-	productList = productService.findAll();
-}
+	String ct_noStr = request.getParameter("ct_no");
+	//String sort_option = request.getParameter("sort_option");
+	String keyword = request.getParameter("mainsearchkeyword");
+	
+	List<Product> productList = new ArrayList<Product>();
+	if(ct_noStr == null){
+		if(keyword != null){
+			productList = productService.searchByName(keyword);
+		}else{
+			productList =  productService.findAll();
+		}
+	}else{
+		if(keyword != null){
+			productList = productService.searchByName(keyword);
+		}else{
+			productList = productService.findByCategoryNumber(Integer.parseInt(ct_noStr));
+		}
+	}
+				
 %>
 <%
 boolean isLogin = false;
