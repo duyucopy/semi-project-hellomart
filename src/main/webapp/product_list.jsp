@@ -9,10 +9,16 @@
 	
 <%
 
-ProductService productService = new ProductService();
+	ProductService productService = new ProductService();
 	String ct_noStr = request.getParameter("ct_no");
 	//String sort_option = request.getParameter("sort_option");
-	String keyword = request.getParameter("mainsearchkeyword");
+	
+	/***************검색어 서치**************/
+	String keyword=null;
+	if(keyword==null){
+		keyword = request.getParameter("keyword");
+	}
+	/*******************************************/
 	
 	List<Product> productList = new ArrayList<Product>();
 	if(ct_noStr == null){
@@ -101,16 +107,6 @@ function searchByKeyword() {
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
 											상품리스트</b></td>
-									<!--검색 -->
-								   <form name="ff" style="display: inline;">
-										<select data-trigger="" name="searchType" style="width:60px;height:30px">
-											<option value="all">통합</option>
-											<option value="name">제목</option>
-										</select>
-											<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;height:25px"> 
-											<input type="button" value="검색" onclick="searchByKeyword();">		
-									</form>
-									<!--검색 끝 -->
 								</tr>
 							</table>
 

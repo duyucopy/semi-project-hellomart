@@ -4,7 +4,6 @@
 <%@ include file="login_check.jspf"%>
 <%
 	//회원이 아니면 글 못씀
-	//방어코드 필요
 	int p_no = Integer.parseInt(request.getParameter("p_no"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -85,9 +84,9 @@
 							</form> <br>
 							<table width=590 border=0 cellpadding=0 cellspacing=0>
 								<tr>
-									<td align=center><input type="button" value="게시판 쓰기"
-										onClick="boardCreate()"> &nbsp; <input type="button"
-										value="게시판 목록" onClick="boardList()"></td>
+									<td align=center>
+									<input type="button" value="게시판 쓰기" onClick="boardCreate()"> &nbsp; 
+									<input type="button" value="게시판 목록" onClick="boardList()"></td>
 								</tr>
 							</table></td>
 					</tr>

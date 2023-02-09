@@ -120,6 +120,7 @@
 								<tr>
 									<td align=center>
 										<form name="fw" method="post">
+											<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
 											<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
 										</form>
 										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
