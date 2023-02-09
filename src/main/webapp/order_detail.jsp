@@ -72,7 +72,7 @@ form > table tr td{
 								<table align="center" width="80%"  border="0" cellpadding="0" cellspacing="1"  bgcolor="BBBBBB" >
 									<caption style="text-align: left;">주문상세정보</caption>
 									<tr>
-										<td width=290 height=25 bgcolor="E6ECDE" align=center class=t1><font
+										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font
 											>주문번호</font></td>
 										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font
 											>주문일</font></td>
@@ -80,20 +80,28 @@ form > table tr td{
 											>주문자</font></td>
 										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font
 											>비 고</font></td>
+											
+										
+									
 									</tr>
 									
 									
+									
+									
 									<tr>
-										<td width=290 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
+										<td width=50 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=order.getDate()%></td>
 										<td width=166 height=26 align=center bgcolor="ffffff" class=t1><%=order.getUserId()%></td>
 										
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
 												<input type="submit" value="삭제">
 										</td>
-									</tr>
+										<tr>
+										<td bgcolor="ffffff">주소</td>
+										 	<td colspan="3" align=center bgcolor="ffffff"> <%=order.getAddress().getLoc()%></td>
+										</tr>
 								</table>
-									
+							<!--  -->			
 								<br/>	
 								<table align=center  width=80% border="0" cellpadding="0" cellspacing="1"  bgcolor="BBBBBB" >
 									<caption style="text-align: left;">주문제품목록</caption>
