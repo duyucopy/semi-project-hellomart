@@ -82,10 +82,12 @@
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
-
 	function isDuplicateId() {
 		window.location.href='isDuplicateId.jsp';
+<<<<<<< HEAD
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 	
 	function repassword() {
 		if(document.f.password.value != ""){
@@ -163,8 +165,15 @@
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
+<<<<<<< HEAD
 											<input type="text" style="width: 150px" name="userId"
 											value="" onfocusout="checkId();">&nbsp;&nbsp;<font id="idCheck"></font>
+=======
+											<input type="text" style="width: 150px" name="userId" 
+											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+
+	
+>>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 										</td>
 										
 										
@@ -201,7 +210,6 @@
 									</tr>
 								</table>
 							</form> <br />
-
 							<table border=0 cellpadding=0 cellspacing=1>
 								<tr>
 									<td align=center>
@@ -210,7 +218,6 @@
 									</td>
 								</tr>
 							</table>
-
 						</td>
 					</tr>
 				</table>
@@ -228,3 +235,4 @@
 	<!--container end-->
 </body>
 </html>
+

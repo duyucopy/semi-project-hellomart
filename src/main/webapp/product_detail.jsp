@@ -6,10 +6,11 @@
 	pageEncoding="UTF-8"%>
 <%
 	/********게시판*********/
-	String pageno = null;
+	String pageno = "1";
 	if (pageno == null || pageno.equals("")) {
 		pageno="1";
 	}
+	pageno= request.getParameter("pageno");
 	/*********************/
 	String p_noStr = request.getParameter("p_no");
 	if (p_noStr == null || p_noStr.equals("")) {
@@ -202,7 +203,7 @@
 				</table>
 			</div>
 			<!-- include_content.jsp end-->
-			<jsp:include page="board_list.jsp?pageno=<%=pageno%>&p_no=<%=product.getP_no() %>" />
+			<jsp:include page="board_list.jsp?pageno=1&p_no=<%=product.getP_no() %>" />
 			<!-- content end -->
 		</div>
 		<!--wrapper end-->

@@ -108,13 +108,7 @@ function searchByKeyword() {
 											<option value="name">제목</option>
 										</select>
 											<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;height:25px"> 
-											<input type="button" value="검색" onclick="searchByKeyword();">
-														<br><b>정렬</b>&nbsp;
-															<select name="sort_option">
-																<option value="select">선택
-																<option value="price_asc">가격 오름차순
-																<option value="price_desc">가격 내림차순
-															</select> <br><br> 
+											<input type="button" value="검색" onclick="searchByKeyword();">		
 									</form>
 									<!--검색 끝 -->
 								</tr>
@@ -155,9 +149,7 @@ function searchByKeyword() {
 								   <!--상품 끝 -->
  								<%}%>	
 							</table>
-															<form>
 															
-															</form>
 							
 							</div> <br /></td>
 					</tr>
