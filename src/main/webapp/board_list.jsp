@@ -6,12 +6,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!public String getTitleString(Board board) {
-		StringBuilder title = new StringBuilder(128);
+		StringBuilder title = new StringBuilder(256);
 		String t = board.getTitle();
-		if (t.length() > 15) {
+		if (t.length() > 30) {
 			//t = t.substring(0,15);
 			//t = t+"...";
-			t = String.format("%s...", t.substring(0, 15));
+			t = String.format("%s...", t.substring(0, 30));
 		}
 		//답글공백삽입
 		
@@ -57,25 +57,12 @@
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-	<!-- container start-->
-	<div id="container">
-		<!-- header start -->
-		<div id="header">
-			<!-- include_common_top.jsp start-->
-			<jsp:include page="include_common_top.jsp" />
-			<!-- include_common_top.jsp end-->
-		</div>
-		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
+
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
+			<jsp:include page="product_detail.jsp?p_no=<%=p_noStr %>" />
 			<!-- include_content.jsp start-->
 
 			<div id="content">
@@ -186,12 +173,7 @@
 			<!-- content end -->
 		</div>
 		<!--wrapper end-->
-		<div id="footer">
-			<!-- include_common_bottom.jsp start-->
-			<jsp:include page="include_common_bottom.jsp" />
-			<!-- include_common_bottom.jsp end-->
-		</div>
-	</div>
+
 	<!--container end-->
 </body>
 </html>

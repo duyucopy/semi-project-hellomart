@@ -79,6 +79,10 @@
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
+
+	function isDuplicateId() {
+		window.location.href='isDuplicateId.jsp';
+
 	
 	function repassword() {
 		if(document.f.password.value != ""){
@@ -90,6 +94,7 @@
 		}else if(document.f.password.value = "") {
 			document.getElementById('pass2').innerHTML = ""
 		}
+
 	}
 	
 	function checkId() {
@@ -152,7 +157,15 @@
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="userId"
+<<<<<<< HEAD
 											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+=======
+
+											value="">&nbsp;&nbsp;<font color="red"></font>
+											
+											<value= ""onblur="checkId()">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+
+>>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 										</td>
 										
 										

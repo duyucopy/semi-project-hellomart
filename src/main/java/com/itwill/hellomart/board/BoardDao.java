@@ -334,12 +334,11 @@ public class BoardDao {
 		try {
 			con = dataSource.getConnection();
 			//String sql = "UPDATE board " + "SET title = ?, content = ? ,writer = ?" + "WHERE boardno = ?";
-			String sql = "UPDATE board SET title = ?, content = ?  WHERE userid = ? and boardno = ?";
+			String sql = "UPDATE board SET title = ?, content = ? where boardno = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setString(3, board.getUserId());
-			pstmt.setInt(4, board.getBoardno());
+			pstmt.setInt(3, board.getBoardno());
 			count = pstmt.executeUpdate();
 		} finally {
 			try {

@@ -68,11 +68,11 @@ List<Order> orderList = orderService.findOrderByUserId(sUserId);
 								<table align=center width=80%  border="0" cellpadding="0"
 									cellspacing="1" bgcolor="BBBBBB">
 									<tr>
-										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
-										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
+										<td width=100 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
+										<td width=120 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
 										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상태</font></td>
 										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문요청사항</font></td>
-										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>총금액</font></td>
+										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>총 금액</font></td>
 										<td width=80 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상세</font></td>
 									</tr>
 
@@ -81,11 +81,11 @@ List<Order> orderList = orderService.findOrderByUserId(sUserId);
 									for (Order order : orderList) {
 									%>
 									<tr>
-										<td width=130 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
-										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getDate())%></td>
+										<td width=100 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
+										<td width=120 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getDate())%></td>
 										<td width=145 height=26 align=center bgcolor="ffffff" class=t1>
 										<% if(order.getO_status() != null && order.getO_status().trim().equalsIgnoreCase("T")) { %>
-											배송전
+											배송 전
 										<% } else { %>
 										배송완료
 										<% } %>	

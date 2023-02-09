@@ -157,9 +157,13 @@ public class OrderDao {
 			rs1 = pstmt1.executeQuery();
 			
 			while (rs1.next()) {
-				orderList.add(new Order(rs1.getInt("o_no"), rs1.getDate("o_date"), rs1.getString("o_status"), rs1.getString("o_option"),
-						rs1.getInt("o_price"), rs1.getString("userid")));
-			}
+				orderList.add(new Order(rs1.getInt("o_no"), 
+										rs1.getDate("o_date"), 
+										rs1.getString("o_status"), 
+										rs1.getString("o_option"),
+										rs1.getInt("o_price"), 
+										rs1.getString("userid")));
+							}
 			
 			pstmt2 = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO);
 			for (int i = 0; i < orderList.size(); i++) {
@@ -175,9 +179,15 @@ public class OrderDao {
 													rs2.getInt("o_price"), rs2.getString("userid"));
 					do {
 						orderWithOrderItem.getOrderItemList()
-								.add(new OrderItem(rs2.getInt("oi_no"), rs2.getInt("oi_qty"), rs2.getInt("o_no"),
-										new Product(rs2.getInt("p_no"), rs2.getString("p_name"), rs2.getInt("p_price"),
-												rs2.getString("p_image"), rs2.getString("p_desc"), rs2.getInt("ct_no"))));
+												.add(new OrderItem(rs2.getInt("oi_no"), 
+																   rs2.getInt("oi_qty"), 
+																   rs2.getInt("o_no"),
+																	new Product(rs2.getInt("p_no"), 
+																				rs2.getString("p_name"), 
+																				rs2.getInt("p_price"),
+																				rs2.getString("p_image"),
+																				rs2.getString("p_desc"), 
+																				rs2.getInt("ct_no"))));
 					} while (rs2.next());
 				}
 				orderList.set(i, orderWithOrderItem);

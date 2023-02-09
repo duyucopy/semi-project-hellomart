@@ -102,6 +102,7 @@
 
 							<form name="f" method="post">
 								<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
+								<input type="hidden" name="userId" value="<%=board.getUserId()%>">
 								<input type="hidden" name="boardno" value="<%=board.getBoardno()%>">
 								<input type="hidden" name="pageno" value="<%=pageno%>">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
@@ -132,8 +133,6 @@
 								<tr>
 									<td align=center>
 										<form name="fw" method="post">
-											<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
-											<input type="hidden" name="userId" value="<%=board.getUserId()%>">
 											<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
 										</form>
 										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
