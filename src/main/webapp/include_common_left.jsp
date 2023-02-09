@@ -42,7 +42,5 @@
 	<%} %>
 		<li><a href="product_list.jsp">상품리스트</a></li>
 		<li><a href=""></a></li>
-		<li><a href="board_list.jsp">게시판리스트</a></li>
-		<li><a href="board_write.jsp">게시판쓰기</a></li>
 		
 </ul>

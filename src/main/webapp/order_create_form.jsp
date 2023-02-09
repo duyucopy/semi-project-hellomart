@@ -1,3 +1,5 @@
+<%@page import="com.itwill.hellomart.address.AddressService"%>
+<%@page import="com.itwill.hellomart.address.Address"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="com.itwill.hellomart.cart.Cart"%>
 <%@page import="com.itwill.hellomart.product.ProductService"%>
@@ -29,7 +31,8 @@ if(cart_item_noStr_array==null)
 CartService cartService = new CartService();
 UserService userService = new UserService();
 ProductService productService = new ProductService();
-
+AddressService addressService = new AddressService();
+List<Address> addressList = addressService.addressfindAll(sUserId);
 List<Cart> cartItemList = new ArrayList<Cart>();
 User user = userService.findUser(sUserId);
 
@@ -102,7 +105,7 @@ form > table tr td{
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
 											주문/결제폼</b></td>
 								</tr>
-							</table> <!--form-->
+							</table> <!------------------form--------------------------->
 							<form name="order_create_form" method="post">
 								<input type="hidden" name="buyType" value="<%=buyType%>">
 								<input type="hidden" name="p_no" value="<%=p_noStr%>">
@@ -179,7 +182,7 @@ form > table tr td{
 								</table>
 								
 								<br>
-								<!-- 배송지/요청사항 입력 -->
+							<!-- 배송지/요청사항 입력 -->
 								<table align=center width=80% border="0" cellpadding="0"
 									cellspacing="1" bgcolor="BBBBBB">
 									<caption style="text-align: left;">배송지</caption>
@@ -189,7 +192,14 @@ form > table tr td{
 									</tr>
 									<tr>
 										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
-											<input type="text" name="loc" maxlength="30" style="width: 80%; height: 50%; box-sizing : border-box;">
+											<select name="loc" id="loc" style="width: 80%; height: 50%; box-sizing : border-box;">
+											<!-- 주소 입력창 추가해야함 -->
+											<option selected>==주소를 선택하세요==</option>
+											<%for(Address address : addressList) { %>
+											<option><%=address.getLoc()%></option>
+											<option>주소를입력하세요</option>
+											</select>
+											<%}%>
 										</td>
 										<td width=60% height=40 align=center bgcolor="ffffff" class=t1>
 											<select name ="o_option" id="o_option" style="height: 50%;">
@@ -208,7 +218,7 @@ form > table tr td{
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a
-										href="javascript:order_create_form_submit();" class=m1>구매/결재하기</a>
+										href="javascript:order_create_form_submit();" class=m1>구매/결제하기</a>
 										&nbsp;&nbsp;<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
 
 									</td>

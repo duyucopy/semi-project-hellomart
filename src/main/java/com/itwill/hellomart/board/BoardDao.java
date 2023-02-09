@@ -19,8 +19,16 @@ public class BoardDao {
 	
 	public BoardDao() throws Exception {
 		
-		dataSource = DataSourceFactory.getDataSource();
-		
+		//dataSource = DataSourceFactory.getDataSource();
+		Properties properties = new Properties();
+		properties.load(DataSourceFactory.class.getResourceAsStream("/jdbc.properties"));
+		BasicDataSource basicDataSource = new BasicDataSource();
+		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
+		basicDataSource.setUrl(properties.getProperty("url"));
+		basicDataSource.setUsername(properties.getProperty("username"));
+		basicDataSource.setPassword(properties.getProperty("password"));
+		dataSource = basicDataSource;
+//		
 	}
 	/**
 	 * 상품게시판에 새로운 게시물을 추가하는 메써드.
@@ -326,12 +334,11 @@ public class BoardDao {
 		try {
 			con = dataSource.getConnection();
 			//String sql = "UPDATE board " + "SET title = ?, content = ? ,writer = ?" + "WHERE boardno = ?";
-			String sql = "UPDATE board SET title = ?, content = ?  WHERE userid = ? and boardno = ?";
+			String sql = "UPDATE board SET title = ?, content = ? where boardno = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setString(3, board.getUserId());
-			pstmt.setInt(4, board.getBoardno());
+			pstmt.setInt(3, board.getBoardno());
 			count = pstmt.executeUpdate();
 		} finally {
 			try {

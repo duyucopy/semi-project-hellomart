@@ -6,12 +6,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!public String getTitleString(Board board) {
-		StringBuilder title = new StringBuilder(128);
+		StringBuilder title = new StringBuilder(256);
 		String t = board.getTitle();
-		if (t.length() > 15) {
+		if (t.length() > 30) {
 			//t = t.substring(0,15);
 			//t = t+"...";
-			t = String.format("%s...", t.substring(0, 15));
+			t = String.format("%s...", t.substring(0, 30));
 		}
 		//답글공백삽입
 		

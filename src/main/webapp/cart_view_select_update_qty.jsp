@@ -1,3 +1,7 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="com.itwill.hellomart.product.ProductService"%>
+<%@page import="java.util.Collections"%>
+<%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +14,11 @@
 <%
 CartService cartService = new CartService();
 List<Cart> cartList = cartService.getCartListByUserId(sUserId);
+ProductService productService = new ProductService();
+HashSet<Product> productSet = productService.findAll2();
+int count = 0;
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +38,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'cart_delete_action.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	 카트에 담긴 전체 상품 주문
 	 */
@@ -40,7 +47,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	 선택된 카트 상품 주문
 	 */
@@ -57,7 +63,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		}
 		if (!isChecked) {
 			alert('제품을 선택해주세요.');
-
 			return;
 		}
 		document.cart_view_form.buyType.value = 'cart_select';
@@ -65,19 +70,20 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	체크박스 선택 시 실행(카트 수량)
 	 */
 	function cart_item_select_count() {
-
 		var cart_item_no_check_list = document
 				.getElementsByName("cart_item_no_check");
 		var cart_item_check_selected_count = 0;
 		var tot_order_price = 0;
-
+		document.cart_view_form.innerHTML ='';
+		document.cart_view_form.innerHTML +="<input type='hidden' name='buyType'>";
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
+				document.cart_view_form.innerHTML += 
+					"<input type='hidden' name='cart_item_no' value='"+ cart_item_no_check_list.item(i).value + "'>";
 				var updateFormId = 'cart_update_form_'
 						+ cart_item_no_check_list.item(i).value;
 				var cart_qty = document.getElementById(updateFormId).cart_qty.value;
@@ -90,14 +96,11 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 	}
-
 	function cart_item_select_count2() {
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
-		var cart_item_check_selected_count2 = document.getElementsByName("cart_item_select_count");
-
-		if (cart_item_no_check_list.length - 1) {
+		if (cart_item_no_check_list.length-1) {
 			all_select_checkbox.checked = false
-		} else if (cart_item_check_selected_count2 === cart_item_no_check_list.length) {
+		}else if(cart_item_no_check_list.length) {
 			all_select_checkbox.checked = true
 		}
 	}
@@ -106,7 +109,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 	cart 상품 전체선택, 전체해제
 	 */
 	function cart_item_all_select(e) {
-
 		var cart_item_no_check_list = document
 				.getElementsByName("cart_item_no_check");
 		if (e.target.checked) {
@@ -119,7 +121,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 			}
 		}
 	}
-
 	/*
 	상품 수량 변경
 	 */
@@ -128,13 +129,11 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		var form = document.getElementById(formId);
 		if (desc == '+') {
 			form.cart_qty.value = parseInt(form.cart_qty.value) + 1;
-
 		} else if (desc == '-') {
 			if (form.cart_qty.value - 1 >= 0) {
 				form.cart_qty.value = parseInt(form.cart_qty.value) - 1;
 			}
 		}
-
 		form.method = 'POST';
 		form.action = 'cart_update_item_action.jsp';
 		form.submit();
@@ -287,7 +286,28 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 
 									</td>
 								</tr>
-							</table></td>
+							</table>
+							
+							<!-- 추천상품 -->
+							&nbsp;&nbsp;&nbsp;&nbsp;<%=sUserId %>님을 위한 추천상품
+							<br>
+							
+							<table width=600 height=300 cellspacing=0>
+								<% for(Product pro : productSet) { %>
+									<td align=center>
+									<br>
+									<img src=<%=pro.getP_image() %>>
+									<br>
+									<%=pro.getP_name() %>
+									<br>
+									<%=pro.getP_price() %>원
+									</td>
+									<% count++;
+									if(count ==3) break; %>
+								<% } %>
+							</table>
+							
+						</td>
 					</tr>
 				</table>
 			</div>

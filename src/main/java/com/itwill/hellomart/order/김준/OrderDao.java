@@ -5,16 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.itwill.hellomart.common.DataSourceFactory;
-import com.itwill.hellomart.order.김준.Order;
-import com.itwill.hellomart.order.김준.OrderItem;
-import com.itwill.hellomart.order.김준.OrderSQL;
 import com.itwill.hellomart.product.Product;
 
 public class OrderDao {

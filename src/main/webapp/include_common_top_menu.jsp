@@ -18,7 +18,7 @@
 			
 		<%}else{ %>
 			<li id="mypage" title="나의페이지" ><a href="user_view.jsp"></a></li>
-			<li id="cart" title="장바구니"><span class="w3-badge w3-green w3-margin-right"><%=cart_item_count%></span><a href="cart_view_select_update_qyt_all_check_delete_image.jsp"></a></li>
+			<li id="cart" title="장바구니"><span class="w3-badge w3-green w3-margin-right"><%=cart_item_count%></span><a href="cart_view_select_update_qty.jsp"></a></li>
 			
 		<%} %>
 	</ul>
