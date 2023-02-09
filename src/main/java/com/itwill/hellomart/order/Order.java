@@ -55,17 +55,6 @@ public class Order {
 		this.o_price = o_price;
 		this.userId = userId;
 		this.orderItemList = new ArrayList<OrderItem>();
-<<<<<<< HEAD
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-=======
->>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 	}
 
 	public int getO_no() {
