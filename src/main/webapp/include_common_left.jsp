@@ -41,6 +41,8 @@
 		
 	<%} %>
 		<li><a href="product_list.jsp">상품리스트</a></li>
-		<li><a href=""></a></li>
+		<li><span><a href="product_list.jsp?ct_no=1">가전제품</a></span></li>
+		<li><span><a href="product_list.jsp?ct_no=2">전자기기</a></span></li>
+		<li><span><a href="product_list.jsp?ct_no=3">가구</a></span></li>
 		
 </ul>
