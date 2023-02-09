@@ -1,3 +1,5 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="com.itwill.hellomart.product.ProductService"%>
 <%@page import="java.util.Collections"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -12,6 +14,9 @@
 <%
 CartService cartService = new CartService();
 List<Cart> cartList = cartService.getCartListByUserId(sUserId);
+ProductService productService = new ProductService();
+HashSet<Product> productSet = productService.findAll2();
+int count = 0;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,7 +38,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'cart_delete_action.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	 카트에 담긴 전체 상품 주문
 	 */
@@ -43,7 +47,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	 선택된 카트 상품 주문
 	 */
@@ -60,7 +63,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		}
 		if (!isChecked) {
 			alert('제품을 선택해주세요.');
-
 			return;
 		}
 		document.cart_view_form.buyType.value = 'cart_select';
@@ -68,19 +70,16 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.cart_view_form.action = 'order_create_form.jsp';
 		document.cart_view_form.submit();
 	}
-
 	/*
 	체크박스 선택 시 실행(카트 수량)
 	 */
 	function cart_item_select_count() {
-
 		var cart_item_no_check_list = document
 				.getElementsByName("cart_item_no_check");
 		var cart_item_check_selected_count = 0;
 		var tot_order_price = 0;
 		document.cart_view_form.innerHTML ='';
 		document.cart_view_form.innerHTML +="<input type='hidden' name='buyType'>";
-
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
 				document.cart_view_form.innerHTML += 
@@ -97,10 +96,8 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 	}
-
 	function cart_item_select_count2() {
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
-
 		if (cart_item_no_check_list.length-1) {
 			all_select_checkbox.checked = false
 		}else if(cart_item_no_check_list.length) {
@@ -112,7 +109,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 	cart 상품 전체선택, 전체해제
 	 */
 	function cart_item_all_select(e) {
-
 		var cart_item_no_check_list = document
 				.getElementsByName("cart_item_no_check");
 		if (e.target.checked) {
@@ -125,7 +121,6 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 			}
 		}
 	}
-
 	/*
 	상품 수량 변경
 	 */
@@ -134,13 +129,11 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 		var form = document.getElementById(formId);
 		if (desc == '+') {
 			form.cart_qty.value = parseInt(form.cart_qty.value) + 1;
-
 		} else if (desc == '-') {
 			if (form.cart_qty.value - 1 >= 0) {
 				form.cart_qty.value = parseInt(form.cart_qty.value) - 1;
 			}
 		}
-
 		form.method = 'POST';
 		form.action = 'cart_update_item_action.jsp';
 		form.submit();
@@ -298,16 +291,19 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 							<!-- 추천상품 -->
 							&nbsp;&nbsp;&nbsp;&nbsp;<%=sUserId %>님을 위한 추천상품
 							<br>
+							
 							<table width=600 height=300 cellspacing=0>
-								<% for(int i = 1; i < 4; i++) { %>
+								<% for(Product pro : productSet) { %>
 									<td align=center>
 									<br>
-									<img src="image/LG전자 오브제컬렉션 냉장고.jpg">
+									<img src=<%=pro.getP_image() %>>
 									<br>
-									LG전자 오브제컬렉션 냉장고
+									<%=pro.getP_name() %>
 									<br>
-									1,900,000원
+									<%=pro.getP_price() %>원
 									</td>
+									<% count++;
+									if(count ==3) break; %>
 								<% } %>
 							</table>
 							

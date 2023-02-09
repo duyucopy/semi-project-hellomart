@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 
@@ -166,6 +167,42 @@ public class ProductDao {
 		}
 	}
 		return productList;
+	}
+	
+	/*
+	 * selectAll : 상품전체검색
+	 */
+	public HashSet<Product> findAll2() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		HashSet<Product> productSet=new HashSet<Product>();
+		
+	try {
+		con = dataSource.getConnection();
+		pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL);
+		rs=pstmt.executeQuery();
+		while(rs.next()) {
+			productSet.add(new Product(
+					rs.getInt("p_no"),
+					rs.getString("p_name"),
+					rs.getInt("p_price"),
+					rs.getString("p_image"),
+					rs.getString("p_desc"),
+					rs.getInt("ct_no")));
+		}
+	} finally {
+		if(rs != null) {
+			rs.close();
+		}
+		if(pstmt != null) {
+			pstmt.close();
+		}
+		if(con != null) {
+			con.close();
+		}
+	}
+		return productSet;
 	}
 	/*
 	 * 이름으로 찾기

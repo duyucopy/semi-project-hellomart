@@ -82,6 +82,9 @@
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
+	function main() {
+		window.location.href='hellomart_main.jsp';
+	}
 	
 </script>
 </head>
@@ -129,7 +132,10 @@
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="userId"
 											value="">&nbsp;&nbsp;<font color="red"></font>
+											<input type="button" value="중복체크" onclick="main();">
 										</td>
+										
+										
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>

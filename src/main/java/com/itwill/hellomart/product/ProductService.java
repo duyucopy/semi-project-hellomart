@@ -1,5 +1,6 @@
 package com.itwill.hellomart.product;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ProductService {
@@ -22,6 +23,9 @@ public class ProductService {
 	}
 	public List<Product> findAll() throws Exception{
 		return productDao.findAll();
+	}
+	public HashSet<Product> findAll2() throws Exception{
+		return productDao.findAll2();
 	}
 	public Product findByName(String p_name)throws Exception{
 		return productDao.findByName(p_name);
