@@ -4,21 +4,23 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="login_check.jspf" %>     
 <%
+	Integer boardno = null;
+	Integer pageno = null;
+	Integer p_no = null;
+	boardno = Integer.valueOf(request.getParameter("boardno"));
+	pageno = Integer.valueOf(request.getParameter("pageno"));
+	p_no = Integer.valueOf(request.getParameter("p_no"));
 	//댓글의 대상글번호를 읽어서 변수에 저장
 	if(request.getParameter("boardno")==null){
 		response.sendRedirect("board_list.jsp");
 		return;
 	}
-	int boardno = Integer.parseInt(request.getParameter("boardno"));
 	Board board=BoardService.getInstance().findBoard(boardno);
 	if(board==null){
 		response.sendRedirect("board_list.jsp");
 		return;
 	}
-	String pageno="1";
-	if(request.getParameter("pageno")!=null){
-		pageno = request.getParameter("pageno");
-	}
+
 %>    	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -87,6 +89,8 @@
 								</tr>
 							</table> <br> <!-- write Form  -->
 							<form name="f" method="post">
+								<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
+								<input type="hidden" name="userId" value="<%=sUserId%>">
 								<input type="hidden" name="pageno"  value="<%=pageno%>" />
 		        				<input type="hidden" name="boardno" value="<%=board.getBoardno()%>"/>
 
@@ -102,7 +106,7 @@
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">작성자</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
-											<input value="<%=board.getUserId()%>" type="text" style="width: 150"
+											<input value="<%=sUserId%>" readonly="readonly" type="text" style="width: 150"
 											name="writer">
 										</td>
 									</tr>
