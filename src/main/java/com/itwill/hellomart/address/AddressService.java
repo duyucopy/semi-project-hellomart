@@ -14,10 +14,10 @@ public class AddressService {
 	public int addressUpdate(Address address) throws Exception{
 		return addressDao.addressUpdate(address);
 	}
-	public int addressDelete(String userid) throws Exception{
-		return addressDao.addressDelete(userid);
+	public int addressDelete(int addr_no) throws Exception{
+		return addressDao.addressDelete(addr_no);
 	}
-	public List<Address> addressfindAll() throws Exception{
-		return addressDao.addressfindAll();
+	public List<Address> addressfindAll(String userId) throws Exception{
+		return addressDao.addressfindAll(userId);
 	}
 }

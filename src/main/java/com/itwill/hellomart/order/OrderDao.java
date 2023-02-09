@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.itwill.hellomart.address.Address;
 import com.itwill.hellomart.product.Product;
 
 public class OrderDao {
@@ -43,13 +44,14 @@ public class OrderDao {
 		try {
 			con = dataSource.getConnection();
 			con.setAutoCommit(false);
-			/*"insert into orderes(o_no,o_date,o_status,o_option,o_price,userid) "
-																+ "values(orders_o_no_seq.nextval, sysdate, ?, ?, ?, ?)"; */
+			/*"insert into orderes(o_no,o_date,o_status,o_option,o_price,userid,addr_no) "
+																+ "values(orders_o_no_seq.nextval, sysdate, ?, ?, ?, ?, ?)"; */
 			//status --> 
 			pstmt1 = con.prepareStatement(OrderSQL.ORDER_INSERT);
 			pstmt1.setString(1, order.getO_option());
 			pstmt1.setInt(2, order.getO_price());
 			pstmt1.setString(3, order.getUserId());
+			pstmt1.setInt(4, order.getAddress().getAddr_no());
 			rowCount1 = pstmt1.executeUpdate();
 			//"insert into order_item (oi_no,oi_qty,o_no,p_no) "values (order_item_oi_no_SEQ.nextval, ?, orders_o_no_SEQ.currva,?)";
 			pstmt2 = con.prepareStatement(OrderSQL.ORDERITEM_INSERT);
@@ -179,6 +181,7 @@ public class OrderDao {
 										rs.getString("o_option"), 
 										rs.getInt("o_price"),
 										rs.getString("userid")));
+				
 			}
 		} finally {
 			if(rs!=null) {
@@ -220,7 +223,7 @@ public class OrderDao {
 										rs1.getInt("o_price"),
 										rs1.getString("userid")));
 			}
-			pstmt2 = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO);
+			pstmt2 = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_TEST);
 			for(int i=0; i< orderList.size(); i++) {
 				Order tempOrder = orderList.get(i);
 				pstmt2.setInt(1, tempOrder.getO_no());
@@ -289,7 +292,10 @@ public class OrderDao {
 						rs.getString("o_status"),
 						rs.getString("o_option"),
 						rs.getInt("o_price"),
-						rs.getString("userid"));
+						rs.getString("userid"),
+								new Address(rs.getInt("addr_no"),
+											rs.getString("userid"),
+											rs.getString("loc")));
 
 				do {
 					order.getOrderItemList()

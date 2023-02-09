@@ -87,25 +87,21 @@ List<Cart> cartList = cartService.getCartListByUserId(sUserId);
 				cart_item_check_selected_count++;
 			}
 		}
-
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
-		document.getElementById('tot_order_price').innerHTML = tot_order_price
-				.toLocaleString();
+		document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 	}
 
 	function cart_item_select_count2() {
-		var cart_item_no_check_list = document
-				.getElementsByName("cart_item_no_check");
-		var cart_item_check_selected_count = 0;
+		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
+		var cart_item_check_selected_count2 = document.getElementsByName("cart_item_select_count");
 
 		if (cart_item_no_check_list.length - 1) {
-
 			all_select_checkbox.checked = false
-
-		} else if (cart_item_no_check_list.length === cart_item_check_selected_count) {
+		} else if (cart_item_check_selected_count2 === cart_item_no_check_list.length) {
 			all_select_checkbox.checked = true
 		}
 	}
+	
 	/*
 	cart 상품 전체선택, 전체해제
 	 */

@@ -41,31 +41,33 @@ public class AddressDao {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_UPDATE);
 		pstmt.setString(1, address.getLoc());
-		pstmt.setString(2, address.getUserid());
+		pstmt.setInt(2, address.getAddr_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
-	public int addressDelete(String userid)throws Exception{
+	public int addressDelete(int addr_no)throws Exception{
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_DELETE);
-		pstmt.setString(1, userid);
+		pstmt.setInt(1, addr_no);
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		con.close();
 		return rowCount;
 	}
-	public List<Address> addressfindAll() throws Exception{
+	public List<Address> addressfindAll(String userId) throws Exception{
 		List<Address> addressList= new ArrayList<Address>();
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_SELECT_ALL);
+		pstmt.setString(1, userId);
 		ResultSet rs=pstmt.executeQuery();
 		while(rs.next()) {
-			Address address = new Address(
-				rs.getString("userid"),
-				rs.getString("loc"));
-			addressList.add(address);
+					Address address = new Address(
+						rs.getInt("addr_no"),
+						rs.getString("userid"),
+						rs.getString("loc"));
+					addressList.add(address);
 		}
 		rs.close();
 		pstmt.close();
@@ -73,5 +75,4 @@ public class AddressDao {
 		return addressList;
 		
 	}
-	
 }
