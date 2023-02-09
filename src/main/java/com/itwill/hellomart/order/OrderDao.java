@@ -223,44 +223,35 @@ public class OrderDao {
 										rs1.getInt("o_price"),
 										rs1.getString("userid")));
 			}
+			/*select * from orders o join order_item oi on o.o_no=oi.o_no  
+			join  product p on oi.p_no=p.p_no where  o.o_no = ?*/
 			pstmt2 = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_TEST);
 			for(int i=0; i< orderList.size(); i++) {
 				Order tempOrder = orderList.get(i);
+				System.out.println("tempOrder : " + tempOrder);
 				pstmt2.setInt(1, tempOrder.getO_no());
 				rs2 = pstmt2.executeQuery();
 				Order orderWithOrderItem = null;
-				if(rs2.next()) {
-					orderWithOrderItem = new Order(rs2.getInt("o_no"),
-												   rs2.getDate("o_date"),
-												   rs2.getString("o_status"),
-												   rs2.getString("o_option"),
-												   rs2.getInt("o_price"),
-												   rs2.getString("userid"));
+				if (rs2.next()) {
+					orderWithOrderItem = new Order(	rs2.getInt("o_no"), rs2.getDate("o_date"), 
+													rs2.getString("o_status"), rs2.getString("o_option"),
+													rs2.getInt("o_price"), rs2.getString("userid"));
 					do {
 						orderWithOrderItem.getOrderItemList()
-															.add(new OrderItem(rs2.getInt("oi_no"),
-																			   rs2.getInt("oi_qty"),
-																			   rs2.getInt("o_no"),
-								/*p_no, p_name, p_price,p_image,p_desc,ct_no*/
-											new Product(rs2.getInt("p_no"),
-														rs2.getString("p_name"),
-														rs2.getInt("p_price"),
-														rs2.getString("p_image"),
-														rs2.getString("p_desc"),
-														rs2.getInt("ct_no"))));
+												.add(new OrderItem(rs2.getInt("oi_no"), 
+																   rs2.getInt("oi_qty"), 
+																   rs2.getInt("o_no"),
+																   	new Product(rs2.getInt("p_no"), 
+																   				rs2.getString("p_name"), 
+																   				rs2.getInt("p_price"),
+																   				rs2.getString("p_image"), 
+																   				rs2.getString("p_desc"), 
+																   				rs2.getInt("ct_no"))));
 					} while (rs2.next());
 				}
 				orderList.set(i, orderWithOrderItem);
 			}
 		} finally {
-			if(rs1!=null || rs2!=null) {
-				rs1.close();
-				rs2.close();
-			}
-			if(pstmt1!=null || pstmt2!=null) {
-				pstmt1.close();
-				pstmt2.close();
-			}
 			if (con!=null) {
 				con.close();
 			}
@@ -293,7 +284,7 @@ public class OrderDao {
 						rs.getString("o_option"),
 						rs.getInt("o_price"),
 						rs.getString("userid"),
-								new Address(rs.getInt("addr_no"),
+									new Address(rs.getInt("addr_no"),
 											rs.getString("userid"),
 											rs.getString("loc")));
 
