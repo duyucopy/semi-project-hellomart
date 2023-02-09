@@ -7,22 +7,26 @@
 		response.sendRedirect("hellomart_main.jsp");
 		return;
 	}
-	String userId = request.getParameter("userId");
-	String password = request.getParameter("password");
-	String name = request.getParameter("name");
-	String email = request.getParameter("email");
-	User newUser = new User(userId, password, name, email);
+	/*
 	UserService userService = new UserService();
-	int result = userService.create(newUser);
+	int result = userService.create(new User());
+	int isDuplicate = 0;
 	if(result == -1) {
 		//아이디 중복
+		isDuplicate = -1;
 		out.println("<script>");
 		out.println("location.href='user_write_form.jsp';");
 		out.println("</script>");
 	}else if(result == 1) {
-		//회원가입 성공
+		//아이디 중복X
+		isDuplicate = 1;
 		response.sendRedirect("user_login_form.jsp");
 	}
+	*/
+	out.println("<script>");
+	out.println("alert('crush_action.jsp');");
+	out.println("</script>");
+	response.sendRedirect("user_write_form.jsp");
 %>
 
 

@@ -5,6 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	/********게시판*********/
+	String pageno = null;
+	if (pageno == null || pageno.equals("")) {
+		pageno="1";
+	}
+	/*********************/
 	String p_noStr = request.getParameter("p_no");
 	if (p_noStr == null || p_noStr.equals("")) {
 		response.sendRedirect("product_list.jsp");
@@ -196,6 +202,7 @@
 				</table>
 			</div>
 			<!-- include_content.jsp end-->
+			<jsp:include page="board_list.jsp?pageno=<%=pageno%>&p_no=<%=product.getP_no() %>" />
 			<!-- content end -->
 		</div>
 		<!--wrapper end-->

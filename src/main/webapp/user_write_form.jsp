@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
+	//int isduplexxx = request.getParameter("isdupxxx");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,7 +27,7 @@
 		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
 		*/
 		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
-			alert("아이디는 5~10자여야한다");
+			alert("아이디는 5~10자여야 합니다.");
 			f.userId.value.select();
 			return;
 		}
@@ -37,13 +37,13 @@
 				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
 				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
 			)){
-				alert("영문알파벳대문자,소문자,숫자만 가능");
+				alert("아이디는 영문 대문자, 소문자, 숫자만 가능합니다.");
 				document.f.userId.value.select();
 				return;
 			}							
 		}
 		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
-			alert("아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)");
+			alert("아이디의 첫 글자는 영문 대문자, 소문자만 가능합니다.(숫자로 시작할 수 없습니다.)");
 			document.f.userId.value.select();
 			return;
 		}
@@ -51,22 +51,22 @@
 		
 		/*******************************************************/
 		if (document.f.password.value == "") {
-			alert("비밀번호를 입력하십시요.");
+			alert("비밀번호를 입력하세요.");
 			document.f.password.focus();
 			return;
 		}
 		if (document.f.password2.value == "") {
-			alert("비밀번호확인을 입력하십시요.");
+			alert("비밀번호확인을 입력하세요.");
 			f.password2.focus();
 			return;
 		}
 		if (document.f.name.value == "") {
-			alert("이름을 입력하십시요.");
+			alert("이름을 입력하세요.");
 			f.name.focus();
 			return;
 		}
 		if (document.f.email.value == "") {
-			alert("이메일 주소를 입력하십시요.");
+			alert("이메일 주소를 입력하세요.");
 			f.email.focus();
 			return;
 		}
@@ -98,7 +98,16 @@
 	}
 	
 	function checkId() {
-		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."
+		document.f.action = "user_id_crush_action.jsp";
+		document.f.method='POST';
+		document.f.submit();
+		<%//if(isduplexxx==1){%>
+			document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
+		<%//}%>
+	}
+	
+	function checkId2() {
+		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
 	}
 	
 	
@@ -148,11 +157,15 @@
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="userId"
+<<<<<<< HEAD
+											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+=======
 
 											value="">&nbsp;&nbsp;<font color="red"></font>
 											
 											<value= ""onblur="checkId()">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
 
+>>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 										</td>
 										
 										
