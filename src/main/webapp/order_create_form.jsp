@@ -197,6 +197,7 @@ form > table tr td{
 											<option selected>==주소를 선택하세요==</option>
 											<%for(Address address : addressList) { %>
 											<option><%=address.getLoc()%></option>
+											<option>주소를입력하세요</option>
 											</select>
 											<%}%>
 										</td>
@@ -217,7 +218,7 @@ form > table tr td{
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a
-										href="javascript:order_create_form_submit();" class=m1>구매/결재하기</a>
+										href="javascript:order_create_form_submit();" class=m1>구매/결제하기</a>
 										&nbsp;&nbsp;<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
 
 									</td>
