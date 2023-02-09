@@ -22,11 +22,6 @@
 			f.title.focus();
 			return false;
 		}
-		if (f.writer.value == "") {
-			alert("작성자를 입력하십시요.");
-			f.writer.focus();
-			return false;
-		}
 		if (f.content.value == "") {
 			alert("내용을 입력하십시요.");
 			f.content.focus();

@@ -6,7 +6,7 @@
 <%
 	String p_noStr=request.getParameter("p_no");
 	int p_no = Integer.parseInt(p_noStr);
-	if(request.getMethod().equalsIgnoreCase("GET")){
+ 	if(request.getMethod().equalsIgnoreCase("GET")){
 		response.sendRedirect("board_list.jsp?p_no="+p_no);
 		return;
 	}
