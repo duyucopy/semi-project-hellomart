@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
+	//int isduplexxx = request.getParameter("isdupxxx");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,7 +37,7 @@
 				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
 				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
 			)){
-				alert("영문 대문자, 소문자, 숫자만 가능");
+				alert("아이디는 영문 대문자, 소문자, 숫자만 가능합니다.");
 				document.f.userId.value.select();
 				return;
 			}							
@@ -79,6 +79,8 @@
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
+	function isDuplicateId() {
+		window.location.href='isDuplicateId.jsp';
 	
 	function repassword() {
 		if(document.f.password.value != ""){
@@ -93,7 +95,16 @@
 	}
 	
 	function checkId() {
-		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."
+		document.f.action = "user_id_crush_action.jsp";
+		document.f.method='POST';
+		document.f.submit();
+		<%//if(isduplexxx==1){%>
+			document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
+		<%//}%>
+	}
+	
+	function checkId2() {
+		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
 	}
 	
 	
@@ -133,7 +144,7 @@
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 관리
 											- 회원 가입</b></td>
 								</tr>
-							</table>
+							</table> 
 							<!-- write Form  -->
 							<form name="f">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
@@ -142,8 +153,10 @@
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
-											<input type="text" style="width: 150px" name="userId"
-											value="" onblur="checkId()">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+											<input type="text" style="width: 150px" name="userId" 
+											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+
+	
 										</td>
 										
 										
@@ -180,16 +193,14 @@
 									</tr>
 								</table>
 							</form> <br />
-
 							<table border=0 cellpadding=0 cellspacing=1>
 								<tr>
 									<td align=center>
-									<input type="button" value="회원 가입" onclick="userCreate();"> &nbsp;
+									<input type="button" value="회원 가입" onclick="userCreate();"> &nbsp; 
 									<input type="button" value="메인" onclick="main();">
 									</td>
 								</tr>
 							</table>
-
 						</td>
 					</tr>
 				</table>
