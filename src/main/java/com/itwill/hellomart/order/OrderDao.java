@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.itwill.hellomart.address.Address;
+import com.itwill.hellomart.common.DataSourceFactory;
 import com.itwill.hellomart.product.Product;
 
 public class OrderDao {
@@ -21,15 +22,7 @@ public class OrderDao {
 
 	public OrderDao() throws Exception {
 
-		/******Apache BasicDataSource*****/
-		BasicDataSource basicDataSource = new BasicDataSource();
-		Properties properties = new Properties();
-		properties.load(this.getClass().getResourceAsStream("/jdbc.properties"));
-		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
-		basicDataSource.setUrl(properties.getProperty("url"));
-		basicDataSource.setUsername(properties.getProperty("username"));
-		basicDataSource.setPassword(properties.getProperty("password"));
-		dataSource = basicDataSource;
+		dataSource = DataSourceFactory.getDataSource();
 	}
 
 	//주문 생성
