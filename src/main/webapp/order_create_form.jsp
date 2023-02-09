@@ -193,11 +193,12 @@ form > table tr td{
 									<tr>
 										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
 											<select name="loc" id="loc" style="width: 80%; height: 50%; box-sizing : border-box;">
+											<!-- 주소 입력창 추가해야함 -->
 											<option selected>==주소를 선택하세요==</option>
 											<%for(Address address : addressList) { %>
 											<option><%=address.getLoc()%></option>
-											<%}%>
 											</select>
+											<%}%>
 										</td>
 										<td width=60% height=40 align=center bgcolor="ffffff" class=t1>
 											<select name ="o_option" id="o_option" style="height: 50%;">
