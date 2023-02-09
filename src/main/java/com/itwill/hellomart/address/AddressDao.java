@@ -11,19 +11,14 @@ import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.itwill.hellomart.common.DataSourceFactory;
+
 public class AddressDao {
 	private DataSource dataSource;
 	
 	public AddressDao() throws Exception {
-		Properties properties = new Properties();
-		properties.load(getClass().getResourceAsStream("/jdbc.properties"));
 		
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setDriverClassName(properties.getProperty("driverClass"));
-		basicDataSource.setUrl(properties.getProperty("url"));
-		basicDataSource.setUsername(properties.getProperty("username"));
-		basicDataSource.setPassword(properties.getProperty("password"));
-		dataSource = basicDataSource;
+		dataSource = DataSourceFactory.getDataSource();
 	}
 	public int addressInsert(Address address) throws Exception{
 		Connection con = dataSource.getConnection();

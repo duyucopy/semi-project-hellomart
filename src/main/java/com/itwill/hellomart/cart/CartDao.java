@@ -5,28 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.itwill.hellomart.common.DataSourceFactory;
 import com.itwill.hellomart.product.Product;
 
 public class CartDao {
+	
 	private DataSource dataSource;
-
+	
+	
 	public CartDao() throws Exception {
-		Properties properties = new Properties();
-		properties.load(this.getClass().getResourceAsStream("/jdbc.properties"));
-		/*** Apache DataSource ***/
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
-		basicDataSource.setUrl(properties.getProperty("url"));
-		basicDataSource.setUsername(properties.getProperty("username"));
-		basicDataSource.setPassword(properties.getProperty("password"));
-		dataSource = basicDataSource;
+		
+		dataSource = DataSourceFactory.getDataSource();
 	}
+	
 
 	/*
 	 * cart제품 존재여부

@@ -11,20 +11,16 @@ import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.itwill.hellomart.common.DataSourceFactory;
+
 
 public class BoardDao {
 	private DataSource dataSource;
 	
 	public BoardDao() throws Exception {
-		Properties properties = new Properties();
-		properties.load(this.getClass().getResourceAsStream("/jdbc.properties"));;
-		/*** Apache DataSource ***/
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setDriverClassName(properties.getProperty("driverClassName"));
-		basicDataSource.setUrl(properties.getProperty("url"));
-		basicDataSource.setUsername(properties.getProperty("username"));
-		basicDataSource.setPassword(properties.getProperty("password"));
-		dataSource = basicDataSource;
+		
+		dataSource = DataSourceFactory.getDataSource();
+		
 	}
 	/**
 	 * 상품게시판에 새로운 게시물을 추가하는 메써드.
