@@ -36,7 +36,7 @@ public class BoardDataInsertMain {
 						+ "'후기내용'||board_boardno_SEQ.currval,"
 						+ "board_boardno_SEQ.currval,"
 						+ "1,"
-						+ "'csd',"
+						+ "'guard3',"
 						//+ "2)");
 						+ ((int)(Math.random()*18)+1)+")");
 

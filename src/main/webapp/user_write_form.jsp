@@ -1,7 +1,9 @@
+<%@page import="com.itwill.hellomart.user.UserService"%>
+<%@page import="com.itwill.hellomart.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	
+
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -68,23 +70,38 @@
 			f.email.focus();
 			return;
 		}
-		if (document.f.password.value != f.password2.value) {
-			alert("비밀번호와 비밀번호 확인은 일치하여야 합니다.");
-			f.password.focus();
-			f.password.select();
-			return;
-		}
+		
 		document.f.action = "user_write_action.jsp";
 		document.f.method='POST';
 		document.f.submit();
-	}
-
+		}
+	
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
+
 	function isDuplicateId() {
 		window.location.href='isDuplicateId.jsp';
+
+	
+	function repassword() {
+		if(document.f.password.value != ""){
+			if(document.f.password.value != document.f.password2.value){
+				document.getElementById('pass2').innerHTML = "비밀번호가 일치하지 않습니다."
+			}else{
+				document.getElementById('pass2').innerHTML = "비밀번호가 일치합니다."
+			}
+		}else if(document.f.password.value = "") {
+			document.getElementById('pass2').innerHTML = ""
+		}
+
 	}
+	
+	function checkId() {
+		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."
+	}
+	
+	
 	
 </script>
 </head>
@@ -131,8 +148,11 @@
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="userId"
+
 											value="">&nbsp;&nbsp;<font color="red"></font>
-											<input type="button" value="중복체크" onclick="isDuplicateId();">
+											
+											<value= ""onblur="checkId()">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
+
 										</td>
 										
 										
@@ -149,7 +169,7 @@
 											확인</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="password" style="width: 150px" name="password2"
-											value="">
+											value="" onkeyup="repassword()">&nbsp;&nbsp;<font id="pass2" color="red"></font>
 										</td>
 									</tr>
 									<tr>

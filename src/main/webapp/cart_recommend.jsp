@@ -1,3 +1,4 @@
+<%@page import="com.itwill.hellomart.product.ProductService"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -8,7 +9,8 @@
 <%@include file="login_check.jspf"%>
 <%
 Product product = new Product();
-List<Product> productList = new ArrayList<Product>();
+ProductService productService = new ProductService();
+List<Product> productList = productService.findAll();
 Collections.shuffle(productList);
 %>
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ Collections.shuffle(productList);
 				<% for(int i = 1; i < 4; i++) { %>
 					<td align=center>
 					<br>
-						<%=productList.subList(0, 3)  %>
+						<%=productList.subList(0, 3) %>
 					<img src="image/LG전자 오브제컬렉션 냉장고.jpg">
 					<br>
 					LG전자 오브제컬렉션 냉장고
