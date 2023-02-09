@@ -1,8 +1,11 @@
+<%@page import="java.util.List"%>
 <%@page import="com.itwill.hellomart.user.UserService"%>
 <%@page import="com.itwill.hellomart.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	UserService userService = new UserService();
+	List<User> userList = userService.findAllUser();
 	//int isduplexxx = request.getParameter("isdupxxx");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -82,32 +85,36 @@
 
 	function isDuplicateId() {
 		window.location.href='isDuplicateId.jsp';
-
+	}
 	
 	function repassword() {
 		if(document.f.password.value != ""){
 			if(document.f.password.value != document.f.password2.value){
-				document.getElementById('pass2').innerHTML = "비밀번호가 일치하지 않습니다."
+				document.getElementById('pass2').innerHTML = "비밀번호가 일치하지 않습니다." 
+				document.getElementById('pass2').style.color = "red"
 			}else{
 				document.getElementById('pass2').innerHTML = "비밀번호가 일치합니다."
+					document.getElementById('pass2').style.color = "blue"
 			}
 		}else if(document.f.password.value = "") {
 			document.getElementById('pass2').innerHTML = ""
 		}
-
 	}
+	
 	
 	function checkId() {
-		document.f.action = "user_id_crush_action.jsp";
-		document.f.method='POST';
-		document.f.submit();
-		<%//if(isduplexxx==1){%>
-			document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
-		<%//}%>
-	}
-	
-	function checkId2() {
-		document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다."			
+		let userList = <%=userList%>
+		
+		if(userList.indexOf(f.userId.value)!==-1){
+			document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다.";
+			document.getElementById('idCheck').style.color = "red";
+			document.f.user_id.focus();
+			return false;
+		} else {
+			document.getElementById('idCheck').innerHTML = "사용 가능한 아이디입니다."
+			document.getElementById('idCheck').style.color = "blue";
+			return true;
+		}	
 	}
 	
 	
@@ -157,15 +164,7 @@
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="userId"
-<<<<<<< HEAD
-											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
-=======
-
-											value="">&nbsp;&nbsp;<font color="red"></font>
-											
-											<value= ""onblur="checkId()">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
-
->>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
+											value="" onfocusout="checkId();">&nbsp;&nbsp;<font id="idCheck"></font>
 										</td>
 										
 										
@@ -182,7 +181,7 @@
 											확인</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="password" style="width: 150px" name="password2"
-											value="" onkeyup="repassword()">&nbsp;&nbsp;<font id="pass2" color="red"></font>
+											value="" onkeyup="repassword()">&nbsp;&nbsp;<font id="pass2"></font>
 										</td>
 									</tr>
 									<tr>

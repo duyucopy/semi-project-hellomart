@@ -24,7 +24,7 @@
 	}
 	*/
 	out.println("<script>");
-	out.println("alert('crush_action.jsp');");
+	out.println("alert('악');");
 	out.println("</script>");
 	response.sendRedirect("user_write_form.jsp");
 %>

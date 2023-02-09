@@ -14,13 +14,7 @@
 	User newUser = new User(userId, password, name, email);
 	UserService userService = new UserService();
 	int result = userService.create(newUser);
-	if(result == -1) {
-		//아이디 중복
-		out.println("<script>");
-		out.println("location.href='user_write_form.jsp';");
-		out.println("</script>");
-	}else if(result == 1) {
-		//회원가입 성공
+	if(result == 1) {
 		response.sendRedirect("user_login_form.jsp");
 	}
 %>
