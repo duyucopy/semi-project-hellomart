@@ -5,11 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.sql.DataSource;
-
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.itwill.hellomart.address.Address;
 import com.itwill.hellomart.common.DataSourceFactory;
@@ -200,52 +197,54 @@ public class OrderDao {
 		PreparedStatement pstmt2 = null;
 		ResultSet rs1 = null;
 		ResultSet rs2 = null;
-
+		
 		try {
 			con = dataSource.getConnection();
-			//"select * from orders where userid = ?";
 			pstmt1 = con.prepareStatement(OrderSQL.ORDER_SELECT_BY_USERID);
-			pstmt1.setString(1, sUserId); // ps1
+			pstmt1.setString(1, sUserId);
 			rs1 = pstmt1.executeQuery();
-			while (rs1.next()) { 
-				/*o_no, o_date,o_status,o_option, o_price, userid */
-				orderList.add(new Order(rs1.getInt("o_no"),
-										rs1.getDate("o_date"),
-										rs1.getString("o_status"),
-										rs1.getString("o_option"),
-										rs1.getInt("o_price"),
-										rs1.getString("userid")));
+			
+			while (rs1.next()) {
+							orderList.add(new Order(rs1.getInt("o_no"), 
+													rs1.getDate("o_date"), 
+													rs1.getString("o_status"), 
+													rs1.getString("o_option"),
+													rs1.getInt("o_price"), 
+													rs1.getString("userid")));
 			}
-			/*select * from orders o join order_item oi on o.o_no=oi.o_no  
-			join  product p on oi.p_no=p.p_no where  o.o_no = ?*/
+			
 			pstmt2 = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_TEST);
-			for(int i=0; i< orderList.size(); i++) {
+			for (int i = 0; i < orderList.size(); i++) {
 				Order tempOrder = orderList.get(i);
-				System.out.println("tempOrder : " + tempOrder);
+				
 				pstmt2.setInt(1, tempOrder.getO_no());
 				rs2 = pstmt2.executeQuery();
 				Order orderWithOrderItem = null;
+				
 				if (rs2.next()) {
-					orderWithOrderItem = new Order(	rs2.getInt("o_no"), rs2.getDate("o_date"), 
-													rs2.getString("o_status"), rs2.getString("o_option"),
-													rs2.getInt("o_price"), rs2.getString("userid"));
+					orderWithOrderItem = new Order(	rs2.getInt("o_no"), 
+													rs2.getDate("o_date"), 
+													rs2.getString("o_status"), 
+													rs2.getString("o_option"),
+													rs2.getInt("o_price"), 
+													rs2.getString("userid"));
 					do {
-						orderWithOrderItem.getOrderItemList()
-												.add(new OrderItem(rs2.getInt("oi_no"), 
-																   rs2.getInt("oi_qty"), 
-																   rs2.getInt("o_no"),
-																   	new Product(rs2.getInt("p_no"), 
-																   				rs2.getString("p_name"), 
-																   				rs2.getInt("p_price"),
-																   				rs2.getString("p_image"), 
-																   				rs2.getString("p_desc"), 
-																   				rs2.getInt("ct_no"))));
+						orderWithOrderItem.getOrderItemList().add(new OrderItem(rs2.getInt("oi_no"), 
+																			rs2.getInt("oi_qty"), 
+																			rs2.getInt("o_no"),
+																				new Product(rs2.getInt("p_no"), 
+																							rs2.getString("p_name"), 
+																							rs2.getInt("p_price"),
+																							rs2.getString("p_image"), 
+																							rs2.getString("p_desc"), 
+																							rs2.getInt("ct_no"))));
+														
 					} while (rs2.next());
 				}
 				orderList.set(i, orderWithOrderItem);
 			}
 		} finally {
-			if (con!=null) {
+			if (con != null) {
 				con.close();
 			}
 		}
@@ -265,7 +264,7 @@ public class OrderDao {
 			 * select * from orders o join order_item oi on o.o_no=oi.o_no join product p on
 			 * oi.p_no=p.p_no where o.userid=? and o.o_no = ?
 			 */
-			pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO);
+			pstmt = con.prepareStatement(OrderSQL.ORDER_SELECT_WITH_ORDERITEM_BY_O_NO_ADDRESS);
 			pstmt.setInt(1, o_no);
 			rs = pstmt.executeQuery();
 

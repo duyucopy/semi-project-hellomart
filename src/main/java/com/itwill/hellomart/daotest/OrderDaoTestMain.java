@@ -25,23 +25,28 @@ public class OrderDaoTestMain {
 		
 		//배송 전 (삭제 )
 		//System.out.println(orderDao.deleteByOrderStatus(18, "T         "));
-		//상품에서 직접 주문
+	
 		
+		/*
+		//상품에서 주문
 		int p_qty = 1;
 		int p_no = 1;
 		ProductDao productDao = new ProductDao();
 		Product product = productDao.findByPrimaryKey(p_no);
+		System.out.println("product : " + product);
 		
 		ArrayList<OrderItem> newOrderItemList = new ArrayList<OrderItem>();
-		newOrderItemList.add(new OrderItem(0,p_qty,p_no,product));
 		Order newOrder = new Order(0,null,"배송","앞앞앞앞",950550,"guard2",new Address(1,null,null));
-		orderDao.insert(newOrder);
+		newOrderItemList.add(new OrderItem(0,p_qty,p_no,product));
+		newOrder.setOrderItemList(newOrderItemList);
+		System.out.println("newOrder : " + newOrder);
+		System.out.println(orderDao.insert(newOrder));
 		
 		//System.out.println(orderDao.findOrderByUserId("guard2"));
 		
-		//System.out.println(orderDao.findOrderWithOrderItemByUserId("guard2"));
-		
-		//cart에서 주문
+	
+		*/
+		/*cart에서 주문
 		int o_tot_price = 0;
 		String sUserId = "guard2";
 		CartDao cartDao = new CartDao();
@@ -57,13 +62,16 @@ public class OrderDaoTestMain {
 		newOrder.setOrderItemList(newOrderItemList);
 		System.out.println(orderDao.insert(newOrder));
 		System.out.println(cartDao.deleteByUserId(sUserId));
+		*/
+		//System.out.println(orderDao.findOrderWithOrderItemByUserId("guard2"));
 		
-		System.out.println(orderDao.findOrderWithOrderItemByUserId("guard2"));
 		//주문 번호로 삭제
 		//System.out.println(orderDao.deleteByOrderNo(1));
 		//주문 전체 삭제
 //		System.out.println(orderDao.deleteByUserId("guard1"));
 //		System.out.println(orderDao.findOrderByUserId("guard1"));
  
+		System.out.println(orderDao.findOrderWithOrderItemByUserId("guard1"));
+		
 	}	
 }
