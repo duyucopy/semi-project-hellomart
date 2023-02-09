@@ -6,10 +6,9 @@ insert into userinfo(userid,password,name,email) values('guard3','3333','김경�
 insert into userinfo(userid,password,name,email) values('csd','csd','조성동','csd@korea.com');
 
 /**********************address insert************************/
-insert into address(userid, loc) values('guard1', '서울시 성동구 왕십리로 16(트리마제), 101-1001');
-insert into address(userid, loc) values('guard1', '서울시 강남구 압구정로29길 71(압구정 현대아파트), 201-503');
-insert into address(userid, loc) values('guard2', '서울특별시 용산구 한남대로 91(나인원 한남), 105-401');
-insert into address(userid, loc) values('guard3', '서울시 용산구 이촌로 310 (래미안 첼리투스), 101-1202');
+insert into address(addr_no, userid, loc) values(address_addr_no_SEQ.nextval,'guard1', '서울시 성동구 왕십리로 16(트리마제), 101-1001');
+insert into address(addr_no, userid, loc) values(address_addr_no_SEQ.nextval,'guard2', '서울특별시 용산구 한남대로 91(나인원 한남), 105-401');
+insert into address(addr_no, userid, loc) values(address_addr_no_SEQ.nextval,'guard3', '서울시 용산구 이촌로 310 (래미안 첼리투스), 101-1202');
 
 /**********************categories insert*********************/
 insert into categories values(1,'TV/냉장고/세탁기');
@@ -47,9 +46,16 @@ insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'
 insert into cart(cart_no,userid,p_no,cart_qty) values(cart_cart_no_SEQ.nextval,'guard3',12,1);
 
 /**********************orders insert*************************/
-insert into orders(o_no, o_date, o_status, o_option, o_price, userid) values (orders_o_no_SEQ.nextval, sysdate, default, '문 앞에 놔주세요', 990000, 'guard1');
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid,addr_no) values (orders_o_no_SEQ.nextval, sysdate, default, '문 앞에 놔주세요', 990000, 'guard1',1);
 insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 1);
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid,addr_no) values (orders_o_no_SEQ.nextval, sysdate, default, '문 앞에 놔주세요', 110000, 'guard2',2);
 insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 2);
+insert into orders(o_no, o_date, o_status, o_option, o_price, userid,addr_no) values (orders_o_no_SEQ.nextval, sysdate, default, '문 앞에 놔주세요', 990000, 'guard3',3);
+insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 3);
+
+
+
+
 /**********************board insert**************************/
 
 -- board.test  -> BoardDataInsertMain 실행
