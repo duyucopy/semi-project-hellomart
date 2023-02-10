@@ -56,8 +56,6 @@ int count = 0;
 		var isChecked = false;
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
-				document.cart_view_form.innerHTML += "<input type='hidden' name='cart_item_no' value='"
-						+ cart_item_no_check_list.item(i).value + "'>"
 				isChecked = true;
 			}
 		}
@@ -302,7 +300,7 @@ int count = 0;
 									<br>
 									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=pro.getP_name() %></a>
 									<br>
-									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=new DecimalFormat("#,###").format(tot_price)%>원</a>
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=new DecimalFormat("#,###").format(pro.getP_price())%>원</a>
 									</td>
 									<% count++;
 									if(count ==3) break; %>
