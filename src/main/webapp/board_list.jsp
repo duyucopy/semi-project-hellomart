@@ -34,6 +34,7 @@
 	if(pageno==null||pageno.equals("")){
 		pageno="1";
 	}	
+	
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
 		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),p_no);
@@ -56,17 +57,11 @@
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
-		<!-- navigation end-->
-		<!-- wrapper start -->
-		<div id="wrapper">
-			<!-- content start -->
-			<!-- include_content.jsp start-->
 
-			<div id="content">
-				<table border=0 cellpadding=0 cellspacing=0>
+				<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
+				<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
 					<tr>
-						<td><br />
+						<td>
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
@@ -81,7 +76,7 @@
 										)
 									</td>
 								</tr>
-							</table> <br /> <!-- list -->
+							</table> <!-- list -->
 							<form name="f" method="post" action="">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
 									bgcolor="BBBBBB">
@@ -124,7 +119,7 @@
 									%>
 								</table>
 								<!-- /list -->
-							</form> <br>
+							</form>
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align="center">
@@ -161,16 +156,11 @@
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align="right"><input type="button" value="게시물 생성"
-										onclick="boardCreate();" /></td>
+											onclick="boardCreate();" /></td>
 								</tr>
 							</table></td>
 					</tr>
 				</table>
-			</div>
-			<!-- include_content.jsp end-->
-			<!-- content end -->
-		</div>
-		<!--wrapper end-->
 
 	<!--container end-->
 </body>

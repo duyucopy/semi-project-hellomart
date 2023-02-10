@@ -42,65 +42,50 @@
 	marginwidth=0 marginheight=0>
 	<!-- container start-->
 	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
-		<!-- navigation end-->
-		<!-- wrapper start -->
-		<div id="wrapper">
-			<!-- content start -->
-			<!-- include_content.jsp start-->
-			<div id="content">
-				<table border=0 cellpadding=0 cellspacing=0>
-					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
-								cellspacing=0>
-								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>게시판 -
-											후기 쓰기</b></td>
-								</tr>
-							</table> <br> <!-- write Form  -->
-							<form name="f" method="post">
-								<input type="hidden" name="p_no" value="<%=p_no%>">
-								<table border="0" cellpadding="0" cellspacing="1" width="590"
-									bgcolor="BBBBBB">
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
-										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
-											align="left"><input type="text" style="width: 150px"
-											name="title"></td>
-									</tr>
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE" height="22">작성자</td>
-										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
-											align="left"><input type="text" readonly="readonly" style="width: 150px"
-											name="userId" value="<%=sUserId %>"></td>
-									</tr>
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE">내용</td>
-										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
-											align="left"><textarea name="content" class="textarea"
-												style="width: 350px" rows="14"></textarea></td>
-									</tr>
-								</table>
-							</form> <br>
-							<table width=590 border=0 cellpadding=0 cellspacing=0>
-								<tr>
-									<td align=center>
-									<input type="button" value="게시판 쓰기" onClick="boardCreate()"> &nbsp; 
-									<input type="button" value="게시판 목록" onClick="boardList()"></td>
-								</tr>
-							</table></td>
+		<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
+			<tr>
+				<td><br />
+					<table style="padding-left: 10px" border=0 cellpadding=0
+						cellspacing=0>
+						<tr>
+							<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>게시판 -
+									후기 쓰기</b></td>
+						</tr>
+					</table> <br> <!-- write Form  -->
+					<form name="f" method="post">
+						<input type="hidden" name="p_no" value="<%=p_no%>">
+						<table border="0" cellpadding="0" cellspacing="1" width="590"
+							bgcolor="BBBBBB">
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
+								<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+									align="left"><input type="text" style="width: 150px"
+									name="title"></td>
+							</tr>
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE" height="22">작성자</td>
+								<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+									align="left"><input type="text" readonly="readonly" style="width: 150px"
+									name="userId" value="<%=sUserId %>"></td>
+							</tr>
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE">내용</td>
+								<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+									align="left"><textarea name="content" class="textarea"
+										style="width: 350px" rows="14"></textarea></td>
+							</tr>
+						</table>
+					</form> <br>
+					<table width=590 border=0 cellpadding=0 cellspacing=0>
+						<tr>
+							<td align=center>
+							<input type="button" value="게시판 쓰기" onClick="boardCreate()"> &nbsp; 
+							<input type="button" value="게시판 목록" onClick="boardList()"></td>
+						</tr>
+					</table></td>
 					</tr>
 				</table>
-			</div>
-			<!-- include_content.jsp end-->
-			<!-- content end -->
-		</div>
-		<!--wrapper end-->
-		<div id="footer">
-			<!-- include_common_bottom.jsp start-->
-			<jsp:include page="include_common_bottom.jsp" />
-			<!-- include_common_bottom.jsp end-->
-		</div>
+
 	<!--container end-->
 </body>
 </html>

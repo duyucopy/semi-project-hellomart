@@ -74,105 +74,90 @@
 	marginwidth=0 marginheight=0>
 	<!-- container start-->
 	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
-		<!-- navigation end-->
-		<!-- wrapper start -->
-		<div id="wrapper">
-			<!-- content start -->
-			<!-- include_content.jsp start-->
-			<div id="content">
-				<table border=0 cellpadding=0 cellspacing=0>
-					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
-								cellspacing=0>
-								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기 게시물
-											내용보기 </b>
-									</td>
-								</tr>
-							</table> <br> <!-- view Form  -->
+		<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
+			<tr>
+				<td><br />
+					<table style="padding-left: 10px" border=0 cellpadding=0
+						cellspacing=0>
+						<tr>
+							<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기 게시물
+									내용보기 </b>
+							</td>
+						</tr>
+					</table> <br> <!-- view Form  -->
 
-							<form name="f" method="post">
-								<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
-								<input type="hidden" name="userId" value="<%=board.getUserId()%>">
-								<input type="hidden" name="boardno" value="<%=board.getBoardno()%>">
-								<input type="hidden" name="pageno" value="<%=pageno%>">
-								<table border="0" cellpadding="0" cellspacing="1" width="590"
-									bgcolor="BBBBBB">
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE" height="22">글쓴이</td>
-										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
-											align="left"><%=board.getUserId()%></td>
-									</tr>
+					<form name="f" method="post">
+						<input type="hidden" name="p_no" value="<%=board.getP_no()%>">
+						<input type="hidden" name="userId" value="<%=board.getUserId()%>">
+						<input type="hidden" name="boardno" value="<%=board.getBoardno()%>">
+						<input type="hidden" name="pageno" value="<%=pageno%>">
+						<table border="0" cellpadding="0" cellspacing="1" width="590"
+							bgcolor="BBBBBB">
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE" height="22">글쓴이</td>
+								<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+									align="left"><%=board.getUserId()%></td>
+							</tr>
 
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
-										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
-											align="left"><%=board.getTitle()%></td>
-									</tr>
-									<tr>
-										<td width=100 align=center bgcolor="E6ECDE" height="22">내용</td>
-										<td width=490 bgcolor="ffffff" height="180px"
-											style="padding-left: 10px" align="left"><%=board.getContent().replace("\n","<br/>")%><br />
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
+								<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+									align="left"><%=board.getTitle()%></td>
+							</tr>
+							<tr>
+								<td width=100 align=center bgcolor="E6ECDE" height="22">내용</td>
+								<td width=490 bgcolor="ffffff" height="180px"
+									style="padding-left: 10px" align="left"><%=board.getContent().replace("\n","<br/>")%><br />
 
-										</td>
-									</tr>
+								</td>
+							</tr>
 
-								</table>
+						</table>
 
-							</form> <br>
-							<table width=590 border=0 cellpadding=0 cellspacing=0>
-								<tr>
-									<td align=center>
-										<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
-										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
-										<input type="button" value="수정" onClick="boardUpdate()"> &nbsp; 
-										<input type="button" value="삭제" onClick="boardRemove()"> &nbsp; 
-										<input type="button" value="리스트" onClick="boardList()"></td>
-								</tr>
-							</table></td>
-							<%
-								Board nextBoard=null;
-								Board prevBoard=null;
-								List<Board> BoardList =BoardService.getInstance().findBoardList(p_no);
-								for (int i=0;i<BoardList.size();i++) {
-									if((int)boardno==BoardList.get(i).getBoardno()){
-										if(i-1>=0)
-											nextBoard = BoardList.get(i-1);
-										if(i+1<=BoardList.size()) 
-											prevBoard = BoardList.get(i+1);
-										break;
-									}
-								}
-							
-							%>
-							<%if(nextBoard!=null){ %>
-								<tr>
-									<td width=50 bgcolor="ffffff" style="padding-left: 10">
-										<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=nextBoard.getBoardno()%>">
-										[다음글]<%=nextBoard.getTitle() %></a>
-									</td>
-								</tr>
-							<%} %>
-							<%if(prevBoard!=null){ %>
-								<tr>
-									<td width=50 bgcolor="ffffff" style="padding-left: 10">
-										<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=prevBoard.getBoardno()%>">
-										[이전글]<%=prevBoard.getTitle() %></a>
-									</td>
-								</tr>
-							<%} %>
+					</form> <br>
+					<table width=590 border=0 cellpadding=0 cellspacing=0>
+						<tr>
+							<td align=center>
+								<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
+								<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
+								<input type="button" value="수정" onClick="boardUpdate()"> &nbsp; 
+								<input type="button" value="삭제" onClick="boardRemove()"> &nbsp; 
+								<input type="button" value="리스트" onClick="boardList()"></td>
+						</tr>
+					</table></td>
+					<%
+						Board nextBoard=null;
+						Board prevBoard=null;
+						List<Board> BoardList =BoardService.getInstance().findBoardList(p_no);
+						for (int i=0;i<BoardList.size();i++) {
+							if((int)boardno==BoardList.get(i).getBoardno()){
+								if(i-1>=0)
+									nextBoard = BoardList.get(i-1);
+								if(i+1<=BoardList.size()) 
+									prevBoard = BoardList.get(i+1);
+								break;
+							}
+						}
+					
+					%>
+					<%if(nextBoard!=null){ %>
+						<tr>
+							<td width=50 bgcolor="ffffff" style="padding-left: 10">
+								<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=nextBoard.getBoardno()%>">
+								[다음글]<%=nextBoard.getTitle() %></a>
+							</td>
+						</tr>
+					<%} %>
+					<%if(prevBoard!=null){ %>
+						<tr>
+							<td width=50 bgcolor="ffffff" style="padding-left: 10">
+								<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=prevBoard.getBoardno()%>">
+								[이전글]<%=prevBoard.getTitle() %></a>
+							</td>
+						</tr>
+					<%} %>
 				</table>
-			</div>
-			<!-- include_content.jsp end-->
-			<!-- content end -->
-		</div>
-		<!--wrapper end-->
-		<div id="footer">
-			<!-- include_common_bottom.jsp start-->
-			<jsp:include page="include_common_bottom.jsp" />
-			<!-- include_common_bottom.jsp end-->
-		</div>
+
 	<!--container end-->
 </body>
 </html>
