@@ -1,7 +1,7 @@
-<%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="com.itwill.hellomart.product.ProductService"%>
-<%@page import="com.itwill.hellomart.board.BoardService"%>
+<%@page import="com.itwill.hellomart.product.Product"%>
 <%@page import="com.itwill.hellomart.board.BoardListPageMakerDto"%>
+<%@page import="com.itwill.hellomart.board.BoardService"%>
 <%@page import="com.itwill.hellomart.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -70,6 +70,7 @@
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
+
 			<!-- include_content.jsp start-->
 			<div id="content">
 				<table border=0 cellpadding=0 cellspacing=0>
@@ -95,7 +96,7 @@
 									bgcolor="BBBBBB">
 
 									<tr>
-										<td width=280 align=center bgcolor="E6ECDE">상품이름</td>
+										<td width=300 align=center bgcolor="E6ECDE">상품이름</td>
 										<td width=280 align=center bgcolor="E6ECDE">제목</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴이</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴날</td>
@@ -105,10 +106,10 @@
 										for (Board board : boardListPage.itemList) {
 									%>
 									<tr>
-										<td width=120 align=center bgcolor="ffffff"><%=productService.findByPrimartKey(board.getP_no()).getP_name()%>
+										<td width=300 align=center bgcolor="ffffff"><%=board.getP_no()%>
 										</td>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
-										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=productService.findByPrimartKey(board.getP_no()).getP_no()%>'>
+										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=board.getP_no()%>'>
 										<%=this.getTitleString(board)%>
 										</a>
 										</td>
@@ -120,16 +121,6 @@
 										<td width=70 align=center bgcolor="ffffff" align="left"><%=board.getReadcount()%>
 										</td>
 									</tr>
-									<!-- 
-									<tr>
-										<td width=280 bgcolor="ffffff" style="padding-left: 10"><a
-											href='board_view.jsp?boardno=532&pageno=6'>게시판타이틀514</a></td>
-										<td width=120 align=center bgcolor="ffffff">김경호514</td>
-										<td width=120 bgcolor="ffffff" style="padding-left: 10">2014-12-23
-										</td>
-										<td width=70 align=center bgcolor="ffffff">0</td>
-									</tr>
-									 -->
 									<%
 										}
 									%>
@@ -171,16 +162,15 @@
 							</table> <!-- button -->
 					</tr>
 				</table>
-			</div>
-			<!-- include_content.jsp end-->
-			<!-- content end -->
-		</div>
-		<!--wrapper end-->
-		<div id="footer">
-			<!-- include_common_bottom.jsp start-->
-			<jsp:include page="include_common_bottom.jsp" />
-			<!-- include_common_bottom.jsp end-->
-		</div>
-	<!--container end-->
+				</div>
+				</div>
+				</div>
+	<!--wrapper end-->
+	<div id="footer">
+		<!-- include_common_bottom.jsp start-->
+		<jsp:include page="include_common_bottom.jsp" />
+		<!-- include_common_bottom.jsp end-->
+	</div>
+<!--container end-->
 </body>
 </html>
