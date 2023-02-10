@@ -75,7 +75,7 @@ form > table tr td{
 		let addr_input = document.getElementById("addr_input");
 		let addr_select = document.getElementById("addr_select");
 		if(addr_select.options[addr_select.selectedIndex].value != 'type') {
-			addr_input.value = addr_select.options[addr_select.selected Index].text;
+			addr_input.value = addr_select.options[addr_select.selectedIndex].text;
 			addr_input.readOnly = true;
 		} else {
 			addr_input.value=""
@@ -205,7 +205,7 @@ form > table tr td{
 									<tr>
 										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
 											<!-- 주소 입력창 추가해야함 -->
-											<input type = "text" name="addr_input" id="addr_input" placholder="주소를 입력하거나 선택하세요.">
+											<input type = "text" name="addr_input" id="addr_input" placeholder="주소를 입력하거나 선택하세요.">
 											<select name="addr_select" id="addr_select" onchange="addr_check();">
 											<%for(Address address : addressList) { %>
 											<option value = "<%=address.getAddr_no()%>"><%=address.getLoc()%></option>
@@ -232,8 +232,9 @@ form > table tr td{
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a
-										href="javascript:order_create_form_submit();" class=m1>구매/결제하기</a>
-										&nbsp;&nbsp;<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
+										href="javascript:order_create_form_submit();">구매/결제하기</a>
+										&nbsp;&nbsp;
+										<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
 
 									</td>
 								</tr>
