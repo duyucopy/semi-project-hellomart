@@ -21,6 +21,7 @@ String buyType = request.getParameter("buyType");
 String p_noStr = request.getParameter("p_no");
 String p_qtyStr = request.getParameter("p_qty");
 String[] cart_item_noStr_array = request.getParameterValues("cart_item_no");
+String addr_noStr = request.getParameter("addr_no");
 
 if(buyType==null)buyType="";
 if(p_noStr==null)p_noStr="";
@@ -70,6 +71,17 @@ form > table tr td{
 		document.order_create_form.action = 'order_create_action.jsp';
 		document.order_create_form.submit();
 	}
+	function addr_check() {
+		let addr_input = document.getElementById("addr_input");
+		let addr_select = document.getElementById("addr_select");
+		if(addr_select.options[addr_select.selectedIndex].value != 'type') {
+			addr_input.value = addr_select.options[addr_select.selected Index].text;
+			addr_input.readOnly = true;
+		} else {
+			addr_input.value=""
+			addr_input.readOnly = false;
+			}
+		}
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
@@ -193,12 +205,13 @@ form > table tr td{
 									<tr>
 										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
 											<!-- 주소 입력창 추가해야함 -->
-											<input type="text" name="loc" list="address_list" placeholder="주소를 입력하거나 선택하세요." style="width: 80%; height: 50%; box-sizing : border-box;">
-											<datalist id="address_list">
+											<input type = "text" name="addr_input" id="addr_input" placholder="주소를 입력하거나 선택하세요.">
+											<select name="addr_select" id="addr_select" onchange="addr_check();">
 											<%for(Address address : addressList) { %>
-											<option><%=address.getLoc()%></option>
+											<option value = "<%=address.getAddr_no()%>"><%=address.getLoc()%></option>
 											<%}%>
-											</datalist>
+											<option value="type" selected> 직접입력 </option>
+											</select>
 											
 										</td>
 										

@@ -13,19 +13,26 @@
    		response.sendRedirect("order_list.jsp");
    		return;
    	}
-   	String buyType=request.getParameter("buyType");
-   	String p_noStr=request.getParameter("p_no");
-   	String p_qtyStr=request.getParameter("p_qty");
-   	String[] cart_item_no_strArray=request.getParameterValues("cart_item_no");
-   	String loc = request.getParameter("loc");
-   	String o_option = request.getParameter("o_option");
-   	OrderService orderService=new OrderService();
+	String buyType=request.getParameter("buyType");
+	String p_noStr=request.getParameter("p_no");
+	String p_qtyStr=request.getParameter("p_qty");
+	String[] cart_item_no_strArray=request.getParameterValues("cart_item_no");
+	String o_option = request.getParameter("o_option");
+	String addr_noStr = request.getParameter("addr_no");
+	String loc = request.getParameter("loc");
+	String addr_input = request.getParameter("addr_input");
+	String addr_select = request.getParameter("addr_select");
+	
+	//String loc = request.getParameter("loc");
+	OrderService orderService=new OrderService();
    	CartService cartService=new CartService();
-   	//
-   	
-   	AddressService addressService = new AddressService();
-   	addressService.addressInsert(new Address(0,sUserId,loc));
-   	
+	AddressService addressService = new AddressService();
+	
+	if(addr_select.equals("type")) {
+			loc = addr_input;
+	} else {
+		
+	}
    	if(buyType.equals("cart")){
    		orderService.create(sUserId,o_option,loc);
    	}else if(buyType.equals("cart_select")){
@@ -33,8 +40,7 @@
     }else if(buyType.equals("direct")){
        	orderService.create(sUserId, 
        						Integer.parseInt(p_noStr), Integer.parseInt(p_qtyStr),
-       						o_option,
-       						loc);
+       						o_option);
    	}
    	response.sendRedirect("order_list.jsp");
     %>
