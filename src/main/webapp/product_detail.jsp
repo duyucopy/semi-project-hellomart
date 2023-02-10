@@ -167,7 +167,7 @@
 												<option value="10">10
 											</select> <br><br> 
 
-												<a href="javascript:add_cart_popup_window(this.parentElement);" title="장바구니담기[계속쇼핑팝업]"><img src='image/cart25.png'style="margin-bottom: 5px "></a>
+												<a href="javascript:add_cart_popup_window(this.parentElement);" title="장바구니담기[계속쇼핑팝업]"><img src='image/cart_2_30px.png'style="margin-bottom: 5px "></a>
 												<input type="hidden" name=p_no value="<%=product.getP_no()%>">
 										</form>
 									</td>
