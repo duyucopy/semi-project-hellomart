@@ -34,9 +34,9 @@
 		
 	}
    	if(buyType.equals("cart")){
-   		orderService.create(sUserId,o_option,loc);
+   		orderService.create(sUserId,o_option);
    	}else if(buyType.equals("cart_select")){
-   		orderService.create(sUserId,cart_item_no_strArray,o_option,loc);	
+   		orderService.create(sUserId,cart_item_no_strArray,o_option);	
     }else if(buyType.equals("direct")){
        	orderService.create(sUserId, 
        						Integer.parseInt(p_noStr), Integer.parseInt(p_qtyStr),
