@@ -22,7 +22,7 @@
 		document.f.submit();
 	}
 	function userRemove() {
-		if (confirm("정말 삭제하시겠습니까?")) {
+		if (confirm("정말 탈퇴하시겠습니까?")) {
 			document.f.action = "user_remove_action.jsp";
 			document.f.method='POST';
 			document.f.submit();

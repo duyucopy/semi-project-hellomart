@@ -131,15 +131,16 @@
 							</table> <!-- 
 							<form name="f" method="post">
 							-->
+							<br>
 							<table style="margin-left: 10px" border=0 width=80% height=376
 								align=center>
 								<tr valign=bottom>
 									<td width=30% align=center class=t1><font size=2
-										color=#0000FF><b>주문량</b></font></td>
+										color=black><b>주문량</b></font></td>
 									<td width=40% align=center class=t1><font size=2
-										color=#0000FF><b>제품 이름</b></font></td>
+										color=black><b>제품 이름</b></font></td>
 									<td width=30% align=center class=t1><font size=2
-										color=#0000FF><b>제품 소개</b></font></td>
+										color=black><b>제품 소개</b></font></td>
 								</tr>
 								<tr width=100%>
 									<td colspan=3 height=5><hr color=#556b2f></td>
