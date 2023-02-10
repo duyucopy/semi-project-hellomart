@@ -88,6 +88,14 @@ public class UserService {
 		}
 	}
 	
+	/*
+	 * 아이디 중복체크용 조회리스트
+	 */
+	public List findAllUserId() throws Exception {
+		List findAllUserId = userDao.findUserIdList();
+		return findAllUserId();
+	}
+	
 	
 	
 	

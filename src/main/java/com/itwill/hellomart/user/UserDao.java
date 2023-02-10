@@ -209,7 +209,33 @@ public class UserDao {
 		return isExist;
 	}
 
-	
+	public List findUserIdList() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList fidUserIdList = new ArrayList();
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(UserSQL.USER_SELECT_ALL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				findUserIdList().add(rs.getString("userId"));
+			}
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}
+		return findUserIdList();
+	}
 	
 	
 	

@@ -25,6 +25,8 @@ public class UserDaoTestMain {
 		
 		//아이디 존재 여부
 		System.out.println("6. existedUser : " + userDao.existedUser("guard1"));
+		
+		
 
 	}
 
