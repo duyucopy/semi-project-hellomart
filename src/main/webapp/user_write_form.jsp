@@ -7,7 +7,39 @@
 	UserService userService = new UserService();
 	List<User> userList = userService.findAllUser();
 	//int isduplexxx = request.getParameter("isdupxxx");
-%>    
+%> 
+<%
+	boolean isDuplicate = false;
+	String msg = "";
+	String userId = request.getParameter("userId");
+	int checked=0;
+	
+	if (userId == null || userId.equals("")){
+		// 최초로 팝업창 띄울 때
+		userId = "";
+		msg = "";
+		isDuplicate = true;
+		
+	} else {
+		User user = new User();
+		user.setUserId(userId);
+		
+		
+		isDuplicate = userService.isDuplicateId(userId);
+		
+		if(isDuplicate){
+			msg = "중복된 아이디입니다.";
+		}
+		else{
+			msg = "사용 가능한 아이디입니다.";
+			
+		}
+		
+	
+		
+	}
+	
+%>	   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,13 +114,8 @@
 	function main() {
 		window.location.href='hellomart_main.jsp';
 	}
-	function isDuplicateId() {
-		window.location.href='isDuplicateId.jsp';
-<<<<<<< HEAD
-	}
-=======
->>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
 	
+
 	function repassword() {
 		if(document.f.password.value != ""){
 			if(document.f.password.value != document.f.password2.value){
@@ -104,19 +131,16 @@
 	}
 	
 	
-	function checkId() {
-		let userList = <%=userList%>
-		
-		if(userList.indexOf(f.userId.value)!==-1){
-			document.getElementById('idCheck').innerHTML = "이미 존재하는 아이디입니다.";
-			document.getElementById('idCheck').style.color = "red";
-			document.f.user_id.focus();
-			return false;
-		} else {
-			document.getElementById('idCheck').innerHTML = "사용 가능한 아이디입니다."
-			document.getElementById('idCheck').style.color = "blue";
-			return true;
-		}	
+	
+	function idCheck() {
+		var userId = document.getElementById("userId").value;
+		if (userId == null || userId == '') {
+			alert('아이디를 입력하세요.');
+			return;
+		}
+		document.getElementById('checkForm').action = 'user_write_form2.jsp';
+		document.getElementById('checkForm').method = 'POST';
+		document.getElementById('checkForm').submit();
 	}
 	
 	
@@ -158,22 +182,38 @@
 								</tr>
 							</table> 
 							<!-- write Form  -->
-							<form name="f">
+							<form id="checkForm" style="display: inline;">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
 									bgcolor="BBBBBB">
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
-<<<<<<< HEAD
-											<input type="text" style="width: 150px" name="userId"
-											value="" onfocusout="checkId();">&nbsp;&nbsp;<font id="idCheck"></font>
-=======
-											<input type="text" style="width: 150px" name="userId" 
-											value="" onblur="checkId();checkId2();">&nbsp;&nbsp;<font id="idCheck" color="red"></font>
-
+<div id="wrap">
 	
->>>>>>> branch 'main' of https://github.com/2022-11-JAVA-DEVELOPER/web-project-team4-hellomart.git
+		<p></p>
+		
+		<div id="chk" style="margin-top: 30px">
+		<p></p>
+		<p></p>
+			
+				<input type="text" name="userId" id="userId" width="30px" value="<%=userId%>"> 
+				<input type="button" value="중복확인" onclick="idCheck()" style="font-size: 7pt">
+			
+			
+			
+			<%if(!isDuplicate){ %>
+				<div id="msg" style="font-size: 8pt;margin:5px;text-align: center;color:black;font-weight: bold"><%=msg %></div>
+				
+			<%}else{ %>
+				<div id="msg" style="font-size: 8pt;margin:5px;text-align: center;color:red;font-weight: bold"><%=msg %></div>
+				
+			<%} %>
+			
+				&nbsp;&nbsp;&nbsp;
+				
+		</div>
+	</div>
 										</td>
 										
 										
@@ -209,7 +249,7 @@
 										</td>
 									</tr>
 								</table>
-							</form> <br />
+							</form>
 							<table border=0 cellpadding=0 cellspacing=1>
 								<tr>
 									<td align=center>
