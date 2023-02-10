@@ -10,10 +10,10 @@ public class OrderSQL {
 	
 	public static final String ORDER_DELETE_BY_O_NO = "delete from orders where o_no = ?";
 	
-	public final static String ORDER_SELECT_BY_USERID = "select * from orders where userid = ?";
+	public final static String ORDER_SELECT_BY_USERID = "select * from orders where userid = ? order by o_no desc";
 	//주문 + 주문 아이템보기
 	public final static String ORDER_SELECT_WITH_ORDERITEM_BY_O_TEST 
-			= "select * from orders o join order_item oi on o.o_no=oi.o_no  join  product p on oi.p_no=p.p_no where  o.o_no = ?";
+			= "select * from orders o join order_item oi on o.o_no=oi.o_no  join  product p on oi.p_no=p.p_no where  o.o_no = ? order by o.o_no desc";
 	//특정 회원의 주문 목록 (상품 + 주소)
 	public final static String ORDER_SELECT_WITH_ORDERITEM_BY_O_NO_ADDRESS
 	= "select * from orders o join order_item oi on o.o_no = oi.o_no join product p on oi.p_no = p.p_no join address a on o.addr_no = a.addr_no where o.o_no = ?";

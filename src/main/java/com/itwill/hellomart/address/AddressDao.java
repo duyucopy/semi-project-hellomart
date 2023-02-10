@@ -78,4 +78,21 @@ public class AddressDao {
 		return addressList;
 		
 	}
+	
+	public int addressfindNo() throws Exception {
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(AddressSQL.ADDRESS_SELECT_NO);
+		ResultSet rs = pstmt.executeQuery();
+		
+		int addr_no = 0;
+		if(rs.next()) {
+			// last_number 는 시퀀스의 현재값 == 즉, 다음 nextval 때 출력될 값
+			// 직전에 insert 된 주소의 addr_no 를 가져오려면 -1 을 해야 함
+			addr_no = rs.getInt("last_number") - 1;
+		}
+		rs.close();
+		pstmt.close();
+		con.close();
+		return addr_no;
+	}
 }

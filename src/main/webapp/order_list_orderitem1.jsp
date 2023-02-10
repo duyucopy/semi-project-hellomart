@@ -72,12 +72,12 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 								<table align=center width=80%  border="0" cellpadding="0"
 									cellspacing="1" bgcolor="BBBBBB">
 									<tr>
-<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
-										<td width=145 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
-										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상태</font></td>
-										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문요청사항</font></td>
-										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>총금액</font></td>
-										<td width=80 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상세</font></td>
+										<td width=12% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
+										<td width=20% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
+										<td width=13% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상태</font></td>
+										<td width=30% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문요청사항</font></td>
+										<td width=15% height=25 bgcolor="E6ECDE" align=center class=t1><font>총 금액</font></td>
+										<td width=10% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상세</font></td>
 									</tr>
 									<!-- order start -->
 									<%
@@ -86,10 +86,16 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 									<tr>
 										<td width=130 height=26 align=center bgcolor="ffffff" class=t1><%=orders.getO_no()%></td>
 										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(orders.getDate())%></td>
-										<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=orders.getO_status()%></td>
+										<td width=145 height=26 align=center bgcolor="ffffff" class=t1>
+										<% if(orders.getO_status() != null && orders.getO_status().trim().equalsIgnoreCase("T")) { %>
+											배송 전
+										<% } else { %>
+										배송완료
+										<% } %>
+										</td>
 										<td width=160 height=26 align=center bgcolor="ffffff" class=t1><%=orders.getO_option()%></td>
 										<td width=126 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(orders.getO_price())%></td>
-										<td width=80 height=26 align=center bgcolor="ffffff" class=t1></td>
+										<td width=80 height=26 align=center bgcolor="ffffff" class=t1><a href="order_detail.jsp?o_no=<%=orders.getO_no()%>" class=m1>클릭</a></td>
 									</tr>
 										<%
 											for(OrderItem orderItem:orders.getOrderItemList()) {
@@ -97,7 +103,7 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 												
 										%>
 											<tr>
-												<td width=145 height=26 align=center bgcolor="ffffff" class=t1><img width='20' height='20' align='right' src='image/<%=product.getP_image()%>'/></td>
+												<td width=145 height=26 align=center bgcolor="ffffff" class=t1><img width="20px" height="20px" align='right' src='image/<%=product.getP_image()%>'/></td>
 												<td width=145 height=26 align=center bgcolor="ffffff" class=t1><%=product.getP_name()%></td>
 												<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=orderItem.getOi_qty()%></td>
 												<td width=136 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(orderItem.getOi_qty()*product.getP_price())%></td>

@@ -20,4 +20,7 @@ public class AddressService {
 	public List<Address> addressfindAll(String userId) throws Exception{
 		return addressDao.addressfindAll(userId);
 	}
+	public int addressfindNo() throws Exception {
+		return addressDao.addressfindNo();
+	}
 }

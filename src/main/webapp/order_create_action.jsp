@@ -19,8 +19,9 @@
 	String[] cart_item_no_strArray=request.getParameterValues("cart_item_no");
 	String o_option = request.getParameter("o_option");
 	String addr_noStr = request.getParameter("addr_no");
-	String loc = request.getParameter("loc");
+	// 새주소 입력값
 	String addr_input = request.getParameter("addr_input");
+	// 기존 주소 addr_no
 	String addr_select = request.getParameter("addr_select");
 	
 	//String loc = request.getParameter("loc");
@@ -28,19 +29,24 @@
    	CartService cartService=new CartService();
 	AddressService addressService = new AddressService();
 	
-	if(addr_select.equals("type")) {
-			loc = addr_input;
-	} else {
-		
+	String loc = "";
+	int addr_no = 0;
+	if(addr_select.equals("type")) { // 직접입력
+		loc = addr_input; // 새로운 주소
+		addressService.addressInsert(new Address(0, sUserId, loc));
+		addr_no = addressService.addressfindNo(); // 새로 추가한 주소의 addr_no 가져오기
+	} else { // 기존주소
+		addr_no = Integer.parseInt(addr_select);
 	}
+	
    	if(buyType.equals("cart")){
-   		orderService.create(sUserId,o_option);
+   		orderService.create(sUserId,o_option,addr_no);
    	}else if(buyType.equals("cart_select")){
-   		orderService.create(sUserId,cart_item_no_strArray,o_option);	
+   		orderService.create(sUserId,cart_item_no_strArray,o_option,addr_no);	
     }else if(buyType.equals("direct")){
        	orderService.create(sUserId, 
        						Integer.parseInt(p_noStr), Integer.parseInt(p_qtyStr),
-       						o_option);
+       						o_option,addr_no);
    	}
    	response.sendRedirect("order_list.jsp");
     %>

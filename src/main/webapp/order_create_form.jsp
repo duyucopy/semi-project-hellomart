@@ -64,6 +64,9 @@ form > table tr td{
 	border: 0.1px solid black;
 }
 */
+#addr_input, #addr_select, #o_option { height: 20px; box-sizing: border-box; }
+#addr_input, #addr_select { width: 80%; }
+
 </style>
 <script type="text/javascript">
 	function order_create_form_submit() {
@@ -200,23 +203,23 @@ form > table tr td{
 									<caption style="text-align: left;">배송지</caption>
 									<tr>
 										<td height=25 align=center bgcolor="E6ECDE" class=t1>주소</td>
-										<td height=25 align=center bgcolor="E6ECDE" class=t1>요청사항</td>
+										<td align=center bgcolor="E6ECDE" class=t1>요청사항</td>
 									</tr>
 									<tr>
-										<td width=60% height=30 align=center bgcolor="ffffff" class=t1>
+										<td width=60% height=50 align=center bgcolor="ffffff" class=t1>
 											<!-- 주소 입력창 추가해야함 -->
-											<input type = "text" name="addr_input" id="addr_input" placeholder="주소를 입력하거나 선택하세요.">
+											<input type="text" name="addr_input" id="addr_input" placeholder="주소를 입력하거나 선택하세요.">
 											<select name="addr_select" id="addr_select" onchange="addr_check();">
-											<%for(Address address : addressList) { %>
-											<option value = "<%=address.getAddr_no()%>"><%=address.getLoc()%></option>
-											<%}%>
-											<option value="type" selected> 직접입력 </option>
+												<%for(Address address : addressList) { %>
+												<option value="<%=address.getAddr_no()%>"><%=address.getLoc()%></option>
+												<%}%>
+												<option value="type" selected>직접입력</option>
 											</select>
 											
 										</td>
 										
-										<td width=60% height=40 align=center bgcolor="ffffff" class=t1>
-											<select name ="o_option" id="o_option" style="height: 50%;">
+										<td width=60% align=center bgcolor="ffffff" class=t1>
+											<select name ="o_option" id="o_option">
 												<option selected>배송 요청사항</option>
 												<option>배송 전 연락주세요.</option>
 												<option>부재 시 현관 앞에 놔주세요.</option>

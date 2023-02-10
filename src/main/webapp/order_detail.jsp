@@ -97,7 +97,7 @@ form > table tr td{
 												<input type="submit" value="삭제">
 										</td>
 										<tr>
-										<td bgcolor="ffffff">주소</td>
+										<td bgcolor="ffffff" height=26>주소</td>
 										 	<td colspan="3" align=center bgcolor="ffffff"> <%=order.getAddress().getLoc()%></td>
 										</tr>
 								</table>
@@ -120,7 +120,7 @@ form > table tr td{
 									%>
 									<tr>
 										<td width=290 height=26 align=center  bgcolor="ffffff" class=t1>
-										<a href='product_detail.jsp?p_no=<%=orderItem.getProduct().getP_name()%>'>
+										<a href='product_detail.jsp?p_no=<%=orderItem.getProduct().getP_no()%>'>
 										<%=orderItem.getProduct().getP_name()%></a>
 										</td>
 										

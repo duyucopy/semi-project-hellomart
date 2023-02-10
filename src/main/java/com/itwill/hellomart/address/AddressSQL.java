@@ -14,4 +14,7 @@ public class AddressSQL {
 	public final static String ADDRESS_SELECT_ALL=
 			"select * from address where userid = ?";
 	
+	// 새로 추가한 주소 no 가져오기
+	public final static String ADDRESS_SELECT_NO = 
+			"select last_number from user_sequences where sequence_name = 'ADDRESS_ADDR_NO_SEQ'";
 }

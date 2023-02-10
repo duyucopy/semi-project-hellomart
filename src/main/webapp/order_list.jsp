@@ -68,10 +68,10 @@ List<Order> orderList = orderService.findOrderByUserId(sUserId);
 								<table align=center width=80%  border="0" cellpadding="0"
 									cellspacing="1" bgcolor="BBBBBB">
 									<tr>
-										<td width=100 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
+										<td width=95 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
 										<td width=120 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문날짜</font></td>
-										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상태</font></td>
-										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문요청사항</font></td>
+										<td width=95 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상태</font></td>
+										<td width=158 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문요청사항</font></td>
 										<td width=136 height=25 bgcolor="E6ECDE" align=center class=t1><font>총 금액</font></td>
 										<td width=80 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문상세</font></td>
 									</tr>
@@ -81,19 +81,18 @@ List<Order> orderList = orderService.findOrderByUserId(sUserId);
 									for (Order order : orderList) {
 									%>
 									<tr>
-										<td width=100 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
-										<td width=120 height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getDate())%></td>
-										<td width=145 height=26 align=center bgcolor="ffffff" class=t1>
+										<td width=12% height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
+										<td width=15% height=26 align=center bgcolor="ffffff" class=t1><%=new SimpleDateFormat("yyyy/MM/dd").format(order.getDate())%></td>
+										<td width=13% height=26 align=center bgcolor="ffffff" class=t1>
 										<% if(order.getO_status() != null && order.getO_status().trim().equalsIgnoreCase("T")) { %>
 											배송 전
 										<% } else { %>
 										배송완료
 										<% } %>	
 										</td>
-										<td width=160 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_option()%></td>
-										<td width=126 height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(order.getO_price())%></td>
-										<td width=90 height=26 align=center bgcolor="ffffff" class=t1><a
-											href="order_detail.jsp?o_no=<%=order.getO_no()%>" class=m1>클릭</a></td>
+										<td width=35% height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_option()%></td>
+										<td width=15% height=26 align=center bgcolor="ffffff" class=t1><%=new DecimalFormat("#,###").format(order.getO_price())%></td>
+										<td width=10% height=26 align=center bgcolor="ffffff" class=t1><a href="order_detail.jsp?o_no=<%=order.getO_no()%>" class=m1>클릭</a></td>
 									</tr>
 									<%
 									}
