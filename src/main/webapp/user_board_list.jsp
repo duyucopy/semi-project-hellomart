@@ -5,7 +5,7 @@
 <%@page import="com.itwill.hellomart.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="login_check.jspf"%>
+<%--@ include file="login_check.jspf"--%>
 <%!public String getTitleString(Board board) {
 		StringBuilder title = new StringBuilder(256);
 		String t = board.getTitle();
@@ -37,9 +37,10 @@
 	
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
-		=BoardService.getInstance().findBoardListByUser(Integer.parseInt(pageno), sUserId);
+		=BoardService.getInstance().findBoardListByUser(Integer.parseInt(pageno), "guard1");
 	
 	ProductService productService=new ProductService();
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -96,7 +97,7 @@
 									bgcolor="BBBBBB">
 
 									<tr>
-										<td width=300 align=center bgcolor="E6ECDE">상품이름</td>
+										<td width=350 align=center bgcolor="E6ECDE">상품이름</td>
 										<td width=280 align=center bgcolor="E6ECDE">제목</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴이</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴날</td>
@@ -104,10 +105,12 @@
 									</tr>
 									<%
 										for (Board board : boardListPage.itemList) {
+											System.out.println(board);
+											Product product=productService.findByPrimartKey(board.getP_no());
+											
 									%>
 									<tr>
-										<td width=300 align=center bgcolor="ffffff"><%=board.getP_no()%>
-										</td>
+										<td width=350 align=center bgcolor="ffffff"><%=product.getP_name()%></td>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
 										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=board.getP_no()%>'>
 										<%=this.getTitleString(board)%>
