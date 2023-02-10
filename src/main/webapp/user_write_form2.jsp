@@ -5,8 +5,9 @@
     pageEncoding="UTF-8"%>
 <%
 	UserService userService = new UserService();
-	List<String> userIdList = userService.findAllUserId();
-%>    
+	List<User> userList = userService.findAllUser();
+	//int isduplexxx = request.getParameter("isdupxxx");
+%> 
 <%
 	boolean isDuplicate = false;
 	String msg = "";
@@ -50,9 +51,9 @@
 </style>
 <script type="text/javascript">
 	function userCreate() {
-		if (document.f.name_userId.value == "") {
+		if (document.f.userId.value == "") {
 			alert("사용자 아이디를 입력하십시요.");
-			document.f.name_userId.focus();
+			document.f.userId.focus();
 			return;
 		}
 		/*
@@ -60,25 +61,25 @@
 		2.영문알파벳대문자,소문자,숫자만 가능
 		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
 		*/
-		if(!(document.f.name_userId.value.length>=3 && document.f.name_userId.value.length<=10)){
+		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
 			alert("아이디는 5~10자여야 합니다.");
-			f.name_userId.value.select();
+			f.userId.value.select();
 			return;
 		}
 	
-		for(let i=0;i<document.f.name_userId.value.length;i++){
-			if(!((document.f.name_userId.value.charAt(i)>='0' && document.f.name_userId.value.charAt(i)<='9')||
-				(document.f.name_userId.value.charAt(i)>='a' && document.f.name_userId.value.charAt(i)<='z')||
-				(document.f.name_userId.value.charAt(i)>='A' && document.f.name_userId.value.charAt(i)<='Z')
+		for(let i=0;i<document.f.userId.value.length;i++){
+			if(!((document.f.userId.value.charAt(i)>='0' && document.f.userId.value.charAt(i)<='9')||
+				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
+				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
 			)){
 				alert("아이디는 영문 대문자, 소문자, 숫자만 가능합니다.");
-				document.f.name_userId.value.select();
+				document.f.userId.value.select();
 				return;
 			}							
 		}
-		if(document.f.name_userId.value.charAt(0)>='0' && document.f.name_userId.value.charAt(0)<='9'){
+		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
 			alert("아이디의 첫 글자는 영문 대문자, 소문자만 가능합니다.(숫자로 시작할 수 없습니다.)");
-			document.f.name_userId.value.select();
+			document.f.userId.value.select();
 			return;
 		}
 		
@@ -114,6 +115,7 @@
 		window.location.href='hellomart_main.jsp';
 	}
 	
+
 	function repassword() {
 		if(document.f.password.value != ""){
 			if(document.f.password.value != document.f.password2.value){
@@ -129,7 +131,8 @@
 	}
 	
 	
-	function checkId() {
+	
+	function idCheck() {
 		var userId = document.getElementById("userId").value;
 		if (userId == null || userId == '') {
 			alert('아이디를 입력하세요.');
@@ -139,6 +142,7 @@
 		document.f.method = 'POST';
 		document.f.submit();
 	}
+	
 	
 	
 </script>
@@ -178,29 +182,41 @@
 								</tr>
 							</table> 
 							<!-- write Form  -->
-							<form name="f">
+							<form name="f" style="display: inline;">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
 									bgcolor="BBBBBB">
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
-											<div id="wrap">
-													<p></p>
-													<div id="chk" style="margin-top: 10px">
-													<p></p>
-													<p></p>
-													<input type="text" name="userId" id="userId" width="30px" value="<%=userId%>"> 
-													<input type="button" value="중복확인" onclick="idCheck()" style="font-size: 7pt">
-											
-													<%if(!isDuplicate){ %>
-														<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:black;font-weight: bold"><%=msg %></div>
-													<%}else{ %>
-														<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
-													<%} %>
-												</div>
-											</div>
+<div id="wrap">
+	
+		<p></p>
+		
+		<div id="chk" style="margin-top: 10px">
+		<p></p>
+		<p></p>
+			
+				<input type="text" name="userId" id="userId" width="30px" value="<%=userId%>"> 
+				<input type="button" value="중복확인" onclick="idCheck()" style="font-size: 7pt">
+			
+			
+			
+			<%if(!isDuplicate){ %>
+				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:black;font-weight: bold"><%=msg %></div>
+				
+			<%}else{ %>
+				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
+				
+			<%} %>
+			
+			
+				
+		</div>
+	</div>
 										</td>
+										
+										
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>
@@ -233,7 +249,7 @@
 										</td>
 									</tr>
 								</table>
-							</form> <br />
+							</form>
 							<table border=0 cellpadding=0 cellspacing=1>
 								<tr>
 									<td align=center>

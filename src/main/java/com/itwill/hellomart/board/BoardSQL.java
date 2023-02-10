@@ -26,5 +26,5 @@ public class BoardSQL {
 	 where idx >= ? and idx <= ?
 	 */
 	public static final String BOARD_SELECT_PAGE="SELECT * FROM ( SELECT rownum idx, s.* FROM( SELECT boardno, title, regdate, readcount,groupno, step, depth, userid FROM board ORDER BY groupno DESC, step ASC ) s ) WHERE idx >= ? AND idx <= ? and p_no=?";
-	
+	public static final String BOARD_SELECT_ALL_BY_P_NO="SELECT s.* FROM(SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no FROM board ORDER BY groupno DESC, step ASC ) s where s.p_no = ?";
 }

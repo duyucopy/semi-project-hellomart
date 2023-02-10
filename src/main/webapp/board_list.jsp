@@ -29,18 +29,17 @@
 	}%>
 
 <%
-	String p_noStr=request.getParameter("p_no");
+	int p_no=Integer.parseInt(request.getParameter("p_no"));
 	String pageno=request.getParameter("pageno");
 	if(pageno==null||pageno.equals("")){
 		pageno="1";
 	}	
-	
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
-		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),Integer.parseInt(p_noStr));
+		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),p_no);
 	//프로덕트
 	ProductService productService=new ProductService();
-	Product product=productService.findByPrimartKey(Integer.parseInt(p_noStr));
+	Product product=productService.findByPrimartKey(p_no);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -51,18 +50,17 @@
 <link rel=stylesheet href="css/board.css" type="text/css">
 <script type="text/javascript">
 	function boardCreate() {
-		location.href = "board_write.jsp?p_no="+<%=p_noStr%>;
+		location.href = "board_write.jsp?p_no="+<%=p_no%>;
 	}
 </script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-
+	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
 			<!-- content start -->
-			<jsp:include page="product_detail.jsp?p_no=<%=p_noStr %>" />
 			<!-- include_content.jsp start-->
 
 			<div id="content">
@@ -99,7 +97,7 @@
 									%>
 									<tr>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
-										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>'>
+										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=p_no%>'>
 										<%=this.getTitleString(board)%>
 										</a>
 										</td>
@@ -131,11 +129,11 @@
 								<tr>
 									<td align="center">
 							     		 <%if(boardListPage.pageMaker.getCurBlock() > 1) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">◀◀</a>&nbsp;
+											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>&p_no=<%=p_no%>">◀◀</a>&nbsp;
 										 <%}%>
 										
 										 <%if(boardListPage.pageMaker.getPrevPage()>0) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">◀</a>&nbsp;&nbsp;
+											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>&p_no=<%=p_no%>">◀</a>&nbsp;&nbsp;
 										 <%}%>
 										
 										<%
@@ -144,17 +142,17 @@
 										%>
 										 <font color='red'><strong><%=i%></strong></font>&nbsp;
 										<%} else {%>
-										<a href="./board_list.jsp?pageno=<%=i%>&p_no=<%=Integer.parseInt(p_noStr)%>"><strong><%=i%></strong></a>&nbsp;
+										<a href="./board_list.jsp?pageno=<%=i%>&p_no=<%=p_no%>"><strong><%=i%></strong></a>&nbsp;
 										<%
 										   }
 										  }%>
 										  
 										  
 										 <%if(boardListPage.pageMaker.getNextPage()<=boardListPage.pageMaker.getTotPage()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">▶</a>
+										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>&p_no=<%=p_no%>">▶</a>
 										 <%}%>
 										 <%if(boardListPage.pageMaker.getTotBlock() > boardListPage.pageMaker.getCurBlock()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>&p_no=<%=Integer.parseInt(p_noStr)%>">▶▶&nbsp;</a>
+										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>&p_no=<%=p_no%>">▶▶&nbsp;</a>
 										 <%}%>
 										
 									</td>

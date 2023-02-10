@@ -1,3 +1,5 @@
+<%@page import="com.itwill.hellomart.product.ProductListPageMakerDto"%>
+<%@page import="com.itwill.hellomart.product.ProductPageService"%>
 <%@page import="com.itwill.hellomart.product.Categories"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -9,12 +11,18 @@
 	
 <%
 
-ProductService productService = new ProductService();
+	//ProductService productService = new ProductService();
 	String ct_noStr = request.getParameter("ct_no");
 	//String sort_option = request.getParameter("sort_option");
-	String keyword = request.getParameter("mainsearchkeyword");
 	
-	List<Product> productList = new ArrayList<Product>();
+	/***************검색어 서치**************/
+	String keyword=null;
+	if(keyword==null || keyword.equals("null")){
+		keyword = request.getParameter("keyword");
+	}
+	/*******************************************/
+	
+/* 	List<Product> productList = new ArrayList<Product>();
 	if(ct_noStr == null){
 		if(keyword != null){
 			productList = productService.searchByName(keyword);
@@ -27,8 +35,35 @@ ProductService productService = new ProductService();
 		}else{
 			productList = productService.findByCategoryNumber(Integer.parseInt(ct_noStr));
 		}
+	} */
+	
+	/*********상품페이징 테스트*************/
+	String productPageno=request.getParameter("productPageno");
+	if(productPageno==null||productPageno.equals("")){
+		productPageno="1";
+	}	
+	//게시물조회
+	/* ProductListPageMakerDto productListPage
+		=ProductPageService.getInstance().findProductList(Integer.parseInt(productPageno)); */
+	
+	ProductListPageMakerDto productListPage= ProductPageService.getInstance().findProductList(Integer.parseInt(productPageno));
+	if(ct_noStr == null){
+		if(keyword != null){
+			productListPage 
+				=ProductPageService.getInstance().findProductListByName(Integer.parseInt(productPageno),keyword);
+		}else{
+			productListPage 
+				=ProductPageService.getInstance().findProductList(Integer.parseInt(productPageno));
+		}
 	}
-				
+/* 	else{
+		if(keyword != null){
+			productList = productService.searchByName(keyword);
+		}else{
+			productList = productService.findByCategoryNumber(Integer.parseInt(ct_noStr));
+		}
+	} */
+	/**********************************/
 %>
 <%
 boolean isLogin = false;
@@ -101,16 +136,6 @@ function searchByKeyword() {
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
 											상품리스트</b></td>
-									<!--검색 -->
-								   <form name="ff" style="display: inline;">
-										<select data-trigger="" name="searchType" style="width:60px;height:30px">
-											<option value="all">통합</option>
-											<option value="name">제목</option>
-										</select>
-											<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;height:25px"> 
-											<input type="button" value="검색" onclick="searchByKeyword();">		
-									</form>
-									<!--검색 끝 -->
 								</tr>
 							</table>
 
@@ -118,13 +143,16 @@ function searchByKeyword() {
 								<table width="100%" align="center" border="0" cellpadding="10"
 									cellspacing="1" bgcolor="BBBBBB">
 									<%
-									int product_size=productList.size();
-									int product_column_size=4;
+									int product_size=productListPage.itemList.size();
+									int product_column_size=3;
 									int product_line_count = 1;
 									
 									
-									for (int i=0;i<productList.size();i++) {
-											Product product=productList.get(i);
+									//for (int i=0;i<productList.size();i++) {
+											//Product product=productList.get(i);
+									/************상품페이징 테스트**************/
+									for (int i=0;i<productListPage.itemList.size();i++) {
+										Product product=productListPage.itemList.get(i);
 									%>
 									<!--상품시작 -->
 									<%
@@ -151,7 +179,53 @@ function searchByKeyword() {
 							</table>
 															
 							
-							</div> <br /></td>
+						</div>
+						<table border="0" cellpadding="0" cellspacing="1" width="590">
+							<tr>
+								<td align="center">
+						     		 <%if(productListPage.productPageMaker.getCurBlock() > 1) {%>    
+										<a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getPrevGroupStartPage()%>&keyword=<%=keyword%>">◀◀</a>&nbsp;
+									 <%}%>
+									
+									 <%if(productListPage.productPageMaker.getPrevPage()>0) {%>
+									 	<%if(keyword==null){ %>
+											<a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getPrevPage()%>">◀</a>&nbsp;&nbsp;
+									 	<%}else{ %>
+											<a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getPrevPage()%>&keyword=<%=keyword%>">◀</a>&nbsp;&nbsp;
+									 	<%} %>
+									 <%}%>
+									
+									<%
+										for (int i = productListPage.productPageMaker.getBlockBegin(); i <= productListPage.productPageMaker.getBlockEnd(); i++) {
+									 	if (productListPage.productPageMaker.getCurPage() == i) {
+									%>
+									 <font color='red'><strong><%=i%></strong></font>&nbsp;
+									<%} else {%>
+										<%if(keyword==null){ %>
+										<a href="./product_list.jsp?productPageno=<%=i%>"><strong><%=i%></strong></a>&nbsp;
+										<%}else{ %>
+										<a href="./product_list.jsp?productPageno=<%=i%>&keyword=<%=keyword%>"><strong><%=i%></strong></a>&nbsp;
+										<%} %>
+									<%
+									   }
+									  }%>
+									  
+									  
+									 <%if(productListPage.productPageMaker.getNextPage()<=productListPage.productPageMaker.getTotPage()){%>
+									 	<%if(keyword==null){ %>
+										  <a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getNextPage()%>">▶</a>
+									 	<%}else{ %>
+										  <a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getNextPage()%>&keyword=<%=keyword%>">▶</a>
+									 	<%} %>
+									 <%}%>
+									 <%if(productListPage.productPageMaker.getTotBlock() > productListPage.productPageMaker.getCurBlock()){%>
+									  <a href="./product_list.jsp?productPageno=<%=productListPage.productPageMaker.getNextGroupStartPage()%>&keyword=<%=keyword%>">▶▶&nbsp;</a>
+									 <%}%>
+									
+									</td>
+								</tr>
+							</table> 
+						<br /></td>
 					</tr>
 				</table>
 			</div>

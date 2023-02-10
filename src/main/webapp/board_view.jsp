@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.itwill.hellomart.product.Product"%>
+<%@page import="com.itwill.hellomart.product.ProductService"%>
 <%@page import="com.itwill.hellomart.board.BoardService"%>
 <%@page import="com.itwill.hellomart.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,6 +32,8 @@
 	//읽은회수증가
 	BoardService.getInstance().updateHitCount(boardno);
 	
+	ProductService productService=new ProductService();
+	Product product= productService.findByPrimartKey(board.getP_no());
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,9 +45,9 @@
  
 <script language="JavaScript">
 	function boardCreate() {
-		fw.action = "board_write.jsp";
-		fw.method = "POST";
-		fw.submit();
+		f.action = "board_write.jsp";
+		f.method = "POST";
+		f.submit();
 	}
 	function boardReplyCreate() {
 		document.f.action = "board_reply_write.jsp";
@@ -68,20 +73,7 @@
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
 	<!-- container start-->
-	<div id="container">
-		<!-- header start -->
-		<div id="header">
-			<!-- include_common_top.jsp start-->
-			<jsp:include page="include_common_top.jsp" />
-			<!-- include_common_top.jsp end-->
-		</div>
-		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
+	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
@@ -94,7 +86,7 @@
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b> 게시물
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기 게시물
 											내용보기 </b>
 									</td>
 								</tr>
@@ -132,16 +124,44 @@
 							<table width=590 border=0 cellpadding=0 cellspacing=0>
 								<tr>
 									<td align=center>
-										<form name="fw" method="post">
-											<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
-										</form>
+										<input type="button" value="글쓰기" onClick="boardCreate()"> &nbsp;
 										<input type="button" value="답글쓰기" onClick="boardReplyCreate()"> &nbsp; 
 										<input type="button" value="수정" onClick="boardUpdate()"> &nbsp; 
 										<input type="button" value="삭제" onClick="boardRemove()"> &nbsp; 
 										<input type="button" value="리스트" onClick="boardList()"></td>
 								</tr>
 							</table></td>
-					</tr>
+							<%
+								Board nextBoard=null;
+								Board prevBoard=null;
+								List<Board> BoardList =BoardService.getInstance().findBoardList(p_no);
+								for (int i=0;i<BoardList.size();i++) {
+									if((int)boardno==BoardList.get(i).getBoardno()){
+										if(i-1>=0)
+											nextBoard = BoardList.get(i-1);
+										if(i+1<=BoardList.size()) 
+											prevBoard = BoardList.get(i+1);
+										break;
+									}
+								}
+							
+							%>
+							<%if(nextBoard!=null){ %>
+								<tr>
+									<td width=50 bgcolor="ffffff" style="padding-left: 10">
+										<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=nextBoard.getBoardno()%>">
+										[다음글]<%=nextBoard.getTitle() %></a>
+									</td>
+								</tr>
+							<%} %>
+							<%if(prevBoard!=null){ %>
+								<tr>
+									<td width=50 bgcolor="ffffff" style="padding-left: 10">
+										<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=prevBoard.getBoardno()%>">
+										[이전글]<%=prevBoard.getTitle() %></a>
+									</td>
+								</tr>
+							<%} %>
 				</table>
 			</div>
 			<!-- include_content.jsp end-->
@@ -153,7 +173,6 @@
 			<jsp:include page="include_common_bottom.jsp" />
 			<!-- include_common_bottom.jsp end-->
 		</div>
-	</div>
 	<!--container end-->
 </body>
 </html>

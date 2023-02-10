@@ -205,6 +205,146 @@ public class ProductDao {
 		return productSet;
 	}
 	/*
+	 * selectAll : 상품전체검색 페이징
+	 */
+	public List<Product> findAllPaing(int start, int last) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Product> productList=new ArrayList<Product>();
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_ALL_FOR_PAGING);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, last);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				productList.add(new Product(
+						rs.getInt("p_no"),
+						rs.getString("p_name"),
+						rs.getInt("p_price"),
+						rs.getString("p_image"),
+						rs.getString("p_desc"),
+						rs.getInt("ct_no")));
+			}
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return productList;
+	}
+	/*
+	 * selectAll : 상품전체검색 키워드검색후 페이징
+	 */
+	public List<Product> findAllPaingByName(int start, int last, String p_name) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Product> productList=new ArrayList<Product>();
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.PRODUCT_SELECT_FOR_PAGING_SEARCH_BY_NAME);
+			pstmt.setString(1, p_name);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, last);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				productList.add(new Product(
+						rs.getInt("p_no"),
+						rs.getString("p_name"),
+						rs.getInt("p_price"),
+						rs.getString("p_image"),
+						rs.getString("p_desc"),
+						rs.getInt("ct_no")));
+			}
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return productList;
+	}
+	public int getProductCount() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM product";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				count = rs.getInt(1);
+
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception ex) {
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception ex) {
+			}
+			try {
+				if (con != null)
+					con.close();
+			} catch (Exception ex) {
+			}
+		}
+		return count;
+	}
+	public int getProductCountByName(String p_name) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM product where p_name like '%'||?||'%'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_name);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				count = rs.getInt(1);
+
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception ex) {
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception ex) {
+			}
+			try {
+				if (con != null)
+					con.close();
+			} catch (Exception ex) {
+			}
+		}
+		return count;
+	}
+	/*
 	 * 이름으로 찾기
 	 */
 	public Product findByName(String p_name)throws Exception{

@@ -76,6 +76,12 @@ public class Board {
 	public void setP_no(int p_no) {
 		this.p_no = p_no;
 	}
+	@Override
+	public String toString() {
+		return "Board [boardno=" + boardno + ", title=" + title + ", content=" + content + ", regdate=" + regdate
+				+ ", readcount=" + readcount + ", groupno=" + groupno + ", step=" + step + ", depth=" + depth
+				+ ", userId=" + userId + ", p_no=" + p_no + "]\n";
+	}
 	
 	
 }

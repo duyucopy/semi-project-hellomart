@@ -203,7 +203,6 @@
 				</table>
 			</div>
 			<!-- include_content.jsp end-->
-			<jsp:include page="board_list.jsp?pageno=1&p_no=<%=product.getP_no() %>" />
 			<!-- content end -->
 		</div>
 		<!--wrapper end-->

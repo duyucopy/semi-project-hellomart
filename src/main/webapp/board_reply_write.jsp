@@ -57,20 +57,7 @@
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
 	<!-- container start-->
-	<div id="container">
-		<!-- header start -->
-		<div id="header">
-			<!-- include_common_top.jsp start-->
-			<jsp:include page="include_common_top.jsp" />
-			<!-- include_common_top.jsp end-->
-		</div>
-		<!-- header end -->
-		<!-- navigation start-->
-		<div id="navigation">
-			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp" />
-			<!-- include_common_left.jsp end-->
-		</div>
+	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 		<!-- navigation end-->
 		<!-- wrapper start -->
 		<div id="wrapper">
@@ -140,7 +127,6 @@
 			<jsp:include page="include_common_bottom.jsp" />
 			<!-- include_common_bottom.jsp end-->
 		</div>
-	</div>
 	<!--container end-->
 </body>
 </html>
