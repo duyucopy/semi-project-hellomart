@@ -138,9 +138,9 @@
 			alert('아이디를 입력하세요.');
 			return;
 		}
-		document.getElementById('checkForm').action = 'user_write_form2.jsp';
-		document.getElementById('checkForm').method = 'POST';
-		document.getElementById('checkForm').submit();
+		document.f.action = 'user_write_form2.jsp';
+		document.f.method = 'POST';
+		document.f.submit();
 	}
 	
 	
@@ -182,7 +182,7 @@
 								</tr>
 							</table> 
 							<!-- write Form  -->
-							<form id="checkForm" style="display: inline;">
+							<form name="f" style="display: inline;">
 								<table border="0" cellpadding="0" cellspacing="1" width="590"
 									bgcolor="BBBBBB">
 									<tr>
@@ -193,7 +193,7 @@
 	
 		<p></p>
 		
-		<div id="chk" style="margin-top: 30px">
+		<div id="chk" style="margin-top: 10px">
 		<p></p>
 		<p></p>
 			
@@ -203,14 +203,14 @@
 			
 			
 			<%if(!isDuplicate){ %>
-				<div id="msg" style="font-size: 8pt;margin:5px;text-align: center;color:black;font-weight: bold"><%=msg %></div>
+				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:black;font-weight: bold"><%=msg %></div>
 				
 			<%}else{ %>
-				<div id="msg" style="font-size: 8pt;margin:5px;text-align: center;color:red;font-weight: bold"><%=msg %></div>
+				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
 				
 			<%} %>
 			
-				&nbsp;&nbsp;&nbsp;
+			
 				
 		</div>
 	</div>
