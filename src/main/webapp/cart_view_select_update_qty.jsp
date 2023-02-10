@@ -51,16 +51,17 @@ int count = 0;
 	 선택된 카트 상품 주문
 	 */
 	function cart_view_form_select_order_submit() {
+		
 		var cart_item_no_check_list = document
 				.getElementsByName("cart_item_no_check");
 		var isChecked = false;
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
-				document.cart_view_form.innerHTML += "<input type='hidden' name='cart_item_no' value='"
-						+ cart_item_no_check_list.item(i).value + "'>"
 				isChecked = true;
 			}
 		}
+		
+		
 		if (!isChecked) {
 			alert('제품을 선택해주세요.');
 			return;
@@ -68,7 +69,7 @@ int count = 0;
 		document.cart_view_form.buyType.value = 'cart_select';
 		document.cart_view_form.method = 'POST';
 		document.cart_view_form.action = 'order_create_form.jsp';
-		document.cart_view_form.submit();
+		document.cart_view_form.submit(); 
 	}
 	/*
 	체크박스 선택 시 실행(카트 수량)
@@ -79,7 +80,7 @@ int count = 0;
 		var cart_item_check_selected_count = 0;
 		var tot_order_price = 0;
 		document.cart_view_form.innerHTML ='';
-		document.cart_view_form.innerHTML +="<input type='hidden' name='buyType'>";
+		document.cart_view_form.innerHTML +='<input type="hidden" name="buyType">';
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
 			if (cart_item_no_check_list.item(i).checked === true) {
 				document.cart_view_form.innerHTML += 
