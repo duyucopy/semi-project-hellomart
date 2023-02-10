@@ -134,8 +134,7 @@ function searchByKeyword() {
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											상품리스트</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>상품리스트</b></td>
 								</tr>
 							</table>
 
@@ -161,7 +160,7 @@ function searchByKeyword() {
 									<tr>
 									<%} %>
 										<td align="center" width="25%"  bgcolor="ffffff"><a
-											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="88px" height="65px"
+											href="product_detail.jsp?p_no=<%=product.getP_no()%>"><img width="150px" height="150px"
 												src="image/<%=product.getP_image()%>" border="0"></a><br />	
 											<br /> <b><%=product.getP_name()%></b>
 											<form style="display: inline;">

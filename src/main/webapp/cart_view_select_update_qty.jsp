@@ -176,7 +176,7 @@ int count = 0;
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td height="22">&nbsp;&nbsp;<b>쇼핑몰 - 장바구니 보기</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>장바구니</b></td>
 								</tr>
 							</table> <!--form--> <!-- 
 							<form name="f" method="post">
@@ -261,7 +261,7 @@ int count = 0;
 									<tr>
 										<td width=640 colspan=6 height=26 class=t1 bgcolor="ffffff">
 											<p align=right>
-												<br /> <font style="color: red">총주문금액 : <span
+												<br /> <font style="size:10pt; color: red; font-weight:bold;">총주문금액 : <span
 													id="tot_order_price"><%=new DecimalFormat("#,###").format(tot_price)%></span>원
 												</font>
 											</p>
@@ -291,24 +291,25 @@ int count = 0;
 							<br>
 							
 							<!-- 추천상품 -->
-							&nbsp;&nbsp;&nbsp;&nbsp;<%=sUserId %>님을 위한 추천상품
-							<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold; font-size:10pt"><%=sUserId %>님을 위한 추천상품</span>
 							<br>
 							
 							<table width=600 height=300 cellspacing=0>
 								<% for(Product pro : productSet) { %>
 									<td align=center>
 									<br>
-									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><img src=<%=pro.getP_image() %>></a>
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><img src="image/<%=pro.getP_image()%>" ></a>
 									<br>
 									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=pro.getP_name() %></a>
 									<br>
-									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=pro.getP_price() %>원</a>
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=new DecimalFormat("#,###").format(tot_price)%>원</a>
 									</td>
 									<% count++;
 									if(count ==3) break; %>
 								<% } %>
 							</table>
+							<br>
+							<br>
 							
 						</td>
 					</tr>
