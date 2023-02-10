@@ -287,20 +287,23 @@ int count = 0;
 									</td>
 								</tr>
 							</table>
+							<br>
+							<br>
 							
 							<!-- 추천상품 -->
 							&nbsp;&nbsp;&nbsp;&nbsp;<%=sUserId %>님을 위한 추천상품
+							<br>
 							<br>
 							
 							<table width=600 height=300 cellspacing=0>
 								<% for(Product pro : productSet) { %>
 									<td align=center>
 									<br>
-									<img src=<%=pro.getP_image() %>>
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><img src=<%=pro.getP_image() %>></a>
 									<br>
-									<%=pro.getP_name() %>
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=pro.getP_name() %></a>
 									<br>
-									<%=pro.getP_price() %>원
+									<a href="product_detail.jsp?p_no=<%=pro.getP_no()%>"><%=pro.getP_price() %>원</a>
 									</td>
 									<% count++;
 									if(count ==3) break; %>

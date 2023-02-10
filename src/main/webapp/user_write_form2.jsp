@@ -28,7 +28,7 @@
 		isDuplicate = userService.isDuplicateId(userId);
 		
 		if(isDuplicate){
-			msg = "중복된 아이디입니다.";
+			msg = "이미 존재하는 아이디입니다.";
 		}
 		else{
 			msg = "사용 가능한 아이디입니다.";
@@ -52,7 +52,7 @@
 <script type="text/javascript">
 	function userCreate() {
 		if (document.f.userId.value == "") {
-			alert("사용자 아이디를 입력하십시요.");
+			document.getElementById('id').innerHTML = "아이디를 입력하세요." 
 			document.f.userId.focus();
 			return;
 		}
@@ -62,7 +62,7 @@
 		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
 		*/
 		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
-			alert("아이디는 5~10자여야 합니다.");
+			document.getElementById('id').innerHTML = "아이디는 5~10자여야 합니다." 
 			f.userId.value.select();
 			return;
 		}
@@ -72,13 +72,13 @@
 				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
 				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
 			)){
-				alert("아이디는 영문 대문자, 소문자, 숫자만 가능합니다.");
+				document.getElementById('id').innerHTML = "아이디는 영문 대문자, 소문자, 숫자만 가능합니다." 
 				document.f.userId.value.select();
 				return;
 			}							
 		}
 		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
-			alert("아이디의 첫 글자는 영문 대문자, 소문자만 가능합니다.(숫자로 시작할 수 없습니다.)");
+			document.getElementById('id').innerHTML = "아이디의 첫 글자는 영문 대문자, 소문자만 가능하며, 숫자로 시작할 수 없습니다." 
 			document.f.userId.value.select();
 			return;
 		}
@@ -86,22 +86,22 @@
 		
 		/*******************************************************/
 		if (document.f.password.value == "") {
-			alert("비밀번호를 입력하세요.");
+			document.getElementById('pass').innerHTML = "비밀번호를 입력하세요." 
 			document.f.password.focus();
 			return;
 		}
 		if (document.f.password2.value == "") {
-			alert("비밀번호확인을 입력하세요.");
+			document.getElementById('pass2').innerHTML = "비밀번호확인을 입력하세요." 
 			f.password2.focus();
 			return;
 		}
 		if (document.f.name.value == "") {
-			alert("이름을 입력하세요.");
+			document.getElementById('name').innerHTML = "이름을 입력하세요." 
 			f.name.focus();
 			return;
 		}
 		if (document.f.email.value == "") {
-			alert("이메일 주소를 입력하세요.");
+			document.getElementById('email').innerHTML = "이메일 주소를 입력하세요." 
 			f.email.focus();
 			return;
 		}
@@ -109,13 +109,25 @@
 		document.f.action = "user_write_action.jsp";
 		document.f.method='POST';
 		document.f.submit();
-		}
-	
-	function main() {
-		window.location.href='hellomart_main.jsp';
 	}
 	
-
+	function passCheck() {
+		if (document.f.password.value == "") {
+			document.getElementById('pass').innerHTML = "비밀번호를 입력하세요." 
+			document.f.password.focus();
+			return;
+		}
+		if (document.f.password.value !== "") {
+			document.getElementById('pass').innerHTML = "" 
+			return;
+		}
+		if (document.f.password2.value == "") {
+			document.getElementById('pass2').innerHTML = "비밀번호확인을 입력하세요." 
+			document.f.password2.focus();
+			return;
+		}
+	}
+	
 	function repassword() {
 		if(document.f.password.value != ""){
 			if(document.f.password.value != document.f.password2.value){
@@ -135,7 +147,7 @@
 	function idCheck() {
 		var userId = document.getElementById("userId").value;
 		if (userId == null || userId == '') {
-			alert('아이디를 입력하세요.');
+			document.getElementById('id').innerHTML = "아이디를 입력하세요." 
 			return;
 		}
 		document.f.action = 'user_write_form2.jsp';
@@ -144,6 +156,9 @@
 	}
 	
 	
+	function main() {
+		window.location.href='hellomart_main.jsp';
+	}
 	
 </script>
 </head>
@@ -189,40 +204,28 @@
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
-<div id="wrap">
-	
-		<p></p>
-		
-		<div id="chk" style="margin-top: 10px">
-		<p></p>
-		<p></p>
-			
-				<input type="text" name="userId" id="userId" width="30px" value="<%=userId%>"> 
-				<input type="button" value="중복확인" onclick="idCheck()" style="font-size: 7pt">
-			
-			
-			
-			<%if(!isDuplicate){ %>
-				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:black;font-weight: bold"><%=msg %></div>
-				
-			<%}else{ %>
-				<div id="msg" style="font-size: 4pt;margin:5px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
-				
-			<%} %>
-			
-			
-				
-		</div>
-	</div>
+											<div id="wrap">
+												<p></p>
+												<div id="chk" style="margin-top: 10px">
+												<p></p>
+												<p></p>
+														<input type="text" name="userId" id="userId" width="30px" value="<%=userId%>"> 
+														<input type="button" value="중복확인" onclick="idCheck();" style="font-size: 7pt">
+														<div id="id" style="font-size: 6pt;margin:5px;text-align: left;color:red;font-weight: bold"></div>
+													<%if(!isDuplicate){ %>
+														<div id="msg" style="font-size: 6pt;margin:5px;text-align: left;color:blue;font-weight: bold"><%=msg %></div>
+													<%}else{ %>
+														<div id="msg" style="font-size: 6pt;margin:5px;text-align: left;color:red;font-weight: bold"><%=msg %></div>
+													<%} %>
+												</div>
+											</div>
 										</td>
-										
-										
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="password" style="width: 150px" name="password"
-											value="">
+											value="" onfocusout="passCheck();">&nbsp;&nbsp;<font id="pass" color="red"></font>
 										</td>
 									</tr>
 									<tr>
@@ -230,14 +233,14 @@
 											확인</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="password" style="width: 150px" name="password2"
-											value="" onkeyup="repassword()">&nbsp;&nbsp;<font id="pass2"></font>
+											value="" onkeyup="passCheck();repassword();">&nbsp;&nbsp;<font id="pass2" color="red"></font>
 										</td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="name"
-											value="">
+											value="">&nbsp;&nbsp;<font id="name" color="red"></font>
 										</td>
 									</tr>
 									<tr>
@@ -245,7 +248,7 @@
 											주소</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="text" style="width: 150px" name="email"
-											value="">
+											value="">&nbsp;&nbsp;<font id="email" color="red"></font>
 										</td>
 									</tr>
 								</table>
