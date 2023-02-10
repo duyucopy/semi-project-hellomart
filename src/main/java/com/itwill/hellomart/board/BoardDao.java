@@ -229,30 +229,7 @@ public class BoardDao {
 		ArrayList<Board> boards = new ArrayList<Board>();
 		try {
 			con = dataSource.getConnection();
-			StringBuffer sql = new StringBuffer(500);
-			sql.append("SELECT * ");
-			sql.append("FROM ");
-
-			sql.append("( ");
-			sql.append("	SELECT ");
-			sql.append("		rownum idx, s.* ");
-			sql.append("	FROM ");
-
-			sql.append("	( ");
-			sql.append("		SELECT ");
-			sql.append("			boardno, title, ");
-			sql.append("			regdate, readcount, ");
-			sql.append("			groupno, step, depth, userid, p_no");
-			sql.append("		FROM ");
-			sql.append("			board ");
-			sql.append("		ORDER BY groupno DESC, step ASC ");
-			sql.append("	) s ");
-
-			sql.append("where s.userid = ?) ");
-
-			sql.append("WHERE idx >= ? AND idx <= ?");
-
-			pstmt = con.prepareStatement(sql.toString());
+			pstmt = con.prepareStatement(BoardSQL.BOARD_SELECT_ALL_BY_USERID);
 			pstmt.setString(1, sUserId);
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, last);

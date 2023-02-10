@@ -75,8 +75,10 @@ SELECT * FROM (
                             SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no
                             FROM board 
                             ORDER BY groupno DESC, step ASC ) s 
-                            where s.userid = 'guard1') 
-WHERE idx >= 1 AND idx <= 100;
+                            where s.userid = 'csd') 
+WHERE idx >= 1 AND idx <= 11;
+
+SELECT * FROM ( SELECT rownum idx, s.* FROM( SELECT boardno, title, regdate, readcount,groupno, step, depth, userid, p_no FROM board ORDER BY groupno DESC, step ASC ) s  where s.userid = 'csd')  WHERE idx >= 1 AND idx <= 100;
 
 --답글쓰기
 /*현재글의 데이타를 기반으로 작업한다.

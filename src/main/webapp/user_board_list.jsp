@@ -5,6 +5,7 @@
 <%@page import="com.itwill.hellomart.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="login_check.jspf"%>
 <%!public String getTitleString(Board board) {
 		StringBuilder title = new StringBuilder(256);
 		String t = board.getTitle();
@@ -29,7 +30,6 @@
 	}%>
 
 <%
-	int p_no=Integer.parseInt(request.getParameter("p_no"));
 	String pageno=request.getParameter("pageno");
 	if(pageno==null||pageno.equals("")){
 		pageno="1";
@@ -37,35 +37,48 @@
 	
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
-		=BoardService.getInstance().findBoardList(Integer.parseInt(pageno),p_no);
-	//프로덕트
+		=BoardService.getInstance().findBoardListByUser(Integer.parseInt(pageno), sUserId);
+	
 	ProductService productService=new ProductService();
-	Product product=productService.findByPrimartKey(p_no);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>게시판</title>
+<title>유저작성글 조회</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet href="css/styles.css" type="text/css">
 <link rel=stylesheet href="css/board.css" type="text/css">
-<script type="text/javascript">
-	function boardCreate() {
-		location.href = "board_write.jsp?p_no="+<%=p_no%>;
-	}
-</script>
+
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-
-				<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
-				<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
+	<div id="container">
+		<!-- header start -->
+		<div id="header">
+			<!-- include_common_top.jsp start-->
+			<jsp:include page="include_common_top.jsp" />
+			<!-- include_common_top.jsp end-->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation">
+			<!-- include_common_left.jsp start-->
+			<jsp:include page="include_common_left.jsp" />
+			<!-- include_common_left.jsp end-->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper start -->
+		<div id="wrapper">
+			<!-- content start -->
+			<!-- include_content.jsp start-->
+			<div id="content">
+				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
 						<td>
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기게시판</b>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>작성글 조회</b>
 									</td>
 								</tr>
 								<tr bgcolor="#FFFFFF">
@@ -82,6 +95,7 @@
 									bgcolor="BBBBBB">
 
 									<tr>
+										<td width=280 align=center bgcolor="E6ECDE">상품이름</td>
 										<td width=280 align=center bgcolor="E6ECDE">제목</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴이</td>
 										<td width=120 align=center bgcolor="E6ECDE">글쓴날</td>
@@ -91,8 +105,10 @@
 										for (Board board : boardListPage.itemList) {
 									%>
 									<tr>
+										<td width=120 align=center bgcolor="ffffff"><%=productService.findByPrimartKey(board.getP_no()).getP_name()%>
+										</td>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
-										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=p_no%>'>
+										<a href='board_view.jsp?boardno=<%=board.getBoardno()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>&p_no=<%=productService.findByPrimartKey(board.getP_no()).getP_no()%>'>
 										<%=this.getTitleString(board)%>
 										</a>
 										</td>
@@ -124,11 +140,11 @@
 								<tr>
 									<td align="center">
 							     		 <%if(boardListPage.pageMaker.getCurBlock() > 1) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>&p_no=<%=p_no%>">◀◀</a>&nbsp;
+											<a href="./user_board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevGroupStartPage()%>">◀◀</a>&nbsp;
 										 <%}%>
 										
 										 <%if(boardListPage.pageMaker.getPrevPage()>0) {%>    
-											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>&p_no=<%=p_no%>">◀</a>&nbsp;&nbsp;
+											<a href="./user_board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>">◀</a>&nbsp;&nbsp;
 										 <%}%>
 										
 										<%
@@ -137,31 +153,34 @@
 										%>
 										 <font color='red'><strong><%=i%></strong></font>&nbsp;
 										<%} else {%>
-										<a href="./board_list.jsp?pageno=<%=i%>&p_no=<%=p_no%>"><strong><%=i%></strong></a>&nbsp;
+										<a href="./user_board_list.jsp?pageno=<%=i%>"><strong><%=i%></strong></a>&nbsp;
 										<%
 										   }
 										  }%>
 										  
 										  
 										 <%if(boardListPage.pageMaker.getNextPage()<=boardListPage.pageMaker.getTotPage()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>&p_no=<%=p_no%>">▶</a>
+										  <a href="./user_board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>">▶</a>
 										 <%}%>
 										 <%if(boardListPage.pageMaker.getTotBlock() > boardListPage.pageMaker.getCurBlock()){%>
-										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>&p_no=<%=p_no%>">▶▶&nbsp;</a>
+										  <a href="./user_board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>">▶▶&nbsp;</a>
 										 <%}%>
 										
 									</td>
 								</tr>
 							</table> <!-- button -->
-							<table border="0" cellpadding="0" cellspacing="1" width="590">
-								<tr>
-									<td align="right"><input type="button" value="게시물 생성"
-											onclick="boardCreate();" /></td>
-								</tr>
-							</table></td>
 					</tr>
 				</table>
-
+			</div>
+			<!-- include_content.jsp end-->
+			<!-- content end -->
+		</div>
+		<!--wrapper end-->
+		<div id="footer">
+			<!-- include_common_bottom.jsp start-->
+			<jsp:include page="include_common_bottom.jsp" />
+			<!-- include_common_bottom.jsp end-->
+		</div>
 	<!--container end-->
 </body>
 </html>
