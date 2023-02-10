@@ -1,3 +1,5 @@
+<%@page import="com.itwill.hellomart.address.Address"%>
+<%@page import="com.itwill.hellomart.address.AddressService"%>
 <%@page import="com.itwill.hellomart.order.OrderService"%>
 <%@page import="com.itwill.hellomart.cart.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,6 +21,11 @@
    	String o_option = request.getParameter("o_option");
    	OrderService orderService=new OrderService();
    	CartService cartService=new CartService();
+   	//
+   	
+   	AddressService addressService = new AddressService();
+   	addressService.addressInsert(new Address(0,sUserId,loc));
+   	
    	if(buyType.equals("cart")){
    		orderService.create(sUserId,o_option,loc);
    	}else if(buyType.equals("cart_select")){
