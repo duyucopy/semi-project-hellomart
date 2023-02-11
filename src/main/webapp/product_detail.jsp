@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.hellomart.board.BoardService"%>
 <%@page import="com.itwill.hellomart.board.BoardListPageMakerDto"%>
 <%@page import="com.itwill.hellomart.product.Product"%>
@@ -125,8 +126,7 @@
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											상품상세보기</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>상품상세보기</b></td>
 								</tr>
 							</table> <!-- 
 							<form name="f" method="post">
@@ -135,18 +135,20 @@
 							<table style="margin-left: 10px" border=0 width=80% height=376
 								align=center>
 								<tr valign=bottom>
-									<td width=30% align=center class=t1><font size=2
-										color=black><b>주문량</b></font></td>
-									<td width=40% align=center class=t1><font size=2
-										color=black><b>제품 이름</b></font></td>
-									<td width=30% align=center class=t1><font size=2
-										color=black><b>제품 소개</b></font></td>
+									<td colspan=2 align=left class=t1><font size=4
+										color=black><b><%=product.getP_name()%></b></font></td>
 								</tr>
 								<tr width=100%>
 									<td colspan=3 height=5><hr color=#556b2f></td>
 								</tr>
 								<tr width=100%>
-									<td width=30% height=200 align=center class=t1>
+									<td width=30% align=center><img border=0
+										src='image/<%=product.getP_image()%>' width=150 height=150></td>
+									<td width=40% class=t1 align=center>
+										<font color=#0000FF><%=product.getP_desc()%></font><br><br>
+										<font color=#FF0000>금액 : <%=new DecimalFormat("#,###").format(product.getP_price())%>원</font>
+									</td>
+									<td width=30% height=150 align=center class=t1>
 										<form name="add_cart_form" method="post"
 											action="cart_add_action.jsp">
 											수량 :
@@ -166,21 +168,10 @@
 												<option value="9">9
 												<option value="10">10
 											</select> <br><br> 
-
-												<a href="javascript:add_cart_popup_window(this.parentElement);" title="장바구니담기[계속쇼핑팝업]"><img src='image/cart_2_30px.png'style="margin-bottom: 5px "></a>
-												<input type="hidden" name=p_no value="<%=product.getP_no()%>">
+											<input type="button" value="장바구니" onClick="location.href='javascript:add_cart_popup_window(this.parentElement)';"> &nbsp;
+											<input type="button" value="바로주문" id="directOrder" onClick="order_create_form();">
+											<input type="hidden" name=p_no value="<%=product.getP_no()%>">
 										</form>
-									</td>
-									<td width=40% height=200 align=center><img border=0
-										src='image/<%=product.getP_image()%>' width=120 height=200></td>
-									<td width=30% height=200 class=t1>
-										<ol type="disc">
-											<li><b>제품:<%=product.getP_name()%>&nbsp;&nbsp;&nbsp;
-											</b></li>
-											<li><font color=#FF0000>가격 : <%=product.getP_price()%>&nbsp;&nbsp;&nbsp;
-											</font></li>
-											<li><font color=#0000FF><%=product.getP_desc()%></font></li>
-										</ol>
 									</td>
 								</tr>
 								<tr>
@@ -190,11 +181,9 @@
 							</form>
 							-->
 
-
 							<table border="0" cellpadding="0" cellspacing="1">
 								<tr>
 									<td align=center>
-									<input type="button" value="주문하기[주문폼]" onClick="order_create_form();"> &nbsp;
 									<input type="button" value="상품후기(<%=boardListPage.pageMaker.getTotCount()%>건)" 
 										onClick="boardList();"> &nbsp; 
 									<input type="button" value="상품리스트" onClick="productList();"></td>
