@@ -19,12 +19,12 @@ function searchByKeyword() {
 <div id="menu">
 	<ul>
 		<li id="logo"><a href="hellomart_main.jsp"></a></li>
-			<form name="ff" text-align="center" style="display: inline; margin-left: 10px;">
-				<select data-trigger="" name="searchType" style="width:60px;height:30px">
+			<form name="ff" style="text-align:center; display: inline; margin-left: 10px;">
+				<select data-trigger="" name="searchType" style="width:60px;">
 					<option value="all">통합</option>
 					<option value="name">제목</option>
 				</select>
-					<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;height:25px"> 
+					<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요" value="" style="width:130px;"> 
 					<input type="button" value="검색" onclick="searchByKeyword();">		
 			</form>
 		<%if(sUserId==null){  %>

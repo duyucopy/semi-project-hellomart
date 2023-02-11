@@ -83,3 +83,10 @@ div#header #menu {
 #menu limypage:hover{
 	opacity: 1;
 }
+
+#menu form select, #menu form input {
+	height: 30px;
+	box-sizing: border-box;
+	font-size: 12px;
+	vertical-align: bottom;
+}

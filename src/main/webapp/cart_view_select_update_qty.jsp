@@ -199,7 +199,7 @@ int count = 0;
 										<td width=146 height=25 align="center" bgcolor="E6ECDE"
 											class=t1><font>가 격</font></td>
 										<td width=50 height=25 align="center" bgcolor="E6ECDE"
-											class=t1><font>비 고</font></td>
+											class=t1><font>삭 제</font></td>
 									</tr>
 
 									<!-- cart item start -->

@@ -94,7 +94,7 @@
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
-	<form name="product_detail_form">
+	<form name="product_detail_form" style="margin:0">
 		<input type="hidden" name="p_no" value="<%=product.getP_no()%>">
 		<input type="hidden" name="p_qty" value="1"> <input
 			type="hidden" name="buyType" value="direct">

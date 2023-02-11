@@ -17,7 +17,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>쇼핑몰 관리</title>
+<title>헬로마트</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet href="css/styles.css" type="text/css">
 <link rel=stylesheet href="css/shop.css" type="text/css">
@@ -63,8 +63,7 @@ form > table tr td{
 							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											주문상세조회</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>주문상세조회</b></td>
 								</tr>
 							</table> <!--form-->
 							<form name="f" method="post" action="order_delete_action.jsp">
@@ -72,29 +71,17 @@ form > table tr td{
 								<table align="center" width="80%"  border="0" cellpadding="0" cellspacing="1"  bgcolor="BBBBBB" >
 									<caption style="text-align: left;">주문상세정보</caption>
 									<tr>
-										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font
-											>주문번호</font></td>
-										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font
-											>주문일</font></td>
-										<td width=166 height=25 bgcolor="E6ECDE" align=center class=t1><font
-											>주문자</font></td>
-										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font
-											>비 고</font></td>
-											
-										
-									
+										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
+										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문일</font></td>
+										<td width=166 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문자</font></td>
+										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font>비 고</font></td>
 									</tr>
-									
-									
-									
-									
 									<tr>
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=order.getDate()%></td>
 										<td width=166 height=26 align=center bgcolor="ffffff" class=t1><%=order.getUserId()%></td>
-										
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
-												<input type="submit" value="삭제">
+												<%-- <input type="submit" value="삭제">--%>
 										</td>
 										<tr>
 										<td bgcolor="ffffff" height=26>주소</td>
@@ -139,7 +126,7 @@ form > table tr td{
 										<td width=640 colspan=4 height=26  bgcolor="ffffff" class=t1>
 										
 											<p align=right style="padding-top: 10px">
-												<font color=#FF0000>총 주문 금액 : <%=new DecimalFormat("#,###.0").format(tot_price)%> 원
+												<font color=#FF0000>총 주문 금액 : <%=new DecimalFormat("#,###").format(tot_price)%> 원
 												</font>
 											</p>
 										</td>
