@@ -69,6 +69,10 @@
 		f.submit();
 	}
 </script>
+<style>
+	/* 상품상세 footer 가리기 */
+	#footer>p { display: none; } 
+</style>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
@@ -140,24 +144,31 @@
 						}
 					
 					%>
-					<%if(nextBoard!=null){ %>
-						<tr>
-							<td width=50 bgcolor="ffffff" style="padding-left: 10">
-								<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=nextBoard.getBoardno()%>">
-								[다음글]<%=nextBoard.getTitle() %></a>
-							</td>
-						</tr>
-					<%} %>
+				</table>
+				<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
+					<tr>
 					<%if(prevBoard!=null){ %>
-						<tr>
-							<td width=50 bgcolor="ffffff" style="padding-left: 10">
+							<td bgcolor="ffffff" style="padding-left: 10">
 								<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=prevBoard.getBoardno()%>">
 								[이전글]<%=prevBoard.getTitle() %></a>
 							</td>
-						</tr>
+						
 					<%} %>
+					<%if(nextBoard!=null){ %>
+						
+							<td bgcolor="ffffff" style="padding-left: 10">
+								<a href="board_view.jsp?pageno=<%=pageno%>&p_no=<%=p_no%>&boardno=<%=nextBoard.getBoardno()%>">
+								[다음글]<%=nextBoard.getTitle() %></a>
+							</td>
+					<%} %>
+					</tr>
 				</table>
 
 	<!--container end-->
+			<div id="foot" style="width: 700px; margin: auto; margin-top: 10px;">
+				<!-- include_common_bottom.jsp start-->
+				<jsp:include page="include_common_bottom.jsp" />
+				<!-- include_common_bottom.jsp end-->
+			</div>
 </body>
 </html>

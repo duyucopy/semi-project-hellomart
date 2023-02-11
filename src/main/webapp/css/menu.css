@@ -3,7 +3,7 @@ div#header {
 	all: unset; 
 	background-color: #F3F2ED;
 }
-
+/*
 div#header h1 {
 	height: 80px;
 	line-height: 80px;
@@ -14,6 +14,7 @@ div#header h1 {
 	background-repeat: no-repeat;
 	background-size: 100%
 }
+*/
 div#header #menu {
 	margin-top:10px; 
 }

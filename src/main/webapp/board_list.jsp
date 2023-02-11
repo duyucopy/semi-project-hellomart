@@ -55,7 +55,7 @@
 	}
 </script>
 <style>
-	//상품상세 footer 가리기
+	/* 상품상세 footer 가리기 */
 	#footer>p { display: none; } 
 </style>
 </head>

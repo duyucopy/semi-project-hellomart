@@ -55,6 +55,10 @@
 		f.submit();
 	}
 </script>
+<style>
+	/* 상품상세 footer 가리기 */
+	#footer>p { display: none; } 
+</style>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
@@ -143,5 +147,10 @@
 			</table>
 
 	<!--container end-->
+			<div id="foot" style="width: 700px; margin: auto; margin-top: 10px;">
+				<!-- include_common_bottom.jsp start-->
+				<jsp:include page="include_common_bottom.jsp" />
+				<!-- include_common_bottom.jsp end-->
+			</div>
 </body>
 </html>

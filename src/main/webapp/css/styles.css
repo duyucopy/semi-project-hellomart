@@ -24,12 +24,14 @@ div#header {
 	background-repeat: no-repeat;
 	background-size: 100%
 }
+/*
 div#header h1 {
 	height: 80px;
 	line-height: 80px;
 	margin: 17px 0 0 0;
 	padding-left: 10px;
 }
+*/
 /***************** menu start****************/
 /***************** menu end****************/
 div#container {
