@@ -71,22 +71,18 @@ form > table tr td{
 								<table align="center" width="80%"  border="0" cellpadding="0" cellspacing="1"  bgcolor="BBBBBB" >
 									<caption style="text-align: left;">주문상세정보</caption>
 									<tr>
-										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
-										<td width=112 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문일</font></td>
-										<td width=166 height=25 bgcolor="E6ECDE" align=center class=t1><font>주문자</font></td>
-										<td width=50 height=25 bgcolor="E6ECDE" align=center class=t1><font>비 고</font></td>
+										<td width=10% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문번호</font></td>
+										<td width=20% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문일</font></td>
+										<td width=20% height=25 bgcolor="E6ECDE" align=center class=t1><font>주문자</font></td>
+										<td width=50% height=25 bgcolor="E6ECDE" align=center class=t1><font>주 소</font></td>
 									</tr>
 									<tr>
 										<td width=50 height=26 align=center bgcolor="ffffff" class=t1><%=order.getO_no()%></td>
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1><%=order.getDate()%></td>
 										<td width=166 height=26 align=center bgcolor="ffffff" class=t1><%=order.getUserId()%></td>
-										<td width=50 height=26 align=center bgcolor="ffffff" class=t1>
+										<td width=50 height=26 align=center bgcolor="ffffff" class=t1><%=order.getAddress().getLoc()%>
 												<%-- <input type="submit" value="삭제">--%>
 										</td>
-										<tr>
-										<td bgcolor="ffffff" height=26>주소</td>
-										 	<td colspan="3" align=center bgcolor="ffffff"> <%=order.getAddress().getLoc()%></td>
-										</tr>
 								</table>
 							<!--  -->			
 								<br/>	
@@ -96,6 +92,7 @@ form > table tr td{
 										<td width=290 height=25 align=center bgcolor="E6ECDE" class=t1>상품 이름</td>
 										<td width=112 height=25 align=center bgcolor="E6ECDE" class=t1>수 량</td>
 										<td width=166 height=25  align=center bgcolor="E6ECDE" class=t1>가 격</td>
+										<td width=166 height=25  align=center bgcolor="E6ECDE" class=t1>배송상태</td>
 										<td width=50 height=25  align=center bgcolor="E6ECDE" class=t1>비 고</td>
 									</tr>
 									
@@ -114,16 +111,22 @@ form > table tr td{
 										<td width=112 height=26 align=center  bgcolor="ffffff" class=t1>
 										<%=orderItem.getOi_qty()%>
 										</td>
-										
 										<td width=166 height=26 align=center bgcolor="ffffff" class=t1>
 										<%=new DecimalFormat("#,###").format(orderItem.getOi_qty()*orderItem.getProduct().getP_price())%>
+										</td>
+										<td width=145 height=26 align=center bgcolor="ffffff" class=t1>
+										<% if(order.getO_status() != null && order.getO_status().trim().equalsIgnoreCase("T")) { %>
+											배송 전
+										<% } else { %>
+										배송완료
+										<% } %>
 										</td>
 										<td width=50 height=26 align=center class=t1 bgcolor="ffffff"></td>
 									</tr>
 									<%}%>
 									<!-- cart item end -->
 									<tr>
-										<td width=640 colspan=4 height=26  bgcolor="ffffff" class=t1>
+										<td width=640 colspan=5 height=26  bgcolor="ffffff" class=t1>
 										
 											<p align=right style="padding-top: 10px">
 												<font color=#FF0000>총 주문 금액 : <%=new DecimalFormat("#,###").format(tot_price)%> 원

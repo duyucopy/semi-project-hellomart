@@ -75,7 +75,6 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 									<%
 									for (Order order : orderList) {
 										List<OrderItem> ordeItemList=order.getOrderItemList();
-										
 									%>
 									<tr>
 										<td colspan="6" height=24 align=left bgcolor="E6ECDE" class=t1 >

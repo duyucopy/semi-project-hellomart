@@ -53,7 +53,7 @@ if (buyType.equals("cart")) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>쇼핑몰 관리</title>
+<title>헬로마트</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet href="css/styles.css" type="text/css">
 <link rel=stylesheet href="css/shop.css" type="text/css">
@@ -117,8 +117,7 @@ form > table tr td{
 							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											주문/결제폼</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>주문/결제폼</b></td>
 								</tr>
 							</table> <!------------------form--------------------------->
 							<form name="order_create_form" method="post">
@@ -237,7 +236,7 @@ form > table tr td{
 									<td align=center>&nbsp;&nbsp; <a
 										href="javascript:order_create_form_submit();">구매/결제하기</a>
 										&nbsp;&nbsp;
-										<a href=product_list.jsp class=m1>계속 쇼핑하기</a>
+										<a href=product_list.jsp class=m1>쇼핑 계속하기</a>
 
 									</td>
 								</tr>

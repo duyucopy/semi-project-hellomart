@@ -133,7 +133,7 @@
 							<table style="padding-left: 10px" border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td height="22">&nbsp;&nbsp;<b>쇼핑몰 - 장바구니 보기</b></td>
+									<td height="22">&nbsp;&nbsp;<b>장바구니 보기</b></td>
 								</tr>
 							</table> <!--form--> <!-- 
 							<form name="f" method="post">
@@ -198,10 +198,10 @@
 								cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a href="product_list.jsp"
-										class=m1>계속 구경하기</a>&nbsp;&nbsp; <a
+										class=m1>쇼핑 계속하기</a>&nbsp;&nbsp; <a
 										href="javascript:cart_view_form_order_submit();" class=m1>총
 											<span style="font-weight: bold;" id="cart_item_select_count">3</span>개
-											주문하기[주문폼]
+											주문하기
 									</a> <a href="javascript:cart_delete();" class=m1>장바구니 비우기</a>&nbsp;&nbsp;
 
 									</td>

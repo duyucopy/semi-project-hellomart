@@ -278,7 +278,7 @@ int count = 0;
 								cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a href="product_list.jsp"
-										class=m1>계속 구경하기</a>&nbsp;&nbsp; <a
+										class=m1>쇼핑 계속하기</a>&nbsp;&nbsp; <a
 										href="javascript:cart_view_form_select_order_submit();"
 										class=m1> 총 <span style="font-weight: bold;"
 											id="cart_item_select_count"></span>개 주문하기
