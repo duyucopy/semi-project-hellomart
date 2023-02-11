@@ -12,9 +12,8 @@
 		location.href = 'user_login_form.jsp';
 	}
 </script>
-<p>
-	<strong>메 뉴</strong>
-</p>
+
+<div>
 <ul>
 	<%
 		if(sUserId==null){
@@ -32,14 +31,15 @@
 		<li><a href="user_view.jsp"><%=sUser.getName()+"님"%></a></li>
 		<li><a href="user_logout_action.jsp">로그아웃</a></li>
 		<li></li>
-		<li><a href="cart_view_select_update_qty.jsp">장바구니<span class="w3-badge w3-badge-menu w3-green cart_item_count"><%=cart_item_count%></span></a></li>
+		<li><a href="cart_view_select_update_qty.jsp">장바구니<span class="w3-badge w3-badge-menu w3-green cart_item_count" style="display:inline;"><%=cart_item_count%></span></a></li>
 		<li><a href="user_board_list.jsp">작성글 조회</a></li>
 		<li><a href=""></a></li>
-		<li><a href="order_list.jsp">주문목록</a></li>
-		<li><a href="order_list_orderitem1.jsp">주문+아이템 목록1</a></li>
-		<li><a href="order_list_orderitem2.jsp">주문+아이템 목록2</a></li>
+		<%--<li><a href="order_list.jsp">주문목록</a></li>--%>
+		<%--<li><a href="order_list_orderitem1.jsp">주문+아이템 목록1</a></li>--%>
+		 <li><a href="order_list_orderitem2.jsp">주문목록</a></li>
 		
 	<%} %>
 		<li><a href="product_list.jsp">상품리스트</a></li>
 		
 </ul>
+</div>

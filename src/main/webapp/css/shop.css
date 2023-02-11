@@ -4,8 +4,7 @@ table {
 	height: 100%;
 }
 form,div#f {
-	margin:10px;
-	margin-right: 0px;
+	margin: 10px 0px;
 	text-align: center;
 }
 a:link {

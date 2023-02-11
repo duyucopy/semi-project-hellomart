@@ -173,8 +173,8 @@ int count = 0;
 			<div id="content">
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
+						<td>
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>장바구니</b></td>
@@ -274,7 +274,7 @@ int count = 0;
 							</form> 
 							 --> <br />
 
-							<table style="padding-left: 10px" border="0" cellpadding="0"
+							<table border="0" cellpadding="0"
 								cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp; <a href="product_list.jsp"

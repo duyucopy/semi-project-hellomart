@@ -110,8 +110,8 @@
 			<div id="content">
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
+						<td>
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td height="22">&nbsp;&nbsp;<b>쇼핑몰 - 장바구니 보기</b></td>
@@ -188,7 +188,7 @@
 							 
 							<br />
 							
-							<table style="padding-left: 10px" border="0" cellpadding="0" cellspacing="1" width="590">
+							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align=center>&nbsp;&nbsp;
 									

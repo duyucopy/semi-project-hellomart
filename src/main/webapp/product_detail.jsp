@@ -122,8 +122,8 @@
 			<div id="content">
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
+						<td>
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>상품상세보기</b></td>
@@ -132,7 +132,7 @@
 							<form name="f" method="post">
 							-->
 							<br>
-							<table style="margin-left: 10px" border=0 width=80% height=376
+							<table border=0 width=80% height=376
 								align=center>
 								<tr valign=bottom>
 									<td colspan=2 align=left class=t1><font size=4

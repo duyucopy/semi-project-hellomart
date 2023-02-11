@@ -80,8 +80,8 @@
 	<jsp:include page="product_detail.jsp?p_no=<%=p_no %>" />
 		<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
 			<tr>
-				<td><br />
-					<table style="padding-left: 10px" border=0 cellpadding=0
+				<td>
+					<table border=0 cellpadding=0
 						cellspacing=0>
 						<tr>
 							<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기 게시물

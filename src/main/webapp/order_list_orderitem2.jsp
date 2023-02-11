@@ -60,8 +60,8 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 			<div id="content">
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
-						<td><br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
+						<td>
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -

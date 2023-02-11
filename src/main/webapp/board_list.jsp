@@ -66,7 +66,7 @@
 				<table border=0 cellpadding=0 cellspacing=0 class="BOARD">
 					<tr>
 						<td>
-							<table style="padding-left: 10px" border=0 cellpadding=0
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp; <b>[<%=product.getP_name() %>] 후기게시판</b>

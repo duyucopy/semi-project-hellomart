@@ -1,4 +1,4 @@
-<%@page import="com.itwill.hellomart.user.User"%>
+ <%@page import="com.itwill.hellomart.user.User"%>
 <%@page import="com.itwill.hellomart.user.UserService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -62,8 +62,8 @@
 				<table border=0 cellpadding=0 cellspacing=0>
 					<tr>
 						<td>
-							<!--contents--> <br />
-							<table style="padding-left: 10px" border=0 cellpadding=0
+							<!--contents-->
+							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
 									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>내정보 관리
