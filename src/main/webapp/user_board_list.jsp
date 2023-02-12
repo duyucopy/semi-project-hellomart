@@ -5,7 +5,7 @@
 <%@page import="com.itwill.hellomart.board.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%--@ include file="login_check.jspf"--%>
+<%@ include file="login_check.jspf"%>
 <%!public String getTitleString(Board board) {
 		StringBuilder title = new StringBuilder(256);
 		String t = board.getTitle();
@@ -37,7 +37,7 @@
 	
 	//게시물조회
 	BoardListPageMakerDto boardListPage 
-		=BoardService.getInstance().findBoardListByUser(Integer.parseInt(pageno), "guard1");
+		=BoardService.getInstance().findBoardListByUser(Integer.parseInt(pageno), sUserId);
 	
 	ProductService productService=new ProductService();
 	
