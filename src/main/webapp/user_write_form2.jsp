@@ -56,35 +56,6 @@
 			document.f.userId.focus();
 			return;
 		}
-		/*
-		1.아이디는 3~10자여야한다
-		2.영문알파벳대문자,소문자,숫자만 가능
-		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
-		*/
-		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
-			document.getElementById('id').innerHTML = "아이디는 5~10자여야 합니다." 
-			f.userId.value.select();
-			return;
-		}
-	
-		for(let i=0;i<document.f.userId.value.length;i++){
-			if(!((document.f.userId.value.charAt(i)>='0' && document.f.userId.value.charAt(i)<='9')||
-				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
-				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
-			)){
-				document.getElementById('id').innerHTML = "아이디는 영문 대문자, 소문자, 숫자만 가능합니다." 
-				document.f.userId.value.select();
-				return;
-			}							
-		}
-		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
-			document.getElementById('id').innerHTML = "아이디의 첫 글자는 영문 대문자, 소문자만 가능하며, 숫자로 시작할 수 없습니다." 
-			document.f.userId.value.select();
-			return;
-		}
-		
-		
-		/*******************************************************/
 		if (document.f.password.value == "") {
 			document.getElementById('pass').innerHTML = "비밀번호를 입력하세요." 
 			document.f.password.focus();
@@ -92,17 +63,17 @@
 		}
 		if (document.f.password2.value == "") {
 			document.getElementById('pass2').innerHTML = "비밀번호확인을 입력하세요." 
-			f.password2.focus();
+			document.f.password2.focus();
 			return;
 		}
 		if (document.f.name.value == "") {
 			document.getElementById('name').innerHTML = "이름을 입력하세요." 
-			f.name.focus();
+			document.f.name.focus();
 			return;
 		}
 		if (document.f.email.value == "") {
 			document.getElementById('email').innerHTML = "이메일 주소를 입력하세요." 
-			f.email.focus();
+			document.f.email.focus();
 			return;
 		}
 		
@@ -133,9 +104,10 @@
 			if(document.f.password.value != document.f.password2.value){
 				document.getElementById('pass2').innerHTML = "비밀번호가 일치하지 않습니다." 
 				document.getElementById('pass2').style.color = "red"
+				document.f.password2.focus();
 			}else{
 				document.getElementById('pass2').innerHTML = "비밀번호가 일치합니다."
-					document.getElementById('pass2').style.color = "blue"
+				document.getElementById('pass2').style.color = "blue"
 			}
 		}else if(document.f.password.value = "") {
 			document.getElementById('pass2').innerHTML = ""
@@ -148,6 +120,31 @@
 		var userId = document.getElementById("userId").value;
 		if (userId == null || userId == '') {
 			document.getElementById('id').innerHTML = "아이디를 입력하세요." 
+			return;
+		}
+		/*
+		1.아이디는 3~10자여야한다
+		2.영문알파벳대문자,소문자,숫자만 가능
+		3.아이디의 첫글자는 영문알파벳대문자,소문자만 가능합니다(숫자로 시작할수없다)
+		*/
+		if(!(document.f.userId.value.length>=3 && document.f.userId.value.length<=10)){
+			document.getElementById('id').innerHTML = "아이디는 5~10자여야 합니다." 
+			f.userId.value.select();
+			return;
+		}
+		for(let i=0;i<document.f.userId.value.length;i++){
+			if(!((document.f.userId.value.charAt(i)>='0' && document.f.userId.value.charAt(i)<='9')||
+				(document.f.userId.value.charAt(i)>='a' && document.f.userId.value.charAt(i)<='z')||
+				(document.f.userId.value.charAt(i)>='A' && document.f.userId.value.charAt(i)<='Z')
+			)){
+				document.getElementById('id').innerHTML = "아이디는 영문 대문자, 소문자, 숫자만 가능합니다." 
+				document.f.userId.value.select();
+				return;
+			}							
+		}
+		if(document.f.userId.value.charAt(0)>='0' && document.f.userId.value.charAt(0)<='9'){
+			document.getElementById('id').innerHTML = "아이디의 첫 글자는 영문 대문자, 소문자만 가능하며, 숫자로 시작할 수 없습니다." 
+			document.f.userId.value.select();
 			return;
 		}
 		document.f.action = 'user_write_form2.jsp';
@@ -233,7 +230,7 @@
 											확인</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10px" align="left">
 											<input type="password" style="width: 150px" name="password2"
-											value="" onkeyup="passCheck();repassword();">&nbsp;&nbsp;<font id="pass2" color="red"></font>
+											value="" onfocusout="passCheck();repassword();">&nbsp;&nbsp;<font id="pass2" color="red"></font>
 										</td>
 									</tr>
 									<tr>
