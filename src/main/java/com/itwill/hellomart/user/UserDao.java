@@ -137,7 +137,7 @@ public class UserDao {
 				pstmt.close();
 			}
 			if(con != null) {
-				rs.close();
+				con.close();
 			}
 		}
 		return findUser;
