@@ -137,7 +137,7 @@
 							if((int)boardno==BoardList.get(i).getBoardno()){
 								if(i-1>=0)
 									nextBoard = BoardList.get(i-1);
-								if(i+1<=BoardList.size()) 
+								if(i+1<BoardList.size()) 
 									prevBoard = BoardList.get(i+1);
 								break;
 							}

@@ -29,14 +29,14 @@ public class BoardDataInsertMain {
 			con = dataSource.getConnection();
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			con.setAutoCommit(false);
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 10; i++) {
 				stmt.addBatch("INSERT INTO board (boardno, title, content, groupno, step, userId, p_no)" + " VALUES ("
 						+ "board_boardno_SEQ.nextval,"
 						+ "'후기제목'||board_boardno_SEQ.currval ,"
 						+ "'후기내용'||board_boardno_SEQ.currval,"
 						+ "board_boardno_SEQ.currval,"
 						+ "1,"
-						+ "'guard3',"
+						+ "'guard1',"
 						//+ "2)");
 						+ ((int)(Math.random()*18)+1)+")");
 
