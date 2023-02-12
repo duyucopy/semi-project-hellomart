@@ -53,7 +53,25 @@ insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.ne
 insert into orders(o_no, o_date, o_status, o_option, o_price, userid,addr_no) values (orders_o_no_SEQ.nextval, sysdate, default, '문 앞에 놔주세요', 990000, 'guard3',3);
 insert into order_item(oi_no, oi_qty, o_no, p_no) values(order_item_oi_no_SEQ.nextval, 1, orders_o_no_SEQ.currval, 3);
 
-
+/**********************p_image update*************************/
+update product set p_image='LG전자 스텐드TV_150.jpg' where p_no=1;
+update product set p_image='삼성전자 TV_150.jpg' where p_no=2;
+update product set p_image='삼성 양문형냉장고_150.jpg' where p_no=3;
+update product set p_image='LG전자 오브제컬렉션 냉장고_150.jpg' where p_no=4;
+update product set p_image='LG전자 일반 세탁기_150.jpg' where p_no=5;
+update product set p_image='삼성전자 드럼 세탁기_150.jpg' where p_no=6;
+update product set p_image='아이폰_150.jpg' where p_no=7;
+update product set p_image='갤럭시_150.jpg' where p_no=8;
+update product set p_image='프리플로우_150.jpg' where p_no=9;
+update product set p_image='삼보컴퓨터_150.png' where p_no=10;
+update product set p_image='갤럭시노트북_150.jpg' where p_no=11;
+update product set p_image='맥북_150.jpg' where p_no=12;
+update product set p_image='에이스침대_150.jpg' where p_no=13;
+update product set p_image='일룸책상세트_150.jpg' where p_no=14;
+update product set p_image='리바트행거_150.jpg' where p_no=15;
+update product set p_image='책상서랍_150.jpg' where p_no=16;
+update product set p_image='스탠드조명_150.png' where p_no=17;
+update product set p_image='안마의자_150.jpg' where p_no=18;
 
 
 /**********************board insert**************************/
