@@ -374,7 +374,7 @@ public class ProductDao {
 			pstmt.close();
 		}
 		if(con != null) {
-			rs.close();
+			con.close();
 		}
 	}
 		return product;
@@ -406,7 +406,7 @@ public class ProductDao {
 			pstmt.close();
 		}
 		if(con != null) {
-			rs.close();
+			con.close();
 		}
 	}
 		return productList;
