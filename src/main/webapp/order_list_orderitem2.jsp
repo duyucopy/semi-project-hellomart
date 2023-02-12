@@ -64,8 +64,7 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>쇼핑몰 -
-											주문 목록</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>주문 목록</b></td>
 								</tr>
 							</table> <!--form-->
 							<form name="f" method="post">
@@ -77,7 +76,7 @@ List<Order> orderList = orderService.findOrderWithOrderItemByUserId(sUserId);
 										List<OrderItem> ordeItemList=order.getOrderItemList();
 									%>
 									<tr>
-										<td colspan="6" height=24 align=left bgcolor="E6ECDE" class=t1 >
+										<td colspan="6" height=24 align=left bgcolor="#c60000" class=t1 >
 											<span
 											style="font-size: 10pt; font-style: bold;">&nbsp;<%=order.getDate() %></span>
 											<span style="font-size: 8pt">주문번호 <%=order.getO_no() %></span> <a href='order_detail.jsp?o_no=<%=order.getO_no()%>' style="font-size: 6pt">상세보기</a>

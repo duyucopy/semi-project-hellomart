@@ -65,8 +65,7 @@
 							<table border=0 cellpadding=0
 								cellspacing=0>
 								<tr>
-									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 관리
-											- 로그인</b></td>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>로그인</b></td>
 								</tr>
 							</table> <!-- login Form  -->
 							<form name="f" style="margin: auto; margin-top: 30px; width: 250px;">
