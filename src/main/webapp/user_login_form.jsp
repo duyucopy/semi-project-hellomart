@@ -14,7 +14,7 @@
 <link rel=stylesheet href="css/user.css" type="text/css">
 <script type="text/javascript">
 	function userCreateForm() {
-		location.href = "user_write_form.jsp";
+		location.href = "user_write_form2.jsp";
 	}
 
 	function login() {
